@@ -10,21 +10,41 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktop = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menu_archivo = new javax.swing.JMenu();
+        menu_equipo = new javax.swing.JMenu();
+        menu_jugador = new javax.swing.JMenu();
+        menu_comp = new javax.swing.JMenu();
+        menu_ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        desktop.setBackground(new java.awt.Color(204, 204, 204));
+        menu_archivo.setText("Archivo");
+        jMenuBar1.add(menu_archivo);
+
+        menu_equipo.setText("Equipo");
+        jMenuBar1.add(menu_equipo);
+
+        menu_jugador.setText("Jugador");
+        jMenuBar1.add(menu_jugador);
+
+        menu_comp.setText("Competicion");
+        jMenuBar1.add(menu_comp);
+
+        menu_ayuda.setText("Ayuda");
+        jMenuBar1.add(menu_ayuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktop, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
@@ -39,6 +59,11 @@ public class Ventana extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane desktop;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menu_archivo;
+    private javax.swing.JMenu menu_ayuda;
+    private javax.swing.JMenu menu_comp;
+    private javax.swing.JMenu menu_equipo;
+    private javax.swing.JMenu menu_jugador;
     // End of variables declaration//GEN-END:variables
 }
