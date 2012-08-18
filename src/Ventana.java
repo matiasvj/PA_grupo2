@@ -10,7 +10,7 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
+        barra_menu = new javax.swing.JMenuBar();
         menu_archivo = new javax.swing.JMenu();
         menu_equipo = new javax.swing.JMenu();
         menu_jugador = new javax.swing.JMenu();
@@ -18,23 +18,26 @@ public class Ventana extends javax.swing.JFrame {
         menu_ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Aplicacion Administrador");
+        setBounds(new java.awt.Rectangle(200, 100, 500, 500));
+        setName("ventana"); // NOI18N
 
         menu_archivo.setText("Archivo");
-        jMenuBar1.add(menu_archivo);
+        barra_menu.add(menu_archivo);
 
         menu_equipo.setText("Equipo");
-        jMenuBar1.add(menu_equipo);
+        barra_menu.add(menu_equipo);
 
         menu_jugador.setText("Jugador");
-        jMenuBar1.add(menu_jugador);
+        barra_menu.add(menu_jugador);
 
         menu_comp.setText("Competicion");
-        jMenuBar1.add(menu_comp);
+        barra_menu.add(menu_comp);
 
         menu_ayuda.setText("Ayuda");
-        jMenuBar1.add(menu_ayuda);
+        barra_menu.add(menu_ayuda);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(barra_menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,7 +62,7 @@ public class Ventana extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar barra_menu;
     private javax.swing.JMenu menu_archivo;
     private javax.swing.JMenu menu_ayuda;
     private javax.swing.JMenu menu_comp;
