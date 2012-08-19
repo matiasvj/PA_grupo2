@@ -1,5 +1,4 @@
 package Ventanas;
-import Clases.*;
 
 public class Main extends javax.swing.JFrame {
 
@@ -70,7 +69,7 @@ public class Main extends javax.swing.JFrame {
         ver_equipo.setText("Ver  Equipo");
         ver_equipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verEquipo(evt);
+                ver_equipoActionPerformed(evt);
             }
         });
         menu_equipo.add(ver_equipo);
@@ -82,7 +81,7 @@ public class Main extends javax.swing.JFrame {
         crear_jugador.setText("Crear Jugador");
         crear_jugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                altaJugador(evt);
+                crear_jugadorActionPerformed(evt);
             }
         });
         menu_jugador.add(crear_jugador);
@@ -90,25 +89,15 @@ public class Main extends javax.swing.JFrame {
         ver_jugador.setText("Ver Informacion");
         ver_jugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verJugador(evt);
+                ver_jugadorActionPerformed(evt);
             }
         });
         menu_jugador.add(ver_jugador);
 
         modificar_jugador.setText("Modificar Informacion");
-        modificar_jugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarJugador(evt);
-            }
-        });
         menu_jugador.add(modificar_jugador);
 
         eliminar_jugador.setText("Eliminar Jugador");
-        eliminar_jugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarJugador(evt);
-            }
-        });
         menu_jugador.add(eliminar_jugador);
 
         barra_menu.add(menu_jugador);
@@ -118,19 +107,9 @@ public class Main extends javax.swing.JFrame {
         nueva_competicion.setText("Nueva Competicion");
 
         individual.setText("Individual");
-        individual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevaComp_individual(evt);
-            }
-        });
         nueva_competicion.add(individual);
 
         liga.setText("Liga");
-        liga.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevaLiga(evt);
-            }
-        });
         nueva_competicion.add(liga);
 
         menu_comp.add(nueva_competicion);
@@ -138,7 +117,7 @@ public class Main extends javax.swing.JFrame {
         ver_informacion.setText("Ver Informacion");
         ver_informacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verInfoCompeticion(evt);
+                ver_informacionActionPerformed(evt);
             }
         });
         menu_comp.add(ver_informacion);
@@ -148,7 +127,7 @@ public class Main extends javax.swing.JFrame {
         partido_individual.setText("Individual");
         partido_individual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                partidoIndividual(evt);
+                partido_individualActionPerformed(evt);
             }
         });
         partido.add(partido_individual);
@@ -156,7 +135,7 @@ public class Main extends javax.swing.JFrame {
         partido_liga.setText("De Liga");
         partido_liga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                partidoLiga(evt);
+                partido_ligaActionPerformed(evt);
             }
         });
         partido.add(partido_liga);
@@ -164,11 +143,6 @@ public class Main extends javax.swing.JFrame {
         menu_comp.add(partido);
 
         dividendos.setText("Dividendos");
-        dividendos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                asignarDividendos(evt);
-            }
-        });
         menu_comp.add(dividendos);
 
         barra_menu.add(menu_comp);
@@ -196,13 +170,13 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_crearEquipo
 
-    private void verEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEquipo
+    private void ver_equipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_equipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_verEquipo
+    }//GEN-LAST:event_ver_equipoActionPerformed
 
-    private void verJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verJugador
+    private void ver_jugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_jugadorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_verJugador
+    }//GEN-LAST:event_ver_jugadorActionPerformed
 
     private void menu_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_archivoActionPerformed
         // TODO add your handling code here:
@@ -212,43 +186,23 @@ public class Main extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
-    private void partidoLiga(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoLiga
+    private void partido_ligaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partido_ligaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_partidoLiga
+    }//GEN-LAST:event_partido_ligaActionPerformed
 
-    private void partidoIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoIndividual
+    private void partido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partido_individualActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_partidoIndividual
+    }//GEN-LAST:event_partido_individualActionPerformed
 
-    private void verInfoCompeticion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInfoCompeticion
+    private void ver_informacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_informacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_verInfoCompeticion
+    }//GEN-LAST:event_ver_informacionActionPerformed
 
-    private void altaJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJugador
+    private void crear_jugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_jugadorActionPerformed
         AltaJugador aj = new AltaJugador();
         escritorio.add(aj);
         aj.show();
-    }//GEN-LAST:event_altaJugador
-
-    private void modificarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugador
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificarJugador
-
-    private void eliminarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugador
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eliminarJugador
-
-    private void nuevaComp_individual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaComp_individual
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevaComp_individual
-
-    private void nuevaLiga(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaLiga
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevaLiga
-
-    private void asignarDividendos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarDividendos
-        // TODO add your handling code here:
-    }//GEN-LAST:event_asignarDividendos
+    }//GEN-LAST:event_crear_jugadorActionPerformed
 
     public static void main(String args[]) {
 
@@ -257,8 +211,6 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(true);
             }
         });
-        
-        ManejadorBD bd = new ManejadorBD();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barra_menu;

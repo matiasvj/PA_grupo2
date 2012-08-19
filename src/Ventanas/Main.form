@@ -40,7 +40,7 @@
                 <Property name="text" type="java.lang.String" value="Ver  Equipo"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verEquipo"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ver_equipoActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -55,7 +55,7 @@
                 <Property name="text" type="java.lang.String" value="Crear Jugador"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altaJugador"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crear_jugadorActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ver_jugador">
@@ -63,24 +63,18 @@
                 <Property name="text" type="java.lang.String" value="Ver Informacion"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verJugador"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ver_jugadorActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="modificar_jugador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Modificar Informacion"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modificarJugador"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="eliminar_jugador">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Eliminar Jugador"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarJugador"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -98,17 +92,11 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Individual"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevaComp_individual"/>
-                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="liga">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Liga"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevaLiga"/>
-                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -117,7 +105,7 @@
                 <Property name="text" type="java.lang.String" value="Ver Informacion"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verInfoCompeticion"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ver_informacionActionPerformed"/>
               </Events>
             </MenuItem>
             <Menu class="javax.swing.JMenu" name="partido">
@@ -130,7 +118,7 @@
                     <Property name="text" type="java.lang.String" value="Individual"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partidoIndividual"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partido_individualActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="partido_liga">
@@ -138,7 +126,7 @@
                     <Property name="text" type="java.lang.String" value="De Liga"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partidoLiga"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partido_ligaActionPerformed"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
@@ -147,9 +135,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dividendos"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="asignarDividendos"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

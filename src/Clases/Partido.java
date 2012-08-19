@@ -20,49 +20,5 @@ public class Partido {
         finalizado = false;
     }
     
-    public String getId(){
-        return id;
-    }
-    public Date getFecha(){
-        return fecha;
-    }
-    public String getHora() {
-        return hora;
-    }
-    public String getLugar() {
-        return lugar;
-    }
-
-    public boolean isFinalizado() {
-        return finalizado;
-    }
-
-    public int getGoles_local() {
-        return goles_local;
-    }
-
-    public int getGoles_visita() {
-        return goles_visita;
-    }
-
-    public float getDiv_local() {
-        return div_local;
-    }
-
-    public float getDiv_empate() {
-        return div_empate;
-    }
-
-    public float getDiv_visita() {
-        return div_visita;
-    }
-
-    public Equipo getLocal() {
-        return local;
-    }
-
-    public Equipo getVisitante() {
-        return visitante;
-    }
     
 }

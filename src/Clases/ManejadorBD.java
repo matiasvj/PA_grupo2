@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 public class ManejadorBD {
     
     private final static String driver = "com.mysql.jdbc.Driver";
-    private final static String bd = "jdbc:mysql://localhost:3306/minibedelia";
+    private final static String bd = "jdbc:mysql://localhost:3307/bedelia";
     private final static String usuario = "root";
     private final static String password = "root";
     
