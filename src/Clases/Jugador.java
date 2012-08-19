@@ -1,23 +1,21 @@
 package Clases;
 
-
 public class Jugador {
     private int id;
     private int edad;
     private Date f_nac;
-    private float altura;
-    private float peso;
+    private double altura;
+    private double peso;
     private String nombre, nombre_completo, posicion, Nacionalidad;
     
-    public Jugador(int edad, float altura, float peso, String nombre,
-            String nombre_completo, String posicion, String nacionalidad) {
-        this.edad = edad;
-        this.altura = altura;
-        this.peso = peso;
+    public Jugador(String nombre, String nombre_completo, String posicion, Date f_nac, String nacionalidad, double altura, double peso) {
         this.nombre = nombre;
         this.nombre_completo = nombre_completo;
+        this.f_nac = f_nac;
         this.posicion = posicion;
         Nacionalidad = nacionalidad;
+        this.altura = altura;
+        this.peso = peso;
     }
     public int getId() {
         return id;
@@ -28,13 +26,13 @@ public class Jugador {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    public float getAltura() {
+    public double getAltura() {
         return altura;
     }
     public void setAltura(float altura) {
         this.altura = altura;
     }
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
     public void setPeso(float peso) {

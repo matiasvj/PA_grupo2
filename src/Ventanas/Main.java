@@ -1,4 +1,5 @@
 package Ventanas;
+import Clases.*;
 
 public class Main extends javax.swing.JFrame {
 
@@ -40,16 +41,11 @@ public class Main extends javax.swing.JFrame {
         setResizable(false);
 
         menu_archivo.setText("Archivo");
-        menu_archivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_archivoActionPerformed(evt);
-            }
-        });
 
         salir.setText("Salir");
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirActionPerformed(evt);
+                salir(evt);
             }
         });
         menu_archivo.add(salir);
@@ -69,7 +65,7 @@ public class Main extends javax.swing.JFrame {
         ver_equipo.setText("Ver  Equipo");
         ver_equipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ver_equipoActionPerformed(evt);
+                verEquipo(evt);
             }
         });
         menu_equipo.add(ver_equipo);
@@ -81,7 +77,7 @@ public class Main extends javax.swing.JFrame {
         crear_jugador.setText("Crear Jugador");
         crear_jugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crear_jugadorActionPerformed(evt);
+                altaJugador(evt);
             }
         });
         menu_jugador.add(crear_jugador);
@@ -89,15 +85,25 @@ public class Main extends javax.swing.JFrame {
         ver_jugador.setText("Ver Informacion");
         ver_jugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ver_jugadorActionPerformed(evt);
+                verJugador(evt);
             }
         });
         menu_jugador.add(ver_jugador);
 
         modificar_jugador.setText("Modificar Informacion");
+        modificar_jugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarJugador(evt);
+            }
+        });
         menu_jugador.add(modificar_jugador);
 
         eliminar_jugador.setText("Eliminar Jugador");
+        eliminar_jugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarJugador(evt);
+            }
+        });
         menu_jugador.add(eliminar_jugador);
 
         barra_menu.add(menu_jugador);
@@ -107,9 +113,19 @@ public class Main extends javax.swing.JFrame {
         nueva_competicion.setText("Nueva Competicion");
 
         individual.setText("Individual");
+        individual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevaCompIndividual(evt);
+            }
+        });
         nueva_competicion.add(individual);
 
         liga.setText("Liga");
+        liga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevaLiga(evt);
+            }
+        });
         nueva_competicion.add(liga);
 
         menu_comp.add(nueva_competicion);
@@ -117,7 +133,7 @@ public class Main extends javax.swing.JFrame {
         ver_informacion.setText("Ver Informacion");
         ver_informacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ver_informacionActionPerformed(evt);
+                verInformacion(evt);
             }
         });
         menu_comp.add(ver_informacion);
@@ -127,7 +143,7 @@ public class Main extends javax.swing.JFrame {
         partido_individual.setText("Individual");
         partido_individual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                partido_individualActionPerformed(evt);
+                partidoIndividual(evt);
             }
         });
         partido.add(partido_individual);
@@ -135,7 +151,7 @@ public class Main extends javax.swing.JFrame {
         partido_liga.setText("De Liga");
         partido_liga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                partido_ligaActionPerformed(evt);
+                partidoLiga(evt);
             }
         });
         partido.add(partido_liga);
@@ -143,6 +159,11 @@ public class Main extends javax.swing.JFrame {
         menu_comp.add(partido);
 
         dividendos.setText("Dividendos");
+        dividendos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignarDividendos(evt);
+            }
+        });
         menu_comp.add(dividendos);
 
         barra_menu.add(menu_comp);
@@ -170,39 +191,55 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_crearEquipo
 
-    private void ver_equipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_equipoActionPerformed
+    private void verEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEquipo
         // TODO add your handling code here:
-    }//GEN-LAST:event_ver_equipoActionPerformed
+    }//GEN-LAST:event_verEquipo
 
-    private void ver_jugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_jugadorActionPerformed
+    private void verJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verJugador
         // TODO add your handling code here:
-    }//GEN-LAST:event_ver_jugadorActionPerformed
+    }//GEN-LAST:event_verJugador
 
-    private void menu_archivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_archivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu_archivoActionPerformed
-
-    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+    private void salir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir
         System.exit(0);
-    }//GEN-LAST:event_salirActionPerformed
+    }//GEN-LAST:event_salir
 
-    private void partido_ligaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partido_ligaActionPerformed
+    private void partidoLiga(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoLiga
         // TODO add your handling code here:
-    }//GEN-LAST:event_partido_ligaActionPerformed
+    }//GEN-LAST:event_partidoLiga
 
-    private void partido_individualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partido_individualActionPerformed
+    private void partidoIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoIndividual
         // TODO add your handling code here:
-    }//GEN-LAST:event_partido_individualActionPerformed
+    }//GEN-LAST:event_partidoIndividual
 
-    private void ver_informacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ver_informacionActionPerformed
+    private void verInformacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacion
         // TODO add your handling code here:
-    }//GEN-LAST:event_ver_informacionActionPerformed
+    }//GEN-LAST:event_verInformacion
 
-    private void crear_jugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crear_jugadorActionPerformed
+    private void altaJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJugador
         AltaJugador aj = new AltaJugador();
         escritorio.add(aj);
         aj.show();
-    }//GEN-LAST:event_crear_jugadorActionPerformed
+    }//GEN-LAST:event_altaJugador
+
+    private void modificarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugador
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificarJugador
+
+    private void eliminarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugador
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarJugador
+
+    private void nuevaCompIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaCompIndividual
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevaCompIndividual
+
+    private void nuevaLiga(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaLiga
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevaLiga
+
+    private void asignarDividendos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarDividendos
+        // TODO add your handling code here:
+    }//GEN-LAST:event_asignarDividendos
 
     public static void main(String args[]) {
 
@@ -211,6 +248,8 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(true);
             }
         });
+        
+        ManejadorBD bd = new ManejadorBD();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barra_menu;
