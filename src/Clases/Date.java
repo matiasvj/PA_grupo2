@@ -4,7 +4,7 @@ package Clases;
 public class Date {
     private int dia, mes, anio;
     
-    Date(int dd, int mm, int aa){
+    public Date(int dd, int mm, int aa){
         dia = dd;
         mes = mm;
         anio = aa;
