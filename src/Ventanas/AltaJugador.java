@@ -85,6 +85,11 @@ public class AltaJugador extends javax.swing.JInternalFrame {
         campo_peso.setToolTipText("");
 
         boton_confirmar.setText("Confirmar");
+        boton_confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarIngreso(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,6 +105,11 @@ public class AltaJugador extends javax.swing.JInternalFrame {
         );
 
         boton_sel_imagen.setText("Seleccionar imagen...");
+        boton_sel_imagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionarImagen(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,11 +187,21 @@ public class AltaJugador extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_sel_imagen)
                     .addComponent(boton_confirmar))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void seleccionarImagen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarImagen
+        SelectorArchivos sel = new SelectorArchivos();
+        sel.setVisible(true);
+    }//GEN-LAST:event_seleccionarImagen
+
+    private void confirmarIngreso(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarIngreso
+        
+    }//GEN-LAST:event_confirmarIngreso
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_confirmar;
     private javax.swing.JButton boton_sel_imagen;
