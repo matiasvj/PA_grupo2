@@ -11,7 +11,6 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
         barra_menu = new javax.swing.JMenuBar();
         menu_archivo = new javax.swing.JMenu();
         salir = new javax.swing.JMenuItem();
@@ -177,11 +176,11 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+            .addGap(0, 404, Short.MAX_VALUE)
         );
 
         pack();
@@ -217,8 +216,8 @@ public class Main extends javax.swing.JFrame {
 
     private void altaJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJugador
         AltaJugador aj = new AltaJugador();
-        escritorio.add(aj);
-        aj.show();
+        aj.setLocation(300,200);
+        aj.setVisible(true);
     }//GEN-LAST:event_altaJugador
 
     private void modificarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugador
@@ -257,7 +256,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem crear_jugador;
     private javax.swing.JMenuItem dividendos;
     private javax.swing.JMenuItem eliminar_jugador;
-    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem individual;
     private javax.swing.JMenuItem liga;
     private javax.swing.JMenu menu_archivo;
