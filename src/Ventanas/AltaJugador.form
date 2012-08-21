@@ -41,14 +41,14 @@
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="campo_peso" min="-2" max="-2" attributes="0"/>
-                  <Component id="campo_f_nac" min="-2" max="-2" attributes="0"/>
                   <Component id="campo_nom_completo" min="-2" max="-2" attributes="0"/>
                   <Component id="campo_nombre" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="campo_nacionalidad" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="campo_posicion" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="campo_altura" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="campo_f_nac" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
@@ -83,26 +83,20 @@
                           <Component id="lab_fecha_nacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="campo_f_nac" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lab_nacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_nacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lab_posicion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campo_posicion" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="campo_altura" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lab_altura" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lab_nacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="campo_nacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="campo_posicion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lab_posicion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="campo_altura" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lab_altura" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -274,7 +268,7 @@
         <Property name="text" type="java.lang.String" value="Seleccionar imagen..."/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_sel_imagenseleccionarImagen"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionarImagen"/>
       </Events>
     </Component>
   </SubComponents>
