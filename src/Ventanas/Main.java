@@ -1,5 +1,7 @@
 package Ventanas;
 import Clases.*;
+import javax.swing.*;
+import java.awt.*;
 
 public class Main extends javax.swing.JFrame {
 
@@ -187,7 +189,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEquipo
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_crearEquipo
 
     private void verEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEquipo
@@ -195,7 +197,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_verEquipo
 
     private void verJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verJugador
-        // TODO add your handling code here:
+        VerJugador vj = new VerJugador();
+        vj.setVisible(true);
+        vj.setLocation(300,200);
     }//GEN-LAST:event_verJugador
 
     private void salir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir

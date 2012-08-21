@@ -1,5 +1,8 @@
 package Ventanas;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 public class AltaJugador extends javax.swing.JFrame {
 
     public AltaJugador() {
@@ -98,7 +101,7 @@ public class AltaJugador extends javax.swing.JFrame {
         boton_confirmar.setText("Confirmar");
         boton_confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_confirmarconfirmarIngreso(evt);
+                confirmar(evt);
             }
         });
 
@@ -134,7 +137,7 @@ public class AltaJugador extends javax.swing.JFrame {
                     .addComponent(campo_posicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campo_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campo_f_nac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(boton_sel_imagen)
@@ -182,24 +185,21 @@ public class AltaJugador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_sel_imagen)
                     .addComponent(boton_confirmar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton_confirmarconfirmarIngreso(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_confirmarconfirmarIngreso
+    private void confirmar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar
 
-    }//GEN-LAST:event_boton_confirmarconfirmarIngreso
+    }//GEN-LAST:event_confirmar
 
     private void seleccionarImagen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarImagen
         javax.swing.JFileChooser sel = new javax.swing.JFileChooser();
         int res = sel.showOpenDialog(null);
         if(res == sel.APPROVE_OPTION){
             java.io.File archivo = sel.getSelectedFile();
-        }
-        else if(res == sel.CANCEL_OPTION){
-           
         }
         sel.setLocation(300,200);
         
