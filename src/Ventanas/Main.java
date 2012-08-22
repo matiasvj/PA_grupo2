@@ -189,7 +189,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crearEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEquipo
-        
+        AltaEquipo ae = new AltaEquipo(this, true);
+        ae.setLocation(350, 250);
+        ae.setVisible(true);
     }//GEN-LAST:event_crearEquipo
 
     private void verEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEquipo
@@ -197,9 +199,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_verEquipo
 
     private void verJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verJugador
-        VerJugador vj = new VerJugador();
-        vj.setVisible(true);
+        VerJugador vj = new VerJugador(this, true);
         vj.setLocation(300,200);
+        vj.setVisible(true);
     }//GEN-LAST:event_verJugador
 
     private void salir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir
@@ -219,7 +221,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_verInformacion
 
     private void altaJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJugador
-        AltaJugador aj = new AltaJugador();
+        AltaJugador aj = new AltaJugador(this, true);
         aj.setLocation(300,200);
         aj.setVisible(true);
     }//GEN-LAST:event_altaJugador
