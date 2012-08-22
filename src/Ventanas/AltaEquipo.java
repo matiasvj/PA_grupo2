@@ -1,5 +1,6 @@
 
 package Ventanas;
+import Clases.Equipo;
 
 import javax.swing.JOptionPane;
 
@@ -60,9 +61,15 @@ public class AltaEquipo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmar_alta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar_alta
-        // hay que hacer el inser en la base y generar el id
-        JOptionPane.showMessageDialog(this, "Se creo el equipo con id: ", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
+        String nombre = campo_nombre.getText();
+        if (nombre.equals("")){
+            JOptionPane.showMessageDialog(this, "El campo nombre no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Equipo eq = new Equipo(nombre);
+            JOptionPane.showMessageDialog(this, "Se creo el equipo con id: ", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
     }//GEN-LAST:event_confirmar_alta
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
