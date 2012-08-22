@@ -1,11 +1,9 @@
 package Ventanas;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
+public class AltaJugador extends javax.swing.JDialog {
 
-public class AltaJugador extends javax.swing.JFrame {
-
-    public AltaJugador() {
+    public AltaJugador(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
     }
 
@@ -13,7 +11,6 @@ public class AltaJugador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_imagen = new javax.swing.JPanel();
         lab_nombre = new javax.swing.JLabel();
         lab_nom_completo = new javax.swing.JLabel();
         lab_fecha_nacimiento = new javax.swing.JLabel();
@@ -24,30 +21,15 @@ public class AltaJugador extends javax.swing.JFrame {
         campo_nombre = new javax.swing.JTextField();
         campo_nom_completo = new javax.swing.JTextField();
         campo_f_nac = new javax.swing.JTextField();
-        campo_posicion = new javax.swing.JTextField();
         campo_nacionalidad = new javax.swing.JTextField();
+        campo_posicion = new javax.swing.JTextField();
         campo_altura = new javax.swing.JTextField();
         campo_peso = new javax.swing.JTextField();
+        panel_imagen = new javax.swing.JPanel();
         boton_confirmar = new javax.swing.JButton();
         boton_sel_imagen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alta Jugador");
-        setName("ventana_altaJugador"); // NOI18N
-        setResizable(false);
-
-        panel_imagen.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panel_imagenLayout = new javax.swing.GroupLayout(panel_imagen);
-        panel_imagen.setLayout(panel_imagenLayout);
-        panel_imagenLayout.setHorizontalGroup(
-            panel_imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-        );
-        panel_imagenLayout.setVerticalGroup(
-            panel_imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 225, Short.MAX_VALUE)
-        );
 
         lab_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lab_nombre.setText("Nombre");
@@ -82,13 +64,13 @@ public class AltaJugador extends javax.swing.JFrame {
         campo_f_nac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         campo_f_nac.setToolTipText("");
 
-        campo_posicion.setColumns(15);
-        campo_posicion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        campo_posicion.setToolTipText("");
-
         campo_nacionalidad.setColumns(15);
         campo_nacionalidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         campo_nacionalidad.setToolTipText("");
+
+        campo_posicion.setColumns(15);
+        campo_posicion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_posicion.setToolTipText("");
 
         campo_altura.setColumns(15);
         campo_altura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -98,10 +80,23 @@ public class AltaJugador extends javax.swing.JFrame {
         campo_peso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         campo_peso.setToolTipText("");
 
+        panel_imagen.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout panel_imagenLayout = new javax.swing.GroupLayout(panel_imagen);
+        panel_imagen.setLayout(panel_imagenLayout);
+        panel_imagenLayout.setHorizontalGroup(
+            panel_imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 225, Short.MAX_VALUE)
+        );
+        panel_imagenLayout.setVerticalGroup(
+            panel_imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 225, Short.MAX_VALUE)
+        );
+
         boton_confirmar.setText("Confirmar");
         boton_confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmar(evt);
+                confirmarAlta(evt);
             }
         });
 
@@ -143,7 +138,7 @@ public class AltaJugador extends javax.swing.JFrame {
                 .addComponent(boton_sel_imagen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(boton_confirmar)
-                .addGap(101, 101, 101))
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,9 +186,9 @@ public class AltaJugador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void confirmar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmar
+    private void confirmarAlta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarAlta
 
-    }//GEN-LAST:event_confirmar
+    }//GEN-LAST:event_confirmarAlta
 
     private void seleccionarImagen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarImagen
         javax.swing.JFileChooser sel = new javax.swing.JFileChooser();
@@ -202,7 +197,7 @@ public class AltaJugador extends javax.swing.JFrame {
             java.io.File archivo = sel.getSelectedFile();
         }
         sel.setLocation(300,200);
-        
+
     }//GEN-LAST:event_seleccionarImagen
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
