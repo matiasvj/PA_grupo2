@@ -5,3 +5,4 @@ dist/
 nbdist/
 *.properties
 *.xml
+manifest.mf
