@@ -30,6 +30,7 @@ public class Main extends javax.swing.JFrame {
         partido = new javax.swing.JMenu();
         partido_individual = new javax.swing.JMenuItem();
         partido_liga = new javax.swing.JMenuItem();
+        finalizar_partido = new javax.swing.JMenuItem();
         dividendos = new javax.swing.JMenuItem();
         menu_ayuda = new javax.swing.JMenu();
 
@@ -139,7 +140,7 @@ public class Main extends javax.swing.JFrame {
 
         partido.setText("Partido");
 
-        partido_individual.setText("Individual");
+        partido_individual.setText("Nuevo Individual");
         partido_individual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 partidoIndividual(evt);
@@ -147,13 +148,21 @@ public class Main extends javax.swing.JFrame {
         });
         partido.add(partido_individual);
 
-        partido_liga.setText("De Liga");
+        partido_liga.setText("Nuevo de Liga");
         partido_liga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 partidoLiga(evt);
             }
         });
         partido.add(partido_liga);
+
+        finalizar_partido.setText("Finalizar");
+        finalizar_partido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarPartido(evt);
+            }
+        });
+        partido.add(finalizar_partido);
 
         menu_comp.add(partido);
 
@@ -214,7 +223,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_partidoLiga
 
     private void partidoIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoIndividual
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_partidoIndividual
 
     private void verInformacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacion
@@ -247,6 +256,10 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_asignarDividendos
 
+    private void finalizarPartido(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarPartido
+        // TODO add your handling code here:
+    }//GEN-LAST:event_finalizarPartido
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -262,6 +275,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem crear_jugador;
     private javax.swing.JMenuItem dividendos;
     private javax.swing.JMenuItem eliminar_jugador;
+    private javax.swing.JMenuItem finalizar_partido;
     private javax.swing.JMenuItem individual;
     private javax.swing.JMenuItem liga;
     private javax.swing.JMenu menu_archivo;

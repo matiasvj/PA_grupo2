@@ -124,7 +124,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="partido_individual">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Individual"/>
+                    <Property name="text" type="java.lang.String" value="Nuevo Individual"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partidoIndividual"/>
@@ -132,10 +132,18 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="partido_liga">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="De Liga"/>
+                    <Property name="text" type="java.lang.String" value="Nuevo de Liga"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="partidoLiga"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="finalizar_partido">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Finalizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finalizarPartido"/>
                   </Events>
                 </MenuItem>
               </SubComponents>
