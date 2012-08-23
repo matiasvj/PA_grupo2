@@ -246,11 +246,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_eliminarJugador
 
     private void nuevaCompIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaCompIndividual
-        // TODO add your handling code here:
+        AltaCompeticionIndividual aci = new AltaCompeticionIndividual(this, true);
+        aci.setLocation(300, 180);
+        aci.setVisible(true);
     }//GEN-LAST:event_nuevaCompIndividual
 
     private void nuevaLiga(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaLiga
-        // TODO add your handling code here:
+        AltaCompeticionLiga acl = new AltaCompeticionLiga(this, true);
+        acl.setLocation(300, 180);
+        acl.setVisible(true);
     }//GEN-LAST:event_nuevaLiga
 
     private void asignarDividendos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarDividendos
