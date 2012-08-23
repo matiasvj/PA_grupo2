@@ -40,9 +40,9 @@ public class ManejadorBD {
     }
     
     public void insertEquipo(Equipo equipo){
-        String nombre = equipo.getNombre();
+        String nombre = equipo.getNombre(), id = equipo.getId();
         try {
-            int res = st.executeUpdate("insert into equipos values ('id', '"+nombre+"')");
+            int res = st.executeUpdate("insert into equipos values ('"+id+"'"+nombre+"')");
         } catch (SQLException ex) {
             System.out.println("Error al realizar la consulta");
         }
@@ -51,5 +51,9 @@ public class ManejadorBD {
         } catch (SQLException ex) {
             System.out.println("No se pudo cerrar la conexion");
         }
+    }
+    
+    public void selectJugador(){
+        
     }
 }

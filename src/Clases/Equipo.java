@@ -26,4 +26,4 @@ public class Equipo {
     public void setDividendo_campeon(float dividendo_campeon) {
         this.dividendo_campeon = dividendo_campeon;
     }
-}
+}    
