@@ -1,15 +1,12 @@
 package Ventanas;
 import Clases.*;
-import javax.swing.*;
-import java.awt.*;
 
 public class Main extends javax.swing.JFrame {
-
+    
     public Main() {
         initComponents();
-        ManejadorBD mbd = new ManejadorBD();
     }
- 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -193,6 +190,7 @@ public class Main extends javax.swing.JFrame {
         AltaEquipo ae = new AltaEquipo(this, true);
         ae.setLocation(350, 250);
         ae.setVisible(true);
+        
     }//GEN-LAST:event_crearEquipo
 
     private void verEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEquipo
@@ -279,4 +277,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem ver_informacion;
     private javax.swing.JMenuItem ver_jugador;
     // End of variables declaration//GEN-END:variables
+    
 }

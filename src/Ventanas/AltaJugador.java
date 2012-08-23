@@ -1,12 +1,15 @@
 package Ventanas;
 
+import Clases.ManejadorBD;
+
 public class AltaJugador extends javax.swing.JDialog {
 
     public AltaJugador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-
+    
+    ManejadorBD mbd = ManejadorBD.getInstancia();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,6 +33,7 @@ public class AltaJugador extends javax.swing.JDialog {
         boton_sel_imagen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         lab_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lab_nombre.setText("Nombre");
@@ -187,7 +191,7 @@ public class AltaJugador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmarAlta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarAlta
-
+        
     }//GEN-LAST:event_confirmarAlta
 
     private void seleccionarImagen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarImagen

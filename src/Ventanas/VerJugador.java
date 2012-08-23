@@ -1,12 +1,40 @@
 package Ventanas;
 
+import Clases.ManejadorBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultListModel;
+
 public class VerJugador extends javax.swing.JDialog {
 
     public VerJugador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        llenarLista();
     }
-
+    ManejadorBD mbd = ManejadorBD.getInstancia();
+    
+    private void llenarLista(){
+        Statement st = mbd.getStatement();
+        ResultSet res;
+        Object nombre;
+        
+        DefaultListModel modelo = new DefaultListModel();
+        lista_jugadores.setModel(modelo);
+        
+        try {
+             res = st.executeQuery("select Nombre_Jugador from jugadores");
+             while(res.next()){
+                 nombre = res.getObject(1);
+                 modelo.addElement(nombre);
+             }
+        } catch (SQLException ex) {
+            System.out.println("Error");
+        }
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -19,16 +47,12 @@ public class VerJugador extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Informacion de Jugadores");
+        setResizable(false);
 
         titulo_lista.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         titulo_lista.setText("Jugadores:");
 
         lista_jugadores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lista_jugadores.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         lista_jugadores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lista_jugadores.setVisibleRowCount(10);
         jScrollPane1.setViewportView(lista_jugadores);
@@ -36,11 +60,16 @@ public class VerJugador extends javax.swing.JDialog {
         boton_seleccionar.setText("Seleccionar Jugador");
         boton_seleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_seleccionarActionPerformed(evt);
+                verInformacionJugador(evt);
             }
         });
 
         boton_cancelar.setText("Cancelar");
+        boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelar(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,9 +107,13 @@ public class VerJugador extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton_seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_seleccionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boton_seleccionarActionPerformed
+    private void verInformacionJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacionJugador
+        
+    }//GEN-LAST:event_verInformacionJugador
+
+    private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
+        dispose();
+    }//GEN-LAST:event_cancelar
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_cancelar;

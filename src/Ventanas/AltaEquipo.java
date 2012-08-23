@@ -1,7 +1,7 @@
 
 package Ventanas;
 import Clases.Equipo;
-
+import Clases.ManejadorBD;
 import javax.swing.*;
 
 public class AltaEquipo extends javax.swing.JDialog {
@@ -10,6 +10,8 @@ public class AltaEquipo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    ManejadorBD mbd = ManejadorBD.getInstancia();
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -68,6 +70,7 @@ public class AltaEquipo extends javax.swing.JDialog {
         else{
             Equipo eq = new Equipo(nombre);
             JOptionPane.showMessageDialog(this, "Se creo el equipo con id: ", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            mbd.insertEquipo(eq);
             this.dispose();
         }
     }//GEN-LAST:event_confirmar_alta
