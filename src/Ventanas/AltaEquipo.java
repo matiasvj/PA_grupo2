@@ -68,7 +68,7 @@ public class AltaEquipo extends javax.swing.JDialog {
         else{
             Equipo eq = new Equipo(nombre);
             JOptionPane.showMessageDialog(this, "Se creo el equipo con id: ", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+            this.dispose();            
         }
     }//GEN-LAST:event_confirmar_alta
 
