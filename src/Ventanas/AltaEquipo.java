@@ -1,7 +1,8 @@
 
 package Ventanas;
+import Clases.ManejadorBD;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class AltaEquipo extends javax.swing.JDialog {
 

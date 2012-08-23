@@ -7,8 +7,9 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
+        ManejadorBD mbd = new ManejadorBD();
     }
-
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -254,7 +255,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
         
-        ManejadorBD bd = new ManejadorBD();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barra_menu;
