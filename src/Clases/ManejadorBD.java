@@ -1,6 +1,7 @@
 package Clases;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -30,8 +31,8 @@ public class ManejadorBD {
             st = conexion.createStatement();
             System.out.println("Conexion exitosa");
         }
-        catch(Exception e){
-            System.out.println("No se pudo realizar la conexion");
+        catch(Exception ex){
+            System.out.println(ex.toString());
         }
     }
     
@@ -40,16 +41,17 @@ public class ManejadorBD {
     }
     
     public void insertEquipo(Equipo equipo){
-        String nombre = equipo.getNombre(), id = equipo.getId();
+        
+        String nombre = equipo.getNombre(), id_generado;
         try {
-            int res = st.executeUpdate("insert into equipos values ('"+id+"'"+nombre+"')");
+            int res = st.executeUpdate("insert into equipos (Nombre) values ('"+nombre+"')");
+            ResultSet max_id = st.executeQuery("select max(ID_Equipo) from equipos");
+            max_id.next();
+            id_generado = max_id.getString(1);
+            equipo.setId(id_generado);
+            
         } catch (SQLException ex) {
-            System.out.println("Error al realizar la consulta");
-        }
-        try {
-            conexion.close();
-        } catch (SQLException ex) {
-            System.out.println("No se pudo cerrar la conexion");
+            System.out.println(ex.toString());
         }
     }
     

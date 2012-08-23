@@ -5,6 +5,7 @@ public class Main extends javax.swing.JFrame {
     
     public Main() {
         initComponents();
+        ManejadorBD mbd = ManejadorBD.getInstancia();
     }
 
     @SuppressWarnings("unchecked")
