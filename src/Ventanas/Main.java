@@ -201,7 +201,7 @@ public class Main extends javax.swing.JFrame {
 
     private void verJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verJugador
         VerJugador vj = new VerJugador(this, true);
-        vj.setLocation(300,200);
+        vj.setLocation(100,50);
         vj.setVisible(true);
     }//GEN-LAST:event_verJugador
 

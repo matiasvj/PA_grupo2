@@ -8,11 +8,9 @@ public class Equipo {
     private float dividendo_campeon;
     //List <Jugador> jugadores;
     
-    public Equipo(String nombre, int dividendo_campeon) {
+    public Equipo(String nombre) {
         this.nombre = nombre;
-        this.dividendo_campeon = dividendo_campeon;
     }
-    
     public String getId() {
         return id;
     }
