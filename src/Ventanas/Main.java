@@ -195,7 +195,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_crearEquipo
 
     private void verEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEquipo
-        // TODO add your handling code here:
+        VerEquipo ve = new VerEquipo(this,true);
+        ve.setLocation(300,200);
+        ve.setVisible(true);
     }//GEN-LAST:event_verEquipo
 
     private void verJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verJugador
