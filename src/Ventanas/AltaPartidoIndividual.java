@@ -16,14 +16,9 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
         label_local = new javax.swing.JLabel();
         label_visitante = new javax.swing.JLabel();
         label_fecha = new javax.swing.JLabel();
-        spinner_dia = new javax.swing.JSpinner();
         label_mes = new javax.swing.JLabel();
-        spinner_me = new javax.swing.JSpinner();
         label_anio = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
         label_hora = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
         label_lugar = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         combobox_loca = new javax.swing.JComboBox();
@@ -31,6 +26,12 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
         jComboBox1 = new javax.swing.JComboBox();
         boton_donfirmar = new javax.swing.JButton();
         boton_cancelar = new javax.swing.JButton();
+        texto_fecha = new javax.swing.JTextField();
+        text_mes = new javax.swing.JTextField();
+        texto_anio = new javax.swing.JTextField();
+        text_hora = new javax.swing.JTextField();
+        text_minutos = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -42,11 +43,7 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
 
         label_fecha.setText("Fecha");
 
-        spinner_dia.setToolTipText("1");
-
         label_mes.setText("Mes");
-
-        spinner_me.setToolTipText("1");
 
         label_anio.setText("Año");
 
@@ -69,6 +66,27 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
             }
         });
 
+        texto_fecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                texto_fechaActionPerformed(evt);
+            }
+        });
+
+        text_hora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_horaActionPerformed(evt);
+            }
+        });
+
+        text_minutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_minutosActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText(":");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,50 +96,52 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_lugar)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1))
+                            .addComponent(label_competicion)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(text_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label_visitante)
-                                    .addGap(160, 160, 160))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(label_hora)
+                                    .addComponent(label_fecha)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(label_local, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                                    .addComponent(texto_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_competicion)
-                                .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(combobox_loca, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combobox_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(combobox_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 114, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_fecha)
-                                .addGap(18, 18, 18)
-                                .addComponent(spinner_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(label_mes)
-                                .addGap(18, 18, 18)
-                                .addComponent(spinner_me, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(label_anio)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 65, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(boton_donfirmar)
-                .addGap(36, 36, 36)
-                .addComponent(boton_cancelar)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(text_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(label_mes)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(text_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(label_anio)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(texto_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boton_donfirmar)
+                                .addGap(36, 36, 36)
+                                .addComponent(boton_cancelar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(label_visitante)
+                                .addComponent(label_hora)
+                                .addComponent(label_local)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(label_lugar)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,25 +161,26 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_fecha)
-                    .addComponent(spinner_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_mes)
-                    .addComponent(spinner_me, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_anio)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(texto_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(texto_anio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_hora)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(text_hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_lugar)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_donfirmar)
                     .addComponent(boton_cancelar))
-                .addGap(19, 19, 19))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -170,15 +191,25 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_cancelarActionPerformed
 
+    private void texto_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texto_fechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_texto_fechaActionPerformed
+
+    private void text_horaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_horaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_horaActionPerformed
+
+    private void text_minutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_minutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_minutosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_cancelar;
     private javax.swing.JButton boton_donfirmar;
     private javax.swing.JComboBox combobox_loca;
     private javax.swing.JComboBox combobox_visitante;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_anio;
     private javax.swing.JLabel label_competicion;
@@ -188,7 +219,10 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
     private javax.swing.JLabel label_lugar;
     private javax.swing.JLabel label_mes;
     private javax.swing.JLabel label_visitante;
-    private javax.swing.JSpinner spinner_dia;
-    private javax.swing.JSpinner spinner_me;
+    private javax.swing.JTextField text_hora;
+    private javax.swing.JTextField text_mes;
+    private javax.swing.JTextField text_minutos;
+    private javax.swing.JTextField texto_anio;
+    private javax.swing.JTextField texto_fecha;
     // End of variables declaration//GEN-END:variables
 }
