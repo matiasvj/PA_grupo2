@@ -33,6 +33,9 @@ public class Main extends javax.swing.JFrame {
         partido_individual = new javax.swing.JMenuItem();
         partido_liga = new javax.swing.JMenuItem();
         dividendos = new javax.swing.JMenuItem();
+        VerCompeticion = new javax.swing.JMenuItem();
+        menu_partido = new javax.swing.JMenu();
+        FinalizarPartido = new javax.swing.JMenuItem();
         menu_ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,7 +170,28 @@ public class Main extends javax.swing.JFrame {
         });
         menu_comp.add(dividendos);
 
+        VerCompeticion.setText("Ver Competicion");
+        VerCompeticion.setName("VerCompeticion"); // NOI18N
+        VerCompeticion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerCompeticionActionPerformed(evt);
+            }
+        });
+        menu_comp.add(VerCompeticion);
+
         barra_menu.add(menu_comp);
+
+        menu_partido.setText("Partido");
+
+        FinalizarPartido.setText("Finalizar Partido");
+        FinalizarPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FinalizarPartidoActionPerformed(evt);
+            }
+        });
+        menu_partido.add(FinalizarPartido);
+
+        barra_menu.add(menu_partido);
 
         menu_ayuda.setText("Ayuda");
         barra_menu.add(menu_ayuda);
@@ -182,7 +206,7 @@ public class Main extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
+            .addGap(0, 406, Short.MAX_VALUE)
         );
 
         pack();
@@ -246,6 +270,20 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_asignarDividendos
 
+    private void VerCompeticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCompeticionActionPerformed
+        // TODO add your handling code here:
+        VerCompeticion VC = new VerCompeticion(this, true);
+        VC.setLocation(300,200);
+        VC.setVisible(true);
+    }//GEN-LAST:event_VerCompeticionActionPerformed
+
+    private void FinalizarPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FinalizarPartidoActionPerformed
+        // TODO add your handling code here:
+        FinalizarPartido FP = new FinalizarPartido(this, true);
+        FP.setLocation(300,200);
+        FP.setVisible(true);
+    }//GEN-LAST:event_FinalizarPartidoActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -257,6 +295,8 @@ public class Main extends javax.swing.JFrame {
         ManejadorBD bd = new ManejadorBD();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem FinalizarPartido;
+    private javax.swing.JMenuItem VerCompeticion;
     private javax.swing.JMenuBar barra_menu;
     private javax.swing.JMenuItem crear_equipo;
     private javax.swing.JMenuItem crear_jugador;
@@ -269,6 +309,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu menu_comp;
     private javax.swing.JMenu menu_equipo;
     private javax.swing.JMenu menu_jugador;
+    private javax.swing.JMenu menu_partido;
     private javax.swing.JMenuItem modificar_jugador;
     private javax.swing.JMenu nueva_competicion;
     private javax.swing.JMenu partido;
