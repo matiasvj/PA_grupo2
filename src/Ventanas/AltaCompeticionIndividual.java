@@ -1,12 +1,80 @@
 
 package Ventanas;
 
+import Clases.ManejadorBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 public class AltaCompeticionIndividual extends javax.swing.JDialog {
 
     public AltaCompeticionIndividual(java.awt.Frame parent, boolean modal) {
         super(parent,"Alta Competicion Individual", modal);
         initComponents();
+        llenarLista();
+    }
+    
+    
+    ManejadorBD mbd = ManejadorBD.getInstancia();
+    
+    private void llenarLista(){
+        Statement st = mbd.getStatement();
+        ResultSet res;
+        Object nombre;
+        
+        
+        try {
+             res = st.executeQuery("select ID_Equipo, Nombre from equipos");
+             while(res.next()){
+                 nombre = res.getObject(2);
+                 combobox_loca.addItem(nombre);
+                 combobox_visitante.addItem(nombre);
+                 
+             }
+        } catch (SQLException ex) {
+            System.out.println("Error");
+        }
+        
+    }
+    
+    
+    private void crearCompeticion(){
+        Statement st = mbd.getStatement();
+        ResultSet res2, res3;
+        
+        try{
+        Integer fila_local = ((Integer)combobox_loca.getSelectedIndex())+1;
+        Integer fila_visitante = ((Integer)combobox_visitante.getSelectedIndex())+1;
+        res2 = st.executeQuery("select ID_Equipo from equipos");
+        for (int i=1; i<fila_local; i++){
+            res2.next();
+        }
+        Object local = res2.getObject(1);
+        int id_local = Integer.parseInt(local.toString());
+        
+        res3 = st.executeQuery("select ID_Equipo from equipos");
+        for (int i=1; i<fila_visitante; i++){
+            res3.next();
+        }
+        Object visitante = res3.getObject(1);
+        int id_visitante = Integer.parseInt(visitante.toString());
+        
+        
+        int id_p = mbd.insertPartido(id_local, id_visitante);
+        int id_c = mbd.insertCompeticion(textfield_nombre.getText(), "Individual");
+        if (id_p != 0 && id_c != 0){
+            mbd.insertCompIndiv(id_c, id_p);
+            JOptionPane.showMessageDialog(this, "Operacion exitosa. ID: "+id_c , "Competicion Creada!", JOptionPane.INFORMATION_MESSAGE);
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo realizar la operacion!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        } catch (SQLException e){
+            System.out.println("aca es la cosa "+e.toString());
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -28,10 +96,6 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
 
         label_visitante.setText("Visitante");
 
-        combobox_loca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        combobox_visitante.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         label_nombre.setText("Nombre");
 
         textfield_nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -41,6 +105,11 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         });
 
         boton_aceptar.setText("Aceptar");
+        boton_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_aceptarActionPerformed(evt);
+            }
+        });
 
         boton_cancelar.setText("Cancelar");
         boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +183,11 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_cancelarActionPerformed
+
+    private void boton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_aceptarActionPerformed
+        crearCompeticion();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boton_aceptarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;
