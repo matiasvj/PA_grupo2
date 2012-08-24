@@ -224,7 +224,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_partidoLiga
 
     private void partidoIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoIndividual
-
+        AltaPartidoIndividual api = new AltaPartidoIndividual(this, true);
+        api.setLocation(250, 180);
+        api.setVisible(true);
     }//GEN-LAST:event_partidoIndividual
 
     private void verInformacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacion
