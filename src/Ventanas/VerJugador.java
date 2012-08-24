@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 public class VerJugador extends javax.swing.JDialog {
@@ -16,7 +18,7 @@ public class VerJugador extends javax.swing.JDialog {
         llenarLista();
     }
     ManejadorBD mbd = ManejadorBD.getInstancia();
-    List <Integer> ids = new ArrayList<Integer>();
+    List <Integer> ids = new ArrayList<>();
     
     private void llenarLista(){
         Statement st = mbd.getStatement();
@@ -226,9 +228,24 @@ public class VerJugador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verInformacionJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacionJugador
-        
-        Integer id = 1;
-        mbd.selectJugador(ids, id);
+        try {
+            Integer id = ((Integer)lista_jugadores.getSelectedIndex())+1;
+            System.out.println(id);
+            ResultSet resultado = mbd.selectJugador(id);
+            resultado.next();
+            
+            valor_id.setText(resultado.getString(1));
+            valor_nombre.setText(resultado.getString(2));
+            valor_nom_comp.setText(resultado.getString(3));
+            valor_posicion.setText(resultado.getString(4));
+            valor_fecha_nac.setText(resultado.getString(6));
+            valor_lugar_nac.setText(resultado.getString(7));
+            valor_altura.setText(resultado.getString(8));
+            valor_peso.setText(resultado.getString(9));
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
     }//GEN-LAST:event_verInformacionJugador
 
     private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar

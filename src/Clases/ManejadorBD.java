@@ -3,8 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ManejadorBD {
     
@@ -65,7 +65,15 @@ public class ManejadorBD {
         }
     }
     
-    public void selectJugador(List<Integer> ids, Integer id){
+    public ResultSet selectJugador(Integer id){
+        ResultSet res = null;
+        try {
+            res = st.executeQuery("select * from jugadores where ID_Jugador='"+id+"'");
+            return res;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
         
     }
 }
