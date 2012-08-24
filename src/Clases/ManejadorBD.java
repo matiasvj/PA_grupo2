@@ -56,8 +56,8 @@ public class ManejadorBD {
     
     public void insertJugador(Jugador j){
         try {
-            st.executeUpdate("insert into jugadores (Nombre_Jugador, NombreCompleto_Jugador, Posicion, Nacionalidad, Altura, Peso)"+
-            "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"', '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
+            st.executeUpdate("insert into jugadores (nombre_jugador, nombreCompleto_jugador, posicion, edad, fecha_nacimiento, nacionalidad, altura, peso)"+
+            "values ('"+j.getNombre()+"','"+j.getNombre_completo()+"','"+j.getPosicion()+"','"+j.getEdad()+"','"+j.getF_nac().DateToString()+"','"+j.getNacionalidad()+"','"+j.getAltura()+"','"+j.getPeso()+"')");
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }

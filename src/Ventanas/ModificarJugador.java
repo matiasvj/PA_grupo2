@@ -11,71 +11,68 @@ public class ModificarJugador extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        label_titulo_lista = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lista_jugadores = new javax.swing.JList();
+        label_nombre = new javax.swing.JLabel();
+        label_nom_comp = new javax.swing.JLabel();
+        label_fecha = new javax.swing.JLabel();
+        label_pos = new javax.swing.JLabel();
+        label_nac = new javax.swing.JLabel();
+        label_altura = new javax.swing.JLabel();
+        campo_nombre = new javax.swing.JTextField();
+        campo_nom_comp = new javax.swing.JTextField();
+        campo_fecha = new javax.swing.JTextField();
+        campo_pos = new javax.swing.JTextField();
+        campo_nac = new javax.swing.JTextField();
+        campo_altura = new javax.swing.JTextField();
+        label_peso = new javax.swing.JLabel();
+        campo_peso = new javax.swing.JTextField();
+        boton_confirmar = new javax.swing.JButton();
+        boton_selec = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Jugadores");
+        label_titulo_lista.setText("Jugadores");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane2.setViewportView(lista_jugadores);
 
-        jLabel2.setText("Nombre");
+        label_nombre.setText("Nombre");
 
-        jLabel3.setText("Nombre Completo");
+        label_nom_comp.setText("Nombre Completo");
 
-        jLabel4.setText("Fecha Nacimiento");
+        label_fecha.setText("Fecha Nacimiento");
 
-        jLabel5.setText("Posicion");
+        label_pos.setText("Posicion");
 
-        jLabel6.setText("Nacionalidad");
+        label_nac.setText("Nacionalidad");
 
-        jLabel8.setText("Altura");
+        label_altura.setText("Altura");
 
-        jTextField1.setText("jTextField1");
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField2");
-
-        jTextField4.setText("jTextField2");
-
-        jTextField5.setText("jTextField2");
-
-        jTextField6.setText("     ");
-
-        jLabel7.setText("Peso");
-
-        jTextField7.setText("     ");
-
-        jButton1.setText("Confirmar");
-
-        jButton2.setText("Seleccionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        campo_nom_comp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                campo_nom_compActionPerformed(evt);
+            }
+        });
+
+        campo_nac.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo_nacActionPerformed(evt);
+            }
+        });
+
+        campo_altura.setText("     ");
+
+        label_peso.setText("Peso");
+
+        campo_peso.setText("     ");
+
+        boton_confirmar.setText("Confirmar");
+
+        boton_selec.setText("Seleccionar");
+        boton_selec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_selecActionPerformed(evt);
             }
         });
 
@@ -87,112 +84,122 @@ public class ModificarJugador extends javax.swing.JDialog {
                 .add(23, 23, 23)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(10, 10, 10)
-                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 116, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(36, 36, 36)
-                        .add(jButton2))
-                    .add(jLabel1)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(label_titulo_lista)
+                            .add(layout.createSequentialGroup()
+                                .add(label_altura)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(campo_altura, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(label_peso)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(campo_peso, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(59, 59, 59)
+                                .add(boton_confirmar))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(label_nac)
+                                    .add(label_pos)
+                                    .add(label_fecha)
+                                    .add(label_nombre)
+                                    .add(label_nom_comp))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(campo_nombre)
+                                    .add(campo_nac, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 176, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(campo_pos)
+                                    .add(campo_fecha)
+                                    .add(campo_nom_comp))))
+                        .addContainerGap(56, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
-                        .add(jLabel8)
-                        .add(18, 18, 18)
-                        .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(18, 18, 18)
-                        .add(jLabel7)
-                        .add(18, 18, 18)
-                        .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(37, 37, 37)
-                        .add(jButton1))
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(layout.createSequentialGroup()
-                            .add(jLabel6)
-                            .add(59, 59, 59)
-                            .add(jTextField5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
-                        .add(layout.createSequentialGroup()
-                            .add(jLabel5)
-                            .add(81, 81, 81)
-                            .add(jTextField4))
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                            .add(jLabel4)
-                            .add(35, 35, 35)
-                            .add(jTextField3))
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                .add(jLabel2)
-                                .add(jLabel3))
-                            .add(34, 34, 34)
-                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                .add(jTextField2)))))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 157, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(boton_selec)
+                        .add(52, 52, 52))))
         );
+
+        layout.linkSize(new java.awt.Component[] {campo_fecha, campo_nac, campo_nom_comp, campo_nombre, campo_pos}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
+        layout.linkSize(new java.awt.Component[] {label_fecha, label_nac, label_nom_comp, label_nombre, label_pos}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1)
+                .add(label_titulo_lista)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jScrollPane2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 114, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel2)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(label_nombre)
+                            .add(campo_nombre, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel3)
-                            .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(label_nom_comp)
+                            .add(campo_nom_comp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel4)
-                            .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(label_fecha)
+                            .add(campo_fecha, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel5)
-                            .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(label_pos)
+                            .add(campo_pos, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel6)
-                            .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(label_nac)
+                            .add(campo_nac, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .add(18, 18, 18)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel8)
-                            .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel7)
-                            .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jButton1)))
-                    .add(layout.createSequentialGroup()
-                        .add(47, 47, 47)
-                        .add(jButton2)))
+                            .add(label_altura)
+                            .add(campo_altura, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(label_peso)
+                            .add(campo_peso, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(boton_confirmar)))
+                    .add(boton_selec))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        layout.linkSize(new java.awt.Component[] {campo_fecha, campo_nac, campo_nom_comp, campo_nombre, campo_pos}, org.jdesktop.layout.GroupLayout.VERTICAL);
+
+        layout.linkSize(new java.awt.Component[] {label_fecha, label_nac, label_nom_comp, label_nombre, label_pos}, org.jdesktop.layout.GroupLayout.VERTICAL);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void boton_selecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_selecActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_boton_selecActionPerformed
+
+    private void campo_nom_compActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nom_compActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo_nom_compActionPerformed
+
+    private void campo_nacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nacActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo_nacActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JList jList1;
+    private javax.swing.JButton boton_confirmar;
+    private javax.swing.JButton boton_selec;
+    private javax.swing.JTextField campo_altura;
+    private javax.swing.JTextField campo_fecha;
+    private javax.swing.JTextField campo_nac;
+    private javax.swing.JTextField campo_nom_comp;
+    private javax.swing.JTextField campo_nombre;
+    private javax.swing.JTextField campo_peso;
+    private javax.swing.JTextField campo_pos;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel label_altura;
+    private javax.swing.JLabel label_fecha;
+    private javax.swing.JLabel label_nac;
+    private javax.swing.JLabel label_nom_comp;
+    private javax.swing.JLabel label_nombre;
+    private javax.swing.JLabel label_peso;
+    private javax.swing.JLabel label_pos;
+    private javax.swing.JLabel label_titulo_lista;
+    private javax.swing.JList lista_jugadores;
     // End of variables declaration//GEN-END:variables
 }

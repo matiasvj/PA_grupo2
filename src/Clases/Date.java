@@ -55,4 +55,18 @@ public class Date {
         else
             return false;
     }
+    
+    public String DateToString(){
+        String dia = Integer.toString(this.dia);
+        String mes = Integer.toString(this.mes);
+        String anio = Integer.toString(this.anio);
+        
+        if(this.dia<10)
+            dia = "0"+dia;
+        if(this.mes<10)
+            mes = "0"+mes;
+        
+        String res = anio+"-"+mes+"-"+dia;
+        return res;
+    }
 }

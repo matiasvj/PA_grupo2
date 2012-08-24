@@ -63,14 +63,22 @@ public class AltaJugador extends javax.swing.JDialog {
 
         campo_nombre.setColumns(15);
         campo_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_nombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campo_nombre.setToolTipText("");
+        campo_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campo_nombreActionPerformed(evt);
+            }
+        });
 
         campo_nom_completo.setColumns(15);
         campo_nom_completo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_nom_completo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campo_nom_completo.setToolTipText("");
 
         campo_mes.setColumns(2);
         campo_mes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_mes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campo_mes.setText("mes");
         campo_mes.setToolTipText("");
         campo_mes.addActionListener(new java.awt.event.ActionListener() {
@@ -81,18 +89,22 @@ public class AltaJugador extends javax.swing.JDialog {
 
         campo_nacionalidad.setColumns(15);
         campo_nacionalidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_nacionalidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campo_nacionalidad.setToolTipText("");
 
         campo_posicion.setColumns(15);
         campo_posicion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_posicion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campo_posicion.setToolTipText("");
 
         campo_altura.setColumns(15);
         campo_altura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_altura.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campo_altura.setToolTipText("");
 
         campo_peso.setColumns(15);
         campo_peso.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_peso.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campo_peso.setToolTipText("");
 
         panel_imagen.setBackground(new java.awt.Color(255, 255, 255));
@@ -124,6 +136,7 @@ public class AltaJugador extends javax.swing.JDialog {
 
         campo_dia.setColumns(2);
         campo_dia.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_dia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campo_dia.setText("dia");
         campo_dia.setToolTipText("");
         campo_dia.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +147,7 @@ public class AltaJugador extends javax.swing.JDialog {
 
         campo_anio.setColumns(4);
         campo_anio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        campo_anio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campo_anio.setText("año");
         campo_anio.setToolTipText("");
         campo_anio.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +289,10 @@ public class AltaJugador extends javax.swing.JDialog {
     private void campo_anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_anioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_anioActionPerformed
+
+    private void campo_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo_nombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_confirmar;
