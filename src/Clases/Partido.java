@@ -1,5 +1,7 @@
 package Clases;
 
+import java.util.List;
+
 
 public class Partido {
     private String id;
@@ -8,8 +10,9 @@ public class Partido {
     private String lugar;
     private boolean finalizado;
     private int goles_local, goles_visita;
-    private float div_local, div_empate, div_visita;
+    private double div_local, div_empate, div_visita;
     private Equipo local, visitante;
+    private List<Jugador> jugadores_local, jugadores_visita;
 
     public Partido(Equipo local, Equipo visitante, Date fecha, String hora, String lugar) {
         this.fecha = fecha;
@@ -45,15 +48,15 @@ public class Partido {
         return goles_visita;
     }
 
-    public float getDiv_local() {
+    public double getDiv_local() {
         return div_local;
     }
 
-    public float getDiv_empate() {
+    public double getDiv_empate() {
         return div_empate;
     }
 
-    public float getDiv_visita() {
+    public double getDiv_visita() {
         return div_visita;
     }
 
@@ -64,5 +67,60 @@ public class Partido {
     public Equipo getVisitante() {
         return visitante;
     }
-    
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
+
+    public void setGoles_local(int goles_local) {
+        this.goles_local = goles_local;
+    }
+
+    public void setGoles_visita(int goles_visita) {
+        this.goles_visita = goles_visita;
+    }
+
+    public void setDiv_local(double div_local) {
+        this.div_local = div_local;
+    }
+
+    public void setDiv_empate(double div_empate) {
+        this.div_empate = div_empate;
+    }
+
+    public void setDiv_visita(double div_visita) {
+        this.div_visita = div_visita;
+    }
+
+    public void setLocal(Equipo local) {
+        this.local = local;
+    }
+
+    public void setVisitante(Equipo visitante) {
+        this.visitante = visitante;
+    }
+
+    public void setJugadores_local(List<Jugador> jugadores_local) {
+        this.jugadores_local = jugadores_local;
+    }
+
+    public void setJugadores_visita(List<Jugador> jugadores_visita) {
+        this.jugadores_visita = jugadores_visita;
+    }
 }
