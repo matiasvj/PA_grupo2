@@ -51,6 +51,8 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         //System.out.println(fila_local);
         int fila_visitante = combobox_visitante.getSelectedIndex();
         //System.out.println(fila_visitante);
+        
+        if (fila_local != fila_visitante){
         res2 = st.executeQuery("select ID_Equipo from equipos");
         res2.next();
         for (int i=0; i<fila_local; i++){
@@ -77,6 +79,9 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
             
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la operacion!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        }else{
+            JOptionPane.showMessageDialog(this, "El equipo local y el visitante no pueden ser los mismos", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         } catch (SQLException e){
@@ -188,14 +193,7 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void textfield_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfield_nombreActionPerformed
-        String nombre = textfield_nombre.getText();
-        if (nombre.equals("")){
-            
-            JOptionPane.showMessageDialog(this, "El campo nombre no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-            //FIJARSE LAS OTRAS COSAS... :'(
-        }
+        
     }//GEN-LAST:event_textfield_nombreActionPerformed
 
     private void boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelarActionPerformed
@@ -204,7 +202,16 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
     }//GEN-LAST:event_boton_cancelarActionPerformed
 
     private void boton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_aceptarActionPerformed
-        crearCompeticion();
+        
+        String nombre = textfield_nombre.getText();
+        if (nombre.equals("")){
+            
+            JOptionPane.showMessageDialog(this, "El campo nombre no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            crearCompeticion();
+        }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_aceptarActionPerformed
 
