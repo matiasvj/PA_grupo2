@@ -19,11 +19,8 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         combobox_visitante = new javax.swing.JComboBox();
         label_nombre = new javax.swing.JLabel();
         textfield_nombre = new javax.swing.JTextField();
-        label_dividendo = new javax.swing.JLabel();
         boton_aceptar = new javax.swing.JButton();
         boton_cancelar = new javax.swing.JButton();
-        dividiendo_local = new javax.swing.JTextField();
-        dividendo_visitante = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -43,28 +40,12 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
             }
         });
 
-        label_dividendo.setText("Dividendos");
-
         boton_aceptar.setText("Aceptar");
 
         boton_cancelar.setText("Cancelar");
         boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_cancelarActionPerformed(evt);
-            }
-        });
-
-        dividiendo_local.setText("1,00");
-        dividiendo_local.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dividiendo_localActionPerformed(evt);
-            }
-        });
-
-        dividendo_visitante.setText("1,00");
-        dividendo_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dividendo_visitanteActionPerformed(evt);
             }
         });
 
@@ -85,25 +66,13 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(combobox_loca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(combobox_visitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textfield_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(label_dividendo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(dividendo_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(dividiendo_local, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20))))
+                                    .addComponent(textfield_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(33, 33, 33)
                         .addComponent(boton_aceptar)
                         .addGap(34, 34, 34)
                         .addComponent(boton_cancelar)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,27 +80,20 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_nombre)
-                    .addComponent(textfield_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_dividendo))
+                    .addComponent(textfield_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_local)
-                    .addComponent(combobox_loca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dividiendo_local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(label_visitante)
-                            .addComponent(combobox_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(dividendo_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                    .addComponent(combobox_loca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_visitante)
+                    .addComponent(combobox_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_aceptar)
                     .addComponent(boton_cancelar))
-                .addGap(15, 15, 15))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -153,22 +115,11 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_cancelarActionPerformed
 
-    private void dividiendo_localActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dividiendo_localActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dividiendo_localActionPerformed
-
-    private void dividendo_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dividendo_visitanteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dividendo_visitanteActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;
     private javax.swing.JButton boton_cancelar;
     private javax.swing.JComboBox combobox_loca;
     private javax.swing.JComboBox combobox_visitante;
-    private javax.swing.JTextField dividendo_visitante;
-    private javax.swing.JTextField dividiendo_local;
-    private javax.swing.JLabel label_dividendo;
     private javax.swing.JLabel label_local;
     private javax.swing.JLabel label_nombre;
     private javax.swing.JLabel label_visitante;
