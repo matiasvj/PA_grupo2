@@ -238,7 +238,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_altaJugador
 
     private void modificarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugador
-        // TODO add your handling code here:
+         ModificarJugador mj = new ModificarJugador(this, true);
+        mj.setLocation(300,200);
+        mj.setVisible(true);
     }//GEN-LAST:event_modificarJugador
 
     private void eliminarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugador
