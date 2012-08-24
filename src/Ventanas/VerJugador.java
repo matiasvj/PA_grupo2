@@ -4,6 +4,8 @@ import Clases.ManejadorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 
 public class VerJugador extends javax.swing.JDialog {
@@ -14,6 +16,7 @@ public class VerJugador extends javax.swing.JDialog {
         llenarLista();
     }
     ManejadorBD mbd = ManejadorBD.getInstancia();
+    List <Integer> ids = new ArrayList<Integer>();
     
     private void llenarLista(){
         Statement st = mbd.getStatement();
@@ -28,6 +31,7 @@ public class VerJugador extends javax.swing.JDialog {
              while(res.next()){
                  nombre = res.getObject(2);
                  modelo.addElement(nombre);
+                 ids.add((Integer)res.getObject(1));
              }
         } catch (SQLException ex) {
             System.out.println("Error");
@@ -222,8 +226,9 @@ public class VerJugador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verInformacionJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacionJugador
-        String id;
-        mbd.selectJugador();
+        
+        Integer id = 1;
+        mbd.selectJugador(ids, id);
     }//GEN-LAST:event_verInformacionJugador
 
     private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
