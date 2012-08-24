@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 public class AltaCompeticionIndividual extends javax.swing.JDialog {
-
+    
+    int posicion_local, posicion_visitante;
+    
     public AltaCompeticionIndividual(java.awt.Frame parent, boolean modal) {
         super(parent,"Alta Competicion Individual", modal);
         initComponents();
@@ -42,27 +44,32 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
     
     private void crearCompeticion(){
         Statement st = mbd.getStatement();
-        ResultSet res2, res3;
+        ResultSet res2=null, res3=null;
         
         try{
-        Integer fila_local = ((Integer)combobox_loca.getSelectedIndex())+1;
-        Integer fila_visitante = ((Integer)combobox_visitante.getSelectedIndex())+1;
+        int fila_local = combobox_loca.getSelectedIndex();
+        //System.out.println(fila_local);
+        int fila_visitante = combobox_visitante.getSelectedIndex();
+        //System.out.println(fila_visitante);
         res2 = st.executeQuery("select ID_Equipo from equipos");
-        for (int i=1; i<fila_local; i++){
+        res2.next();
+        for (int i=0; i<fila_local; i++){
             res2.next();
         }
-        Object local = res2.getObject(1);
-        int id_local = Integer.parseInt(local.toString());
-        
+        Integer local = res2.getInt(1);
+        System.out.println(local);
+        //int id_local = Integer.parseInt(local.toString());
         res3 = st.executeQuery("select ID_Equipo from equipos");
-        for (int i=1; i<fila_visitante; i++){
+        res3.next();
+        for (int i=0; i<fila_visitante; i++){
             res3.next();
         }
-        Object visitante = res3.getObject(1);
-        int id_visitante = Integer.parseInt(visitante.toString());
+        Integer visitante = res3.getInt(1);
+        System.out.println(visitante);
+        //int id_visitante = Integer.parseInt(visitante.toString());
         
         
-        int id_p = mbd.insertPartido(id_local, id_visitante);
+        int id_p = mbd.insertPartido(local, visitante);
         int id_c = mbd.insertCompeticion(textfield_nombre.getText(), "Individual");
         if (id_p != 0 && id_c != 0){
             mbd.insertCompIndiv(id_c, id_p);
@@ -95,6 +102,18 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         label_local.setText("Local");
 
         label_visitante.setText("Visitante");
+
+        combobox_loca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobox_locaActionPerformed(evt);
+            }
+        });
+
+        combobox_visitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combobox_visitanteActionPerformed(evt);
+            }
+        });
 
         label_nombre.setText("Nombre");
 
@@ -189,6 +208,16 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_aceptarActionPerformed
 
+    private void combobox_locaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_locaActionPerformed
+        //posicion_local = combobox_loca.getSelectedIndex();
+        
+    }//GEN-LAST:event_combobox_locaActionPerformed
+
+    private void combobox_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_visitanteActionPerformed
+        //posicion_visitante = combobox_visitante.getSelectedIndex();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combobox_visitanteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;
     private javax.swing.JButton boton_cancelar;
@@ -199,4 +228,6 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
     private javax.swing.JLabel label_visitante;
     private javax.swing.JTextField textfield_nombre;
     // End of variables declaration//GEN-END:variables
+    
+
 }
