@@ -38,6 +38,7 @@ public class AltaJugador extends javax.swing.JDialog {
         campo_anio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alta Jugador");
         setResizable(false);
 
         lab_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

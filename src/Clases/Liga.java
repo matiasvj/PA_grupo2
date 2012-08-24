@@ -19,7 +19,4 @@ public class Liga extends Competicion {
     public List<Partido> getPartidos() {
         return partidos;
     }
-    public void setPartidos(List<Partido> partidos) {
-        this.partidos = partidos;
-    }
 }
