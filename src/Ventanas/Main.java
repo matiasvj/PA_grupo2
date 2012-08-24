@@ -74,6 +74,11 @@ public class Main extends javax.swing.JFrame {
         barra_menu.add(menu_equipo);
 
         menu_jugador.setText("Jugador");
+        menu_jugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_jugadorActionPerformed(evt);
+            }
+        });
 
         crear_jugador.setText("Crear Jugador");
         crear_jugador.addActionListener(new java.awt.event.ActionListener() {
@@ -240,7 +245,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_altaJugador
 
     private void modificarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugador
-        // TODO add your handling code here:
+        ModificarJugador mj = new ModificarJugador(this, true);
+        mj.setLocation(300,130);
+        mj.setVisible(true);
     }//GEN-LAST:event_modificarJugador
 
     private void eliminarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugador
@@ -266,6 +273,10 @@ public class Main extends javax.swing.JFrame {
     private void finalizarPartido(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarPartido
         // TODO add your handling code here:
     }//GEN-LAST:event_finalizarPartido
+
+    private void menu_jugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_jugadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_jugadorActionPerformed
 
     public static void main(String args[]) {
 

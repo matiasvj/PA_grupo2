@@ -3,7 +3,7 @@ package Clases;
 import java.util.List;
 
 public class Equipo {
-    private String id;
+    private int id;
     private String nombre;
     private float dividendo_campeon;
     //List <Jugador> jugadores;
@@ -11,10 +11,10 @@ public class Equipo {
     public Equipo(String nombre) {
         this.nombre = nombre;
     }
-    public String getId() {
+    public int getId() {
         return id;
     }
-    public void setId(String id){
+    public void setId(int id){
         this.id = id;
     }
     public String getNombre() {
