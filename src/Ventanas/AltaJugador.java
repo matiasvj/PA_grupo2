@@ -244,8 +244,9 @@ public class AltaJugador extends javax.swing.JDialog {
 
     private void confirmarAlta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarAlta
         String nom, nom_c, nac, pos;
-        double altura, peso;
+        double altura = 0, peso = 0;
         int dia, mes, anio;
+        Date fecha_nac = null;
         
         if(campo_nom_completo.getText().equals("")){
             JOptionPane.showMessageDialog(this, "El campo nombre completo no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
@@ -253,14 +254,23 @@ public class AltaJugador extends javax.swing.JDialog {
         else{
             nom = campo_nombre.getText();
             nom_c = campo_nom_completo.getText();
-            dia = Integer.parseInt(campo_dia.getText());
-            mes = Integer.parseInt(campo_mes.getText());
-            anio = Integer.parseInt(campo_anio.getText());
-            Date fecha_nac = new Date(dia, mes, anio);
+            if(campo_dia.getText() != "" && campo_mes.getText() != "" && campo_anio.getText() != ""){
+                    dia = Integer.parseInt(campo_dia.getText());
+                    mes = Integer.parseInt(campo_mes.getText());
+                    anio = Integer.parseInt(campo_anio.getText());
+                     fecha_nac = new Date(dia, mes, anio);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Ninguno de los campos de fecha puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             nac = campo_nacionalidad.getText();
             pos = campo_posicion.getText();
-            altura = Double.parseDouble(campo_altura.getText());
-            peso = Double.parseDouble(campo_peso.getText());
+            if(campo_altura.getText() != "") {
+                altura = Double.parseDouble(campo_altura.getText());
+            }
+            if(campo_peso.getText() != "") {
+                peso = Double.parseDouble(campo_peso.getText());
+            }
             
             Jugador jugador = new Jugador(nom,nom_c,nac, fecha_nac, pos, altura, peso);
             mbd.insertJugador(jugador);
