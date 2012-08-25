@@ -230,7 +230,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_partidoIndividual
 
     private void verInformacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacion
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_verInformacion
 
     private void altaJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJugador
@@ -241,7 +241,7 @@ public class Main extends javax.swing.JFrame {
 
     private void modificarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugador
         ModificarJugador mj = new ModificarJugador(this, true);
-        mj.setLocation(300, 180);
+        mj.setLocation(300,200);
         mj.setVisible(true);
     }//GEN-LAST:event_modificarJugador
 
