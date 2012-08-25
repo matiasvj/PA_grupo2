@@ -41,12 +41,13 @@ public class ManejadorBD {
     
     public void insertEquipo(Equipo equipo){
         
-        String nombre = equipo.getNombre(), id_generado;
+        String nombre = equipo.getNombre();
+        int id_generado;
         try {
             int res = st.executeUpdate("insert into equipos (Nombre) values ('"+nombre+"')");
             ResultSet max_id = st.executeQuery("select max(ID_Equipo) from equipos");
             max_id.next();
-            id_generado = max_id.getString(1);
+            id_generado = max_id.getInt(1);
             equipo.setId(id_generado);
             
         } catch (SQLException ex) {
@@ -54,10 +55,47 @@ public class ManejadorBD {
         }
     }
     
+    public int insertPartido(int id_l, int id_v){
+        int id_generado;
+        try {
+            st.executeUpdate("insert into partidos (ID_Equipo_Local, ID_Equipo_Visitante) values("+id_l+","+id_v+")");
+            ResultSet max_id = st.executeQuery("select max(ID_Partido) from partidos");
+            max_id.next();
+            id_generado = max_id.getInt(1);
+            return id_generado;
+            
+        } catch (SQLException e) {
+            System.out.println("errorpartido"+e.toString());
+            return 0;
+        }
+    }
+    
+    public int insertCompeticion(String nom, String tipo){
+        int id_generado;
+        try{
+            st.executeUpdate("insert into competiciones (Nombre, Tipo) values ('"+nom+"','"+tipo+"')");
+            ResultSet max_id = st.executeQuery("select max(ID_Competicion) from competiciones");
+            max_id.next();
+            id_generado = max_id.getInt(1);
+            return id_generado;
+        } catch (SQLException e){
+            System.out.println("errorcompeticion"+e.toString());
+            return 0;
+        }
+    }
+    
+    public void insertCompIndiv(int id_c, int id_p){
+        try{
+            st.executeUpdate("insert into individual (id_competicion, ID_Partido) values ("+id_c+","+id_p+")");
+        } catch (SQLException e) {
+            System.out.println("errorcompeticionInd"+e.toString());
+        }
+    }
+    
     public void insertJugador(Jugador j){
         try {
-            st.executeUpdate("insert into jugadores (nombre_jugador, nombreCompleto_jugador, posicion, edad, fecha_nacimiento, nacionalidad, altura, peso)"+
-            "values ('"+j.getNombre()+"','"+j.getNombre_completo()+"','"+j.getPosicion()+"','"+j.getEdad()+"','"+j.getF_nac().DateToString()+"','"+j.getNacionalidad()+"','"+j.getAltura()+"','"+j.getPeso()+"')");
+            st.executeUpdate("insert into jugadores (Nombre_Jugador, NombreCompleto_Jugador, Posicion, Nacionalidad, Altura, Peso)"+
+            "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"', '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }
