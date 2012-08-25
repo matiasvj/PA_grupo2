@@ -34,6 +34,7 @@ public class VerEquipo extends javax.swing.JDialog {
                 nombre = res.getObject(2);
                 modelo.addElement(nombre);
                 ids.add(res.getInt(1));
+                
             }
         } catch (SQLException ex) {
             System.out.println(ex.toString());

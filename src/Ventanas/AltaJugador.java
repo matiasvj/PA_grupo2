@@ -3,6 +3,7 @@ package Ventanas;
 import Clases.Date;
 import Clases.Jugador;
 import Clases.ManejadorBD;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class AltaJugador extends javax.swing.JDialog {
@@ -239,7 +240,7 @@ public class AltaJugador extends javax.swing.JDialog {
                     dia = Integer.parseInt(campo_dia.getText());
                     mes = Integer.parseInt(campo_mes.getText());
                     anio = Integer.parseInt(campo_anio.getText());
-                     fecha_nac = new Date(dia, mes, anio);
+                    fecha_nac = new Date(dia, mes, anio);
             }
             else{
                 JOptionPane.showMessageDialog(this, "Ninguno de los campos de fecha puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
@@ -262,7 +263,7 @@ public class AltaJugador extends javax.swing.JDialog {
     private void seleccionarImagen(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarImagen
         javax.swing.JFileChooser sel = new javax.swing.JFileChooser();
         int res = sel.showOpenDialog(null);
-        if(res == sel.APPROVE_OPTION){
+        if(res == JFileChooser.APPROVE_OPTION){
             java.io.File archivo = sel.getSelectedFile();
         }
         sel.setLocation(300,200);

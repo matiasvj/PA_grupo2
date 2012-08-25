@@ -87,7 +87,7 @@ public class ManejadorBD {
     public void insertJugador(Jugador j){
         try {
             st.executeUpdate("insert into jugadores (Nombre, NombreCompleto, Fecha_Nacimiento , Posicion, Nacionalidad, Altura, Peso)"+
-            "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"',"+j.getF_nac().DateToString()+", '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
+            "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"','"+j.getF_nac().DateToString()+"', '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }
@@ -114,5 +114,17 @@ public class ManejadorBD {
             System.out.println(ex.toString());
             return null;
         }
+    }
+    
+    public ResultSet selectLigas(){
+        
+        ResultSet res = null;
+        return res;
+    }
+    
+    public ResultSet selectPartidos(){
+        
+        ResultSet res = null;
+        return res;
     }
 }
