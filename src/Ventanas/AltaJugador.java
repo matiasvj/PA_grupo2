@@ -224,7 +224,7 @@ public class AltaJugador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmarAlta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarAlta
-        String nom, nom_c, nac, pos;
+        String nom = "", nom_c = "", nac = "", pos = "";
         double altura = 0, peso = 0;
         int dia, mes, anio;
         Date fecha_nac = null;
