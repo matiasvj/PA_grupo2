@@ -49,18 +49,6 @@ public class ModificarJugador extends javax.swing.JDialog {
 
         label_altura.setText("Altura");
 
-        campo_nom_comp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_nom_compActionPerformed(evt);
-            }
-        });
-
-        campo_nac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_nacActionPerformed(evt);
-            }
-        });
-
         campo_altura.setText("     ");
 
         label_peso.setText("Peso");
@@ -68,11 +56,16 @@ public class ModificarJugador extends javax.swing.JDialog {
         campo_peso.setText("     ");
 
         boton_confirmar.setText("Confirmar");
+        boton_confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarModificacion(evt);
+            }
+        });
 
         boton_selec.setText("Seleccionar");
         boton_selec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_selecActionPerformed(evt);
+                seleccionar(evt);
             }
         });
 
@@ -169,17 +162,13 @@ public class ModificarJugador extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton_selecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_selecActionPerformed
+    private void seleccionar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar
         // TODO add your handling code here:
-    }//GEN-LAST:event_boton_selecActionPerformed
+    }//GEN-LAST:event_seleccionar
 
-    private void campo_nom_compActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nom_compActionPerformed
+    private void confirmarModificacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarModificacion
         // TODO add your handling code here:
-    }//GEN-LAST:event_campo_nom_compActionPerformed
-
-    private void campo_nacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_nacActionPerformed
+    }//GEN-LAST:event_confirmarModificacion
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_confirmar;

@@ -45,7 +45,7 @@ public class ManejadorBD {
         int id_generado;
         try {
             int res = st.executeUpdate("insert into equipos (Nombre) values ('"+nombre+"')");
-            ResultSet max_id = st.executeQuery("select max(ID_Equipo) from equipos");
+            ResultSet max_id = st.executeQuery("select max(ID_Equipos) from equipos");
             max_id.next();
             id_generado = max_id.getInt(1);
             equipo.setId(id_generado);
@@ -55,10 +55,10 @@ public class ManejadorBD {
         }
     }
     
-    public int insertPartido(int id_l, int id_v){
+    public int insertPartido(int id_l, int id_v, int id_c){
         int id_generado;
         try {
-            st.executeUpdate("insert into partidos (ID_Equipo_Local, ID_Equipo_Visitante) values("+id_l+","+id_v+")");
+            st.executeUpdate("insert into partidos (ID_comp, EquipoLocal, EquipoVisita) values("+id_c+","+id_l+","+id_v+")");
             ResultSet max_id = st.executeQuery("select max(ID_Partido) from partidos");
             max_id.next();
             id_generado = max_id.getInt(1);
@@ -84,25 +84,17 @@ public class ManejadorBD {
         }
     }
     
-    public void insertCompIndiv(int id_c, int id_p){
-        try{
-            st.executeUpdate("insert into individual (id_competicion, ID_Partido) values ("+id_c+","+id_p+")");
-        } catch (SQLException e) {
-            System.out.println("errorcompeticionInd"+e.toString());
-        }
-    }
-    
     public void insertJugador(Jugador j){
         try {
-            st.executeUpdate("insert into jugadores (Nombre_Jugador, NombreCompleto_Jugador, Posicion, Nacionalidad, Altura, Peso)"+
-            "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"', '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
+            st.executeUpdate("insert into jugadores (Nombre_Jugador, NombreCompleto_Jugador, Fecha_Nacimiento , Posicion, Nacionalidad, Altura, Peso)"+
+            "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"',"+j.getF_nac().DateToString()+", '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }
     }
     
     public ResultSet selectJugador(Integer id){
-        ResultSet res = null;
+        ResultSet res;
         try {
             res = st.executeQuery("select * from jugadores where ID_Jugador='"+id+"'");
             return res;
@@ -114,7 +106,7 @@ public class ManejadorBD {
     }
     
     public ResultSet selectEquipo(Integer id){
-        ResultSet res = null;
+        ResultSet res;
         try {
             res = st.executeQuery("select * from equipos where ID_Equipo='"+id+"'");
             return res;

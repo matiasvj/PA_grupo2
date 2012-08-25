@@ -5,9 +5,8 @@ import Clases.ManejadorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
+
 public class AltaCompeticionIndividual extends javax.swing.JDialog {
     
     int posicion_local, posicion_visitante;
@@ -17,18 +16,16 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         initComponents();
         llenarLista();
     }
-    
-    
+
     ManejadorBD mbd = ManejadorBD.getInstancia();
     
     private void llenarLista(){
         Statement st = mbd.getStatement();
         ResultSet res;
         Object nombre;
-        
-        
+                
         try {
-             res = st.executeQuery("select ID_Equipo, Nombre from equipos");
+             res = st.executeQuery("select ID_Equipos, Nombre from equipos");
              while(res.next()){
                  nombre = res.getObject(2);
                  combobox_loca.addItem(nombre);
@@ -40,43 +37,35 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         }
         
     }
-    
-    
+
     private void crearCompeticion(){
         Statement st = mbd.getStatement();
-        ResultSet res2=null, res3=null;
+        ResultSet res2, res3;
         
         try{
         int fila_local = combobox_loca.getSelectedIndex();
-        //System.out.println(fila_local);
         int fila_visitante = combobox_visitante.getSelectedIndex();
-        //System.out.println(fila_visitante);
         
         if (fila_local != fila_visitante){
-        res2 = st.executeQuery("select ID_Equipo from equipos");
+        res2 = st.executeQuery("select ID_Equipos from equipos");
         res2.next();
         for (int i=0; i<fila_local; i++){
             res2.next();
         }
         Integer local = res2.getInt(1);
-        System.out.println(local);
-        //int id_local = Integer.parseInt(local.toString());
-        res3 = st.executeQuery("select ID_Equipo from equipos");
+        res3 = st.executeQuery("select ID_Equipos from equipos");
         res3.next();
         for (int i=0; i<fila_visitante; i++){
             res3.next();
         }
         Integer visitante = res3.getInt(1);
-        System.out.println(visitante);
-        //int id_visitante = Integer.parseInt(visitante.toString());
-        
-        
-        int id_p = mbd.insertPartido(local, visitante);
+
         int id_c = mbd.insertCompeticion(textfield_nombre.getText(), "Individual");
-        if (id_p != 0 && id_c != 0){
-            mbd.insertCompIndiv(id_c, id_p);
+       
+        if (id_c != 0){
+            int id_p = mbd.insertPartido(local, visitante, id_c);
             JOptionPane.showMessageDialog(this, "Operacion exitosa. ID: "+id_c , "Competicion Creada!", JOptionPane.INFORMATION_MESSAGE);
-            
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "No se pudo realizar la operacion!", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -108,25 +97,7 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
 
         label_visitante.setText("Visitante");
 
-        combobox_loca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combobox_locaActionPerformed(evt);
-            }
-        });
-
-        combobox_visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combobox_visitanteActionPerformed(evt);
-            }
-        });
-
         label_nombre.setText("Nombre");
-
-        textfield_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textfield_nombreActionPerformed(evt);
-            }
-        });
 
         boton_aceptar.setText("Aceptar");
         boton_aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -147,24 +118,22 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_local)
-                            .addComponent(label_visitante)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(label_nombre)
-                                .addGap(47, 47, 47)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(combobox_loca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(combobox_visitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textfield_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(boton_aceptar)
-                        .addGap(34, 34, 34)
-                        .addComponent(boton_cancelar)))
+                    .addComponent(label_local)
+                    .addComponent(label_visitante)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(boton_aceptar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(boton_cancelar))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(label_nombre)
+                            .addGap(47, 47, 47)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(combobox_loca, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(combobox_visitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(textfield_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,17 +161,11 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textfield_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfield_nombreActionPerformed
-        
-    }//GEN-LAST:event_textfield_nombreActionPerformed
-
     private void boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelarActionPerformed
         this.dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_boton_cancelarActionPerformed
 
     private void boton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_aceptarActionPerformed
-        
         String nombre = textfield_nombre.getText();
         if (nombre.equals("")){
             
@@ -211,19 +174,7 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         else{
             crearCompeticion();
         }
-        
-        // TODO add your handling code here:
     }//GEN-LAST:event_boton_aceptarActionPerformed
-
-    private void combobox_locaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_locaActionPerformed
-        //posicion_local = combobox_loca.getSelectedIndex();
-        
-    }//GEN-LAST:event_combobox_locaActionPerformed
-
-    private void combobox_visitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combobox_visitanteActionPerformed
-        //posicion_visitante = combobox_visitante.getSelectedIndex();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combobox_visitanteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;

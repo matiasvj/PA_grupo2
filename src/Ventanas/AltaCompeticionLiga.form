@@ -110,9 +110,6 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtfield_nombre">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtfield_nombreActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="label_nombre">
       <Properties>

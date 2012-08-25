@@ -31,12 +31,6 @@ public class AltaCompeticionLiga extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jList1);
 
-        txtfield_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfield_nombreActionPerformed(evt);
-            }
-        });
-
         label_nombre.setText("Nombre");
 
         jList2.setModel(new javax.swing.AbstractListModel() {
@@ -124,10 +118,6 @@ public class AltaCompeticionLiga extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtfield_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfield_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtfield_nombreActionPerformed
 
     private void boton_quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_quitarActionPerformed
         // TODO add your handling code here:

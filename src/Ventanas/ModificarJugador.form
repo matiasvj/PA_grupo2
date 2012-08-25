@@ -174,18 +174,12 @@
     <Component class="javax.swing.JTextField" name="campo_nombre">
     </Component>
     <Component class="javax.swing.JTextField" name="campo_nom_comp">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_nom_compActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campo_fecha">
     </Component>
     <Component class="javax.swing.JTextField" name="campo_pos">
     </Component>
     <Component class="javax.swing.JTextField" name="campo_nac">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campo_nacActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campo_altura">
       <Properties>
@@ -206,13 +200,16 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmarModificacion"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boton_selec">
       <Properties>
         <Property name="text" type="java.lang.String" value="Seleccionar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_selecActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionar"/>
       </Events>
     </Component>
   </SubComponents>

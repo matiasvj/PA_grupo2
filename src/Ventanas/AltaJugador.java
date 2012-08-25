@@ -66,11 +66,6 @@ public class AltaJugador extends javax.swing.JDialog {
         campo_nombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         campo_nombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         campo_nombre.setToolTipText("");
-        campo_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_nombreActionPerformed(evt);
-            }
-        });
 
         campo_nom_completo.setColumns(15);
         campo_nom_completo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -273,10 +268,6 @@ public class AltaJugador extends javax.swing.JDialog {
         sel.setLocation(300,200);
 
     }//GEN-LAST:event_seleccionarImagen
-
-    private void campo_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_nombreActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_confirmar;
