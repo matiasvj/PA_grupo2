@@ -117,14 +117,34 @@ public class ManejadorBD {
     }
     
     public ResultSet selectLigas(){
-        
-        ResultSet res = null;
-        return res;
+        ResultSet res;
+        try {
+            res = st.executeQuery("SELECT * from competiciones WHERE tipo like '%liga%'");
+            return res;
+        } catch (SQLException ex) {
+             System.out.println(ex.toString());
+              return null;
+        }
     }
     
     public ResultSet selectPartidos(){
-        
-        ResultSet res = null;
-        return res;
+        ResultSet res;
+        try {
+            res = st.executeQuery("SELECT * FROM partidos WHERE finalizado = '0'");
+            return res;
+        } catch (SQLException ex) {
+             System.out.println(ex.toString());
+              return null;
+        }
+    }
+    
+    public ResultSet dividendos(){
+     ResultSet retorno;
+        try {
+            retorno = st.executeQuery("select * from partidos p, equipos e, equipos e1 where p.Equipolocal = e.ID_equipos and p.equipovisita = e1.id_equipos and divlocal ='0' and divvisita ='0' and finalizado = '0'order by fecha");
+            return retorno;
+        } catch (SQLException ex) {
+            return null;
+        }
     }
 }

@@ -220,7 +220,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_salir
 
     private void partidoLiga(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoLiga
-        // TODO add your handling code here:
+        AltaPartidoLiga apl = new AltaPartidoLiga(this, true);
+        apl.setLocation(300, 200);
+        apl.setVisible(true);
     }//GEN-LAST:event_partidoLiga
 
     private void partidoIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoIndividual
@@ -262,7 +264,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_nuevaLiga
 
     private void asignarDividendos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarDividendos
-        // TODO add your handling code here:
+        AsignarDividendos ad = new AsignarDividendos(this, true);
+        ad.setLocation(300, 200);
+        ad.setVisible(true);
     }//GEN-LAST:event_asignarDividendos
 
     private void finalizarPartido(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarPartido
