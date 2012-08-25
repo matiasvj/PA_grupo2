@@ -19,7 +19,7 @@ public class VerEquipo extends javax.swing.JDialog {
         ManejadorBD mbd = ManejadorBD.getInstancia();
         List <Integer> ids = new ArrayList<>();
     
-        private void llenarLista(){
+    private void llenarLista(){
         Statement st = mbd.getStatement();
         ResultSet res;
         Object nombre;
@@ -28,31 +28,17 @@ public class VerEquipo extends javax.swing.JDialog {
         lista_equipos.setModel(modelo);
         
         try {
-             res = st.executeQuery("select ID_Equipo, Nombre from equipos");
-             while(res.next()){
-                 nombre = res.getObject(2);
-                 modelo.addElement(nombre);
-                 ids.add((Integer)res.getObject(1));
-             }
+            res = st.executeQuery("select ID_Equipo, Nombre from equipos");
+            while(res.next()){
+                nombre = res.getObject(2);
+                modelo.addElement(nombre);
+                ids.add((Integer)res.getObject(1));
+            }
         } catch (SQLException ex) {
             System.out.println("Error");
         }
     }
-        
-    private void verInformacionEquipo(java.awt.event.ActionEvent evt) { 
-        try {
-            Integer id = ((Integer)lista_equipos.getSelectedIndex());
-            ResultSet resultado = mbd.selectEquipo(id);
-            resultado.next();
-            valor_id.setText("ID: "+resultado.getString(1));
-            valor_nombre.setText(resultado.getString(2));
-            //valor_dividendo.setText(resultado.getString(3));
-            
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
-    } 
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -143,23 +129,23 @@ public class VerEquipo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void seleccionar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar
-        boton_seleccionar.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verInformacionEquipo(evt);
-            }
-        });
-    }//GEN-LAST:event_seleccionar
-
     private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
-        boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dispose();
-            }
-          });   
+        dispose();
     }//GEN-LAST:event_cancelar
+
+    private void seleccionar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar
+        try {
+            Integer id = ((Integer)lista_equipos.getSelectedIndex());
+            ResultSet resultado = mbd.selectEquipo(id);
+            resultado.next();
+            valor_id.setText("ID: "+resultado.getString(1));
+            valor_nombre.setText(resultado.getString(2));
+            //valor_dividendo.setText(resultado.getString(3));
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+    }//GEN-LAST:event_seleccionar
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_cancelar;
