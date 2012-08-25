@@ -255,7 +255,8 @@ public class AltaJugador extends javax.swing.JDialog {
             }
             
             Jugador jugador = new Jugador(nom,nom_c,nac, fecha_nac, pos, altura, peso);
-            mbd.insertJugador(jugador);
+            int id = mbd.insertJugador(jugador);
+            JOptionPane.showMessageDialog(this, "Se creo el jugador con id: "+id, "Informacion", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }//GEN-LAST:event_confirmarAlta

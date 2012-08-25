@@ -61,7 +61,7 @@ public class ManejadorBD {
             st.executeUpdate("insert into partidos (ID_comp, EquipoLocal, EquipoVisita) values("+id_c+","+id_l+","+id_v+")");
             ResultSet max_id = st.executeQuery("select max(ID_Partido) from partidos");
             max_id.next();
-            id_generado = max_id.getInt(1);
+            id_generado = max_id.getInt("id_partido");
             return id_generado;
             
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class ManejadorBD {
             st.executeUpdate("insert into competiciones (Nombre, Tipo) values ('"+nom+"','"+tipo+"')");
             ResultSet max_id = st.executeQuery("select max(ID_Competicion) from competiciones");
             max_id.next();
-            id_generado = max_id.getInt(1);
+            id_generado = max_id.getInt("id_competicion");
             return id_generado;
         } catch (SQLException e){
             System.out.println("errorcompeticion"+e.toString());
@@ -84,12 +84,18 @@ public class ManejadorBD {
         }
     }
     
-    public void insertJugador(Jugador j){
+    public int insertJugador(Jugador j){
+        int id_generado;
         try {
             st.executeUpdate("insert into jugadores (Nombre, NombreCompleto, Fecha_Nacimiento , Posicion, Nacionalidad, Altura, Peso)"+
             "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"','"+j.getF_nac().DateToString()+"', '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
+            ResultSet max_id = st.executeQuery("select max(id_jugador) from jugadores");
+            max_id.next();
+            id_generado = max_id.getInt("id_jugador");
+            return id_generado;
         } catch (SQLException ex) {
             System.out.println(ex.toString());
+            return 0;
         }
     }
     
@@ -144,6 +150,20 @@ public class ManejadorBD {
             retorno = st.executeQuery("select * from partidos p, equipos e, equipos e1 where p.Equipolocal = e.ID_equipos and p.equipovisita = e1.id_equipos and divlocal ='0' and divvisita ='0' and finalizado = '0'order by fecha");
             return retorno;
         } catch (SQLException ex) {
+            return null;
+        }
+    }
+    
+    public ResultSet selectJugadoresEquipo(int id){
+        ResultSet retorno;
+        try{
+            String consulta = "select j.nombre from jugadores j, jugador_partido jp"+
+                              "where jp.id_equipo = "+id+" and j.id_jugador = jp.id_jugador";
+            retorno = st.executeQuery(consulta);
+            return retorno;
+        }
+        catch(SQLException ex){
+            System.out.println(ex.toString());
             return null;
         }
     }
