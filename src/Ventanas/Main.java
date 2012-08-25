@@ -200,7 +200,6 @@ public class Main extends javax.swing.JFrame {
         AltaEquipo ae = new AltaEquipo(this, true);
         ae.setLocation(350, 250);
         ae.setVisible(true);
-        
     }//GEN-LAST:event_crearEquipo
 
     private void verEquipo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verEquipo

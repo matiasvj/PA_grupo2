@@ -185,17 +185,13 @@ public class VerEquipo extends javax.swing.JDialog {
                 DefaultListModel modelo_jugadores = new DefaultListModel();
                 lista_jugadores.setModel(modelo_jugadores);
                 ResultSet jug = mbd.selectJugadoresEquipo(id);
-                if(jug != null){
-                    while(jug.next()){
-                        fila = jug.getString("nombre");
-                        modelo_jugadores.addElement(fila);
-                    }
-                }
-                else {
-                    modelo_jugadores.addElement("Lista vacia");
+                
+                while(jug.next()){
+                    fila = jug.getString(1);
+                    modelo_jugadores.addElement(fila);
+                    //modelo_jugadores.addElement("Lista vacia");  
                 }
             }
-            
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }
