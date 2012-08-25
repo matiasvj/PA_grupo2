@@ -82,11 +82,6 @@ public class AltaJugador extends javax.swing.JDialog {
         campo_mes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campo_mes.setText("mes");
         campo_mes.setToolTipText("");
-        campo_mes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_mesActionPerformed(evt);
-            }
-        });
 
         campo_nacionalidad.setColumns(15);
         campo_nacionalidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -140,22 +135,12 @@ public class AltaJugador extends javax.swing.JDialog {
         campo_dia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campo_dia.setText("dia");
         campo_dia.setToolTipText("");
-        campo_dia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_diaActionPerformed(evt);
-            }
-        });
 
         campo_anio.setColumns(4);
         campo_anio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         campo_anio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campo_anio.setText("año");
         campo_anio.setToolTipText("");
-        campo_anio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campo_anioActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -288,18 +273,6 @@ public class AltaJugador extends javax.swing.JDialog {
         sel.setLocation(300,200);
 
     }//GEN-LAST:event_seleccionarImagen
-
-    private void campo_mesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_mesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_mesActionPerformed
-
-    private void campo_diaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_diaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_diaActionPerformed
-
-    private void campo_anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_anioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campo_anioActionPerformed
 
     private void campo_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_nombreActionPerformed
         // TODO add your handling code here:

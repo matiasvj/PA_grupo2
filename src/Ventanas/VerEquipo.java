@@ -19,8 +19,6 @@ public class VerEquipo extends javax.swing.JDialog {
         ManejadorBD mbd = ManejadorBD.getInstancia();
         List <Integer> ids = new ArrayList<>();
     
-    
-    
         private void llenarLista(){
         Statement st = mbd.getStatement();
         ResultSet res;
@@ -39,16 +37,13 @@ public class VerEquipo extends javax.swing.JDialog {
         } catch (SQLException ex) {
             System.out.println("Error");
         }
-        
     }
         
     private void verInformacionEquipo(java.awt.event.ActionEvent evt) { 
         try {
             Integer id = ((Integer)lista_equipos.getSelectedIndex());
-            System.out.println(id);
             ResultSet resultado = mbd.selectEquipo(id);
             resultado.next();
-            
             valor_id.setText("ID: "+resultado.getString(1));
             valor_nombre.setText(resultado.getString(2));
             //valor_dividendo.setText(resultado.getString(3));
@@ -57,14 +52,6 @@ public class VerEquipo extends javax.swing.JDialog {
             System.out.println(ex.toString());
         }
     } 
-        
-        
-    
-    
-    
-     private void cancelar(java.awt.event.ActionEvent evt) {                          
-        dispose();
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -87,14 +74,14 @@ public class VerEquipo extends javax.swing.JDialog {
         boton_cancelar.setText("Cancelar");
         boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_cancelarActionPerformed(evt);
+                cancelar(evt);
             }
         });
 
         boton_seleccionar.setText("Seleccionar");
         boton_seleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_seleccionarActionPerformed(evt);
+                seleccionar(evt);
             }
         });
 
@@ -156,21 +143,23 @@ public class VerEquipo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton_seleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_seleccionarActionPerformed
+    private void seleccionar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar
         boton_seleccionar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 verInformacionEquipo(evt);
             }
         });
-    }//GEN-LAST:event_boton_seleccionarActionPerformed
+    }//GEN-LAST:event_seleccionar
 
-    private void boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelarActionPerformed
-          boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
+    private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
+        boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelar(evt);
+                dispose();
             }
           });   
-    }//GEN-LAST:event_boton_cancelarActionPerformed
+    }//GEN-LAST:event_cancelar
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_cancelar;

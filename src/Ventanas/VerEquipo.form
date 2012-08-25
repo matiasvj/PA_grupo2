@@ -102,7 +102,7 @@
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_cancelarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelar"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="boton_seleccionar">
@@ -110,7 +110,7 @@
         <Property name="text" type="java.lang.String" value="Seleccionar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_seleccionarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionar"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="label_equipos">
