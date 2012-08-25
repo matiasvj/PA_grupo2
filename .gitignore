@@ -6,3 +6,4 @@ nbdist/
 *.properties
 *.xml
 manifest.mf
+/coverage
