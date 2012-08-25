@@ -3,7 +3,7 @@ package Ventanas;
 public class ModificarJugador extends javax.swing.JDialog {
 
     public ModificarJugador(java.awt.Frame parent, boolean modal) {
-        super(parent,"Modificar Jugador", modal);
+        super(parent, modal);
         initComponents();
     }
 

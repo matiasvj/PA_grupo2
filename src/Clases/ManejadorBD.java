@@ -75,7 +75,7 @@ public class ManejadorBD {
         
     }
     
-        public ResultSet selectEquipo(Integer id){
+    public ResultSet selectEquipo(Integer id){
         ResultSet res = null;
         try {
             res = st.executeQuery("select * from equipos where ID_Equipo='"+id+"'");
@@ -84,8 +84,5 @@ public class ManejadorBD {
             System.out.println(ex.toString());
             return null;
         }
-        
     }
-    
- 
 }
