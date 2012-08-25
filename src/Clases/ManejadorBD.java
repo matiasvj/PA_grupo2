@@ -76,4 +76,18 @@ public class ManejadorBD {
         }
         
     }
+    
+        public ResultSet selectEquipo(Integer id){
+        ResultSet res = null;
+        try {
+            res = st.executeQuery("select * from equipos where ID_Equipo='"+id+"'");
+            return res;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+        
+    }
+    
+ 
 }
