@@ -27,7 +27,7 @@ public class VerJugador extends javax.swing.JDialog {
         lista_jugadores.setModel(modelo);
         
         try {
-             res = st.executeQuery("select ID_Jugador, Nombre_Jugador from jugadores");
+             res = st.executeQuery("select ID_Jugador, Nombre from jugadores");
              while(res.next()){
                  nombre = res.getObject(2);
                  modelo.addElement(nombre);
@@ -254,18 +254,17 @@ public class VerJugador extends javax.swing.JDialog {
         try {
             int lugar_lista = lista_jugadores.getSelectedIndex();
             Integer id = ids.get(lugar_lista);
-            System.out.println(id);
             ResultSet resultado = mbd.selectJugador(id);
             resultado.next();
             
             valor_id.setText("ID: "+resultado.getString(1));
             valor_nombre.setText(resultado.getString(2));
             valor_nom_comp.setText(resultado.getString(3));
-            valor_posicion.setText(resultado.getString(4));
-            valor_fecha_nac.setText(resultado.getString(6));
-            valor_lugar_nac.setText(resultado.getString(7));
-            valor_altura.setText(resultado.getString(8));
-            valor_peso.setText(resultado.getString(9));
+            valor_fecha_nac.setText(resultado.getString(4));
+            valor_lugar_nac.setText(resultado.getString(5));
+            valor_posicion.setText(resultado.getString(6));
+            valor_altura.setText(resultado.getString(7));
+            valor_peso.setText(resultado.getString(8));
             
         } catch (SQLException ex) {
             System.out.println(ex.toString());
