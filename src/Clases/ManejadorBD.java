@@ -86,7 +86,7 @@ public class ManejadorBD {
     
     public void insertJugador(Jugador j){
         try {
-            st.executeUpdate("insert into jugadores (Nombre_Jugador, NombreCompleto_Jugador, Fecha_Nacimiento , Posicion, Nacionalidad, Altura, Peso)"+
+            st.executeUpdate("insert into jugadores (Nombre, NombreCompleto, Fecha_Nacimiento , Posicion, Nacionalidad, Altura, Peso)"+
             "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"',"+j.getF_nac().DateToString()+", '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -105,10 +105,10 @@ public class ManejadorBD {
         
     }
     
-    public ResultSet selectEquipo(Integer id){
+    public ResultSet selectEquipo(int id){
         ResultSet res;
         try {
-            res = st.executeQuery("select * from equipos where ID_Equipo='"+id+"'");
+            res = st.executeQuery("select * from equipos where ID_Equipos ="+id+"");
             return res;
         } catch (SQLException ex) {
             System.out.println(ex.toString());
