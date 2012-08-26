@@ -29,7 +29,7 @@ public class AltaPartidoLiga extends javax.swing.JDialog {
         try{
             DefaultListModel modelo = new DefaultListModel();
             int x=0; 
-            ResultSet ps = mbd.selectPartidos();
+            ResultSet ps = mbd.selectPartidosNoFinalizados();
             while (ps.next()) {
                 x++;
                 modelo.addElement(ps.getObject("ID_Partido"));

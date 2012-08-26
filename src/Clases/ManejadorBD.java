@@ -61,7 +61,7 @@ public class ManejadorBD {
             st.executeUpdate("insert into partidos (ID_comp, EquipoLocal, EquipoVisita) values("+id_c+","+id_l+","+id_v+")");
             ResultSet max_id = st.executeQuery("select max(ID_Partido) from partidos");
             max_id.next();
-            id_generado = max_id.getInt("id_partido");
+            id_generado = max_id.getInt(1);
             return id_generado;
             
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class ManejadorBD {
             st.executeUpdate("insert into competiciones (Nombre, Tipo) values ('"+nom+"','"+tipo+"')");
             ResultSet max_id = st.executeQuery("select max(ID_Competicion) from competiciones");
             max_id.next();
-            id_generado = max_id.getInt("id_competicion");
+            id_generado = max_id.getInt(1);
             return id_generado;
         } catch (SQLException e){
             System.out.println("errorcompeticion"+e.toString());
@@ -129,18 +129,35 @@ public class ManejadorBD {
             return res;
         } catch (SQLException ex) {
              System.out.println(ex.toString());
-             return null;
+              return null;
         }
     }
     
-    public ResultSet selectPartidos(){
+    public ResultSet selectPartidosNoFinalizados(){
         ResultSet res;
         try {
             res = st.executeQuery("SELECT * FROM partidos WHERE finalizado = '0'");
             return res;
         } catch (SQLException ex) {
              System.out.println(ex.toString());
-             return null;
+              return null;
+        }
+    }
+    public ResultSet selectPartidos(Integer id){
+        ResultSet retorno;
+        try {
+            retorno = st.executeQuery("select * from partidos p, equipos e1, equipos e2 where ID_Partido='"+id+"' and p.equipolocal = e1.id_equipos and p.equipovisita = e2.id_equipos");
+            return retorno;
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+            return null;
+        }
+    }
+    public void asignarDividendo(int id, double local, double visita, double empate){
+        try {
+            st.executeUpdate("UPDATE partidos set divlocal = "+local+", divvisita = "+visita+", divempate = "+empate+" where id_partido = "+id+" ");
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
         }
     }
     
@@ -159,7 +176,7 @@ public class ManejadorBD {
         try{
             String consulta = "select j.nombre from jugadores j, jugador_partido jp"+
                               " where jp.id_equipo = "+id+" and j.id_jugador = jp.id_jugador";
-            
+        
             retorno = st.executeQuery(consulta);
             return retorno;
         }

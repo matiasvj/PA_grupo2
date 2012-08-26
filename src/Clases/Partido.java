@@ -14,6 +14,14 @@ public class Partido {
     private Equipo local, visitante;
     private List<Jugador> jugadores_local, jugadores_visita;
 
+    public Partido(){
+    }
+    
+    public Partido(String Id, Equipo Local, Equipo visitante){
+        this.id=Id;
+        this.local=Local;
+        this.visitante=visitante;
+    }
     public Partido(Equipo local, Equipo visitante, Date fecha, String hora, String lugar) {
         this.fecha = fecha;
         this.hora = hora;
@@ -57,15 +65,15 @@ public class Partido {
     }
 
     public double getDiv_visita() {
-        return div_visita;
+        return this.div_visita;
     }
 
     public Equipo getLocal() {
-        return local;
+        return this.local;
     }
 
     public Equipo getVisitante() {
-        return visitante;
+        return this.visitante;
     }
 
     public void setId(String id) {
