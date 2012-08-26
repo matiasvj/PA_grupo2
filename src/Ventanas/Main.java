@@ -269,7 +269,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_asignarDividendos
 
     private void finalizarPartido(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarPartido
-        // TODO add your handling code here:
+        FinalizarPartido fp = new FinalizarPartido(this, true);
+        fp.setLocation(300, 200);
+        fp.setVisible(true);
     }//GEN-LAST:event_finalizarPartido
 
     public static void main(String args[]) {

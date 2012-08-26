@@ -158,7 +158,7 @@ public class ManejadorBD {
         ResultSet retorno;
         try{
             String consulta = "select j.nombre from jugadores j, jugador_partido jp"+
-                              "where jp.id_equipo = "+id+" and j.id_jugador = jp.id_jugador";
+                              " where jp.id_equipo = "+id+" and j.id_jugador = jp.id_jugador";
             
             retorno = st.executeQuery(consulta);
             return retorno;

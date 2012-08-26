@@ -82,9 +82,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="LabLigas" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="ComboLigas" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="LigaSeleccionada" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="LigaSeleccionada" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">

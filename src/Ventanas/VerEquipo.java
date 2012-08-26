@@ -83,6 +83,7 @@ public class VerEquipo extends javax.swing.JDialog {
 
         texto_imagen.setText("Imagen");
 
+        lista_jugadores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lista_jugadores);
 
         panel_imagen.setBackground(new java.awt.Color(255, 255, 255));
@@ -118,7 +119,9 @@ public class VerEquipo extends javax.swing.JDialog {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(label_equipos)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label_equipos)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,12 +154,14 @@ public class VerEquipo extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(boton_seleccionar))
                             .addComponent(panel_imagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(texto_jugadores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton_cancelar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(boton_cancelar))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
 
@@ -184,12 +189,12 @@ public class VerEquipo extends javax.swing.JDialog {
                 
                 DefaultListModel modelo_jugadores = new DefaultListModel();
                 lista_jugadores.setModel(modelo_jugadores);
-                ResultSet jug = mbd.selectJugadoresEquipo(id);
+                modelo_jugadores.clear();
                 
+                ResultSet jug = mbd.selectJugadoresEquipo(id);
                 while(jug.next()){
                     fila = jug.getString(1);
                     modelo_jugadores.addElement(fila);
-                    //modelo_jugadores.addElement("Lista vacia");  
                 }
             }
         } catch (SQLException ex) {
