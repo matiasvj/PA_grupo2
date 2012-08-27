@@ -1,27 +1,56 @@
 
 package Ventanas;
 
+import Clases.ManejadorBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultListModel;
+
 public class AltaPartidoIndividual extends javax.swing.JDialog {
 
     public AltaPartidoIndividual(java.awt.Frame parent, boolean modal) {
         super(parent,"Alta Partido Individual", modal);
         initComponents();
+        listarCompInd();
     }
-
+    
+    ManejadorBD mbd = ManejadorBD.getInstancia();
+    Statement st = mbd.getStatement();
+    
+    private void listarCompInd(){
+        
+        
+        ResultSet res;
+        Object nombre;
+        String tip ="Individual";
+                
+        try {
+             res = st.executeQuery("select id_competicion, nombre from competiciones where tipo = '"+tip+"'");
+             while(res.next()){
+                 combo_comp.addItem(res.getObject("Nombre").toString());
+             }
+        
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         label_competicion = new javax.swing.JLabel();
-        label_local = new javax.swing.JLabel();
-        label_visitante = new javax.swing.JLabel();
-        label_fecha = new javax.swing.JLabel();
-        label_mes = new javax.swing.JLabel();
-        label_anio = new javax.swing.JLabel();
-        label_hora = new javax.swing.JLabel();
-        label_lugar = new javax.swing.JLabel();
+        label1 = new javax.swing.JLabel();
+        label2 = new javax.swing.JLabel();
+        label3 = new javax.swing.JLabel();
+        label4 = new javax.swing.JLabel();
+        label5 = new javax.swing.JLabel();
+        lebel6 = new javax.swing.JLabel();
+        label7 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        combo_comp = new javax.swing.JComboBox();
         boton_donfirmar = new javax.swing.JButton();
         boton_cancelar = new javax.swing.JButton();
         texto_fecha = new javax.swing.JTextField();
@@ -34,28 +63,33 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         div_visitante = new javax.swing.JTextField();
         div_local = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        label_local = new javax.swing.JLabel();
+        label_visita = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         label_competicion.setText("Competicion");
 
-        label_local.setText("Local");
+        label1.setText("Local");
 
-        label_visitante.setText("Visitante");
+        label2.setText("Visitante");
 
-        label_fecha.setText("Fecha");
+        label3.setText("Fecha");
 
-        label_mes.setText("Mes");
+        label4.setText("Mes");
 
-        label_anio.setText("Año");
+        label5.setText("Año");
 
-        label_hora.setText("Hora");
+        lebel6.setText("Hora");
 
-        label_lugar.setText("Lugar");
+        label7.setText("Lugar");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_comp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        combo_comp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_compActionPerformed(evt);
+            }
+        });
 
         boton_donfirmar.setText("Confirmar");
 
@@ -102,9 +136,9 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setText("jLabel4");
+        label_local.setText("jLabel4");
 
-        jLabel5.setText("jLabel5");
+        label_visita.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,13 +153,13 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(text_hora, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label_fecha)
+                                    .addComponent(label3)
                                     .addGap(18, 18, 18)
                                     .addComponent(texto_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo_comp, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 86, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -136,20 +170,24 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
                                             .addComponent(text_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(14, 14, 14)
-                                            .addComponent(label_mes)
+                                            .addComponent(label4)
                                             .addGap(18, 18, 18)
                                             .addComponent(text_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(label_anio)
+                                            .addComponent(label5)
                                             .addGap(18, 18, 18)
                                             .addComponent(texto_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(div_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
+                                        .addGap(88, 88, 88)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(div_local, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(div_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -158,20 +196,19 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
                                 .addGap(36, 36, 36)
                                 .addComponent(boton_cancelar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(label_visitante)
-                                .addComponent(label_hora)
+                                .addComponent(lebel6)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label_local)
-                                    .addGap(56, 56, 56)
-                                    .addComponent(jLabel4)
-                                    .addGap(36, 36, 36)
-                                    .addComponent(jLabel2)
+                                    .addComponent(label7)
                                     .addGap(18, 18, 18)
-                                    .addComponent(div_local, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label_lugar)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(label1)
+                                        .addComponent(label2))
+                                    .addGap(30, 30, 30)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(label_local, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label_visita, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -180,36 +217,36 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_competicion)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo_comp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_local)
+                    .addComponent(label1)
                     .addComponent(jLabel2)
                     .addComponent(div_local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(label_local))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_visitante)
+                    .addComponent(label2)
                     .addComponent(jLabel3)
                     .addComponent(div_visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(label_visita))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_fecha)
-                    .addComponent(label_mes)
-                    .addComponent(label_anio)
+                    .addComponent(label3)
+                    .addComponent(label4)
+                    .addComponent(label5)
                     .addComponent(texto_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(text_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(texto_anio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_hora)
+                    .addComponent(lebel6)
                     .addComponent(text_hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(text_minutos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_lugar)
+                    .addComponent(label7)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -242,26 +279,45 @@ public class AltaPartidoIndividual extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_div_localActionPerformed
 
+    private void combo_compActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_compActionPerformed
+        try{
+        ResultSet partid = st.executeQuery("select * from partidos p, competiciones c, equipos el, equipos ev "+
+                "where p.id_comp = c.id_competicion and el.id_equipos = p.EquipoLocal and p.EquipoVisita = ev.id_equipos "+
+                "and c.nombre = '"+combo_comp.getSelectedObjects().toString()+"'");
+        
+        
+        
+        while (partid.next()){
+            label_visita.setText(partid.getObject("ev.nombre").toString());
+            label_local.setText(partid.getObject("el.nombre").toString());
+        }
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        
+    }//GEN-LAST:event_combo_compActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_cancelar;
     private javax.swing.JButton boton_donfirmar;
+    private javax.swing.JComboBox combo_comp;
     private javax.swing.JTextField div_local;
     private javax.swing.JTextField div_visitante;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel label_anio;
+    private javax.swing.JLabel label1;
+    private javax.swing.JLabel label2;
+    private javax.swing.JLabel label3;
+    private javax.swing.JLabel label4;
+    private javax.swing.JLabel label5;
+    private javax.swing.JLabel label7;
     private javax.swing.JLabel label_competicion;
-    private javax.swing.JLabel label_fecha;
-    private javax.swing.JLabel label_hora;
     private javax.swing.JLabel label_local;
-    private javax.swing.JLabel label_lugar;
-    private javax.swing.JLabel label_mes;
-    private javax.swing.JLabel label_visitante;
+    private javax.swing.JLabel label_visita;
+    private javax.swing.JLabel lebel6;
     private javax.swing.JTextField text_hora;
     private javax.swing.JTextField text_mes;
     private javax.swing.JTextField text_minutos;

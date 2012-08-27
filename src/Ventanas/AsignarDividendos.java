@@ -229,7 +229,6 @@ public class AsignarDividendos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Error: El campo Empate no puede estar vacio");
         }
         else{
-            //double l=P.getDiv_local(), v = P.getDiv_visita(), e = P.getDiv_empate();
             int id = Integer.parseInt(P.getId()); 
             JOptionPane.showMessageDialog(null,P.getDiv_empate());
             mbd.asignarDividendo(id,P.getDiv_local(),P.getDiv_visita(),P.getDiv_empate());

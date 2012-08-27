@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManejadorBD {
     
@@ -108,7 +110,6 @@ public class ManejadorBD {
             System.out.println(ex.toString());
             return null;
         }
-        
     }
     
     public ResultSet selectEquipo(int id){
@@ -185,4 +186,166 @@ public class ManejadorBD {
             return null;
         }
     }
+    
+    public void insertEquiposALiga(int id_c, List <Integer> ids, List <Double> dividendos){
+        try{
+            for (int i=0; i<ids.size(); i++){
+            st.executeUpdate("insert into liga_equipo (ID_Liga, ID_Equipo, Dividendo) values ("+id_c+","+ids.get(i+1)+","+dividendos.get(i+1)+")");
+            }
+        } catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
+    public ResultSet selectPartidosCompeticion(int id_c){
+     ResultSet retorno;
+        try {
+            retorno = st.executeQuery("select * from partidos p, equipos e, equipos e1 where id_comp="+id_c+" and p.Equipolocal = e.ID_equipos and p.equipovisita = e1.id_equipos order by fecha");
+            return retorno;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+    
+    public List ListarPartidosCompeticion(String nombre){
+               
+        List Lista = new ArrayList();
+        List Nueva = new ArrayList();
+        
+        Lista=this.ObtenerPartidosCompeticion(nombre);
+        
+        for(int i=0; i < Lista.size(); i++){
+            
+            Nueva.add(this.BuscarNombreEquipo((Integer)Lista.get(i)));
+            i++;
+            Nueva.add(this.BuscarNombreEquipo((Integer)Lista.get(i)));            
+            i++;
+            Nueva.add(Lista.get(i));
+            i++;
+            Nueva.add(Lista.get(i));
+            i++;
+            Nueva.add(Lista.get(i));
+            i++;
+            Nueva.add(Lista.get(i));
+        }
+        System.out.println("Exito 2");
+        return Nueva;
+        }
+
+    public List ObtenerPartidosCompeticion(String nombre){
+        ResultSet res;
+        List Lista = new ArrayList();
+        try {
+            res = st.executeQuery("select EquipoLocal,EquipoVisita,Fecha,Hora,Lugar,ID_Partido from partidos,competiciones where partidos.Id_Comp=competiciones.ID_Competicion and competiciones.Nombre='"+nombre+"'");
+           
+            while(res.next()){                
+                Lista.add(res.getObject(1));
+                Lista.add(res.getObject(2));
+                Lista.add(res.getObject(3));
+                Lista.add(res.getObject(4));
+                Lista.add(res.getObject(5));
+                Lista.add(res.getObject(6));
+            }                        
+            return Lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+
+    public List ObtenerJugador(String nombre){
+        ResultSet res;
+        List Lista = new ArrayList();
+        try {
+            res = st.executeQuery("select NombreCompleto from equipos, jugadores_equipos,jugadores where equipos.ID_Equipos=jugadores_equipos.Equipo and jugadores.ID_Jugador=jugadores_equipos.Jugador and equipos.Nombre='"+nombre+"'");
+            
+            while(res.next())
+            {                
+                Lista.add(res.getObject("NombreCompleto"));                
+            }
+            return Lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error"+ex.toString());
+            return null;
+        }
+    }
+
+    public void AgregarFinalizarPartido(int glocal, int gvisitante, List LocalJugadores,List VisJugadores,String Id)
+    {
+        List JugadoresL=new ArrayList();
+        List JugadoresV=new ArrayList();
+        
+        JugadoresL=this.ObtenerListaIDJugador(LocalJugadores);
+        JugadoresV=this.ObtenerListaIDJugador(VisJugadores);
+        this.AgregarLVPartido(JugadoresL, JugadoresV, Id);
+        
+        this.AgregarGoles(glocal, gvisitante, Id);
+    }
+
+    public List ObtenerListaIDJugador(List Jugador)
+    {
+        List Nuevo=new ArrayList();
+        for(int i=0;i<Jugador.size();i++)
+        {
+            Nuevo.add(this.ObtenerIDJugador(Jugador.get(i)));
+        }
+        return Nuevo;
+    }
+    public Object ObtenerIDJugador(Object nombre){
+        ResultSet res;
+        try {
+            res = st.executeQuery("select ID_Jugador from jugadores where NombreCompleto='"+nombre+"'");
+            while(res.next())
+            {
+                return res.getObject(1);
+            }
+            return null;
+        }
+         catch (SQLException ex) {
+             System.out.println(ex.toString());
+             System.out.println("Error");
+             return null; 
+         }
+    }
+    
+    public void AgregarLVPartido(List LocalJugadores,List VisJugadores, String Id){
+        try{
+            for(int i=0;i<LocalJugadores.size();i++){
+                st.executeUpdate("insert into jugador_partido (ID_Partido, ID_Jugador, Cuadro) values ('"+Id+"','"+LocalJugadores.get(i)+"','Local')");
+            }
+            
+            for(int i=0;i<LocalJugadores.size();i++){
+                st.executeUpdate("insert into jugador_partido (ID_Partido, ID_Jugador, Cuadro) values ('"+Id+"','"+VisJugadores.get(i)+"','Visitante')");
+            }  
+            
+        } catch (SQLException e){
+            System.out.println("errorcompeticion"+e.toString());
+           
+        }
+    } 
+     
+    public void AgregarGoles(int glocal, int gvisitante, String id){
+        try {
+            st.executeUpdate("update partidos set Goles_Local = "+glocal+", Goles_Visitante = "+gvisitante+" where ID_Partido = "+id+" ");
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+        }
+    }
+    
+     public Object BuscarNombreEquipo(int nombre){
+        ResultSet res;        
+        try {
+            res = st.executeQuery("select Nombre from equipos where ID_Equipos="+nombre+"");
+            while(res.next()){
+                return res.getObject(1);
+            }
+            return null;
+        }
+         catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            return null;
+        }
+     }
 }

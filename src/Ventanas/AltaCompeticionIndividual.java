@@ -102,14 +102,14 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         boton_aceptar.setText("Aceptar");
         boton_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_aceptarActionPerformed(evt);
+                aceptar(evt);
             }
         });
 
         boton_cancelar.setText("Cancelar");
         boton_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_cancelarActionPerformed(evt);
+                cancelar(evt);
             }
         });
 
@@ -161,11 +161,11 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boton_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cancelarActionPerformed
+    private void cancelar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelar
         this.dispose();
-    }//GEN-LAST:event_boton_cancelarActionPerformed
+    }//GEN-LAST:event_cancelar
 
-    private void boton_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_aceptarActionPerformed
+    private void aceptar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar
         String nombre = textfield_nombre.getText();
         if (nombre.equals("")){
             
@@ -174,7 +174,7 @@ public class AltaCompeticionIndividual extends javax.swing.JDialog {
         else{
             crearCompeticion();
         }
-    }//GEN-LAST:event_boton_aceptarActionPerformed
+    }//GEN-LAST:event_aceptar
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;

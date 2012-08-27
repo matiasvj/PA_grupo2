@@ -1,20 +1,76 @@
 
 package Ventanas;
 
-public class DividendoLiga extends javax.swing.JDialog {
-    public DividendoLiga(java.awt.Frame parent, boolean modal) {
-        super(parent,"Dividendos Campeon", modal);
-        initComponents();
-    }
+import Clases.ManejadorBD;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
+public class DividendoLiga extends javax.swing.JDialog {
+    public DividendoLiga(java.awt.Frame parent, boolean modal, String nom_liga ,List <String> nom_eq, List <Integer> ids_agr, int posib_id_c) {
+        super(parent,"Dividendos Campeon", modal);
+        nom_equipos = nom_eq;
+        ids_agregados = ids_agr;
+        posible_id_c = posib_id_c;
+        nom_comp = nom_liga;
+        initComponents();
+        llenarListaDisponibles();
+    }
+    
+    List <String> nom_equipos; 
+    List <Integer> ids_agregados; 
+    List <Double> dividendos;
+    int posible_id_c;
+    String nom_comp;
+    ManejadorBD mbd = ManejadorBD.getInstancia();
+    
+    private void llenarListaDisponibles(){
+        DefaultListModel modelo = new DefaultListModel();
+        equipos.setModel(modelo);
+        try{
+            for (int i=0; i<nom_equipos.size(); i++){
+                modelo.addElement(nom_equipos.get(i));
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    private void asignarDividendo(){        
+        try{
+        Double aux = Double.parseDouble(texto_dividendo.getText());
+        if (texto_dividendo.getText() != "1.00" && aux > 1){
+            Object nombre_seleccionado = equipos.getSelectedValue();
+            int posicion = nom_equipos.indexOf(nombre_seleccionado);
+            dividendos.set(posicion, aux);
+            equipos.remove(equipos.getSelectedIndex());
+            if (equipos.getComponentCount() == 0){
+                try{
+                mbd.insertCompeticion(nom_comp, "Liga");
+                mbd.insertEquiposALiga(posible_id_c, ids_agregados, dividendos);
+                JOptionPane.showMessageDialog(this, "Competicion creada! ID = "+posible_id_c+".", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                } catch (Exception e){
+                    System.out.println("señal1"+e);
+                }
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "El dividendo asignado es incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "El formato del dividendo no es correcto", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("señan2"+e.toString());
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         label_equipos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
+        equipos = new javax.swing.JList();
+        boton_asignar_dividendo = new javax.swing.JButton();
         texto_dividendo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
@@ -22,17 +78,17 @@ public class DividendoLiga extends javax.swing.JDialog {
 
         label_equipos.setText("Seleccione equipo");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(equipos);
 
-        jButton1.setText("Asignar Dividendo");
+        boton_asignar_dividendo.setText("Asignar Dividendo");
+        boton_asignar_dividendo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignarDividendo(evt);
+            }
+        });
 
         texto_dividendo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        texto_dividendo.setText("1,00");
+        texto_dividendo.setText("1.00");
 
         jLabel1.setText("Dividendo");
 
@@ -49,7 +105,7 @@ public class DividendoLiga extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1))
+                                .addComponent(boton_asignar_dividendo))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(51, 51, 51)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -71,17 +127,21 @@ public class DividendoLiga extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(texto_dividendo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(boton_asignar_dividendo)
                 .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void asignarDividendo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarDividendo
+        asignarDividendo();
+    }//GEN-LAST:event_asignarDividendo
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton boton_asignar_dividendo;
+    private javax.swing.JList equipos;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_equipos;
     private javax.swing.JTextField texto_dividendo;
