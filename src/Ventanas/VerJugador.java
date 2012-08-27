@@ -263,8 +263,8 @@ public class VerJugador extends javax.swing.JDialog {
             valor_fecha_nac.setText(resultado.getString(4));
             valor_lugar_nac.setText(resultado.getString(5));
             valor_posicion.setText(resultado.getString(6));
-            valor_altura.setText(resultado.getString(7));
-            valor_peso.setText(resultado.getString(8));
+            valor_altura.setText(resultado.getString(7)+" m");
+            valor_peso.setText(resultado.getString(8)+" Kg");
             
         } catch (SQLException ex) {
             System.out.println(ex.toString());
