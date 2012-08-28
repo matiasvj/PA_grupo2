@@ -9,7 +9,7 @@ import java.util.List;
 public class ManejadorBD {
     
     private final static String driver = "com.mysql.jdbc.Driver";
-    private final static String bd = "jdbc:mysql://192.168.1.115:3306/grupo2";
+    private final static String bd = "jdbc:mysql://192.168.56.101:3306/grupo2";
     private final static String usuario = "grupo2";
     private final static String password = "pa2012";
     
