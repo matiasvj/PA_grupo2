@@ -9,7 +9,7 @@ import java.util.List;
 public class ManejadorBD {
     
     private final static String driver = "com.mysql.jdbc.Driver";
-    private final static String bd = "jdbc:mysql://192.168.56.101:3306/grupo2";
+    private final static String bd = "jdbc:mysql://192.168.1.115:3306/grupo2";
     private final static String usuario = "grupo2";
     private final static String password = "pa2012";
     
@@ -228,7 +228,7 @@ public class ManejadorBD {
             i++;
             Nueva.add(Lista.get(i));
         }
-        System.out.println("Exito 2");
+        
         return Nueva;
         }
 
@@ -236,7 +236,7 @@ public class ManejadorBD {
         ResultSet res;
         List Lista = new ArrayList();
         try {
-            res = st.executeQuery("select EquipoLocal,EquipoVisita,Fecha,Hora,Lugar,ID_Partido from partidos,competiciones where partidos.Id_Comp=competiciones.ID_Competicion and competiciones.Nombre='"+nombre+"'");
+            res = st.executeQuery("select EquipoLocal,EquipoVisita,Fecha,Hora,Lugar,ID_Partido from partidos,competiciones where partidos.Id_Comp=competiciones.ID_Competicion and competiciones.Nombre='"+nombre+"'and partidos.divlocal>0 and partidos.finalizado=0 order by fecha");
            
             while(res.next()){                
                 Lista.add(res.getObject(1));
@@ -273,15 +273,66 @@ public class ManejadorBD {
 
     public void AgregarFinalizarPartido(int glocal, int gvisitante, List LocalJugadores,List VisJugadores,String Id)
     {
+        String local;
+        String vis;
         List JugadoresL=new ArrayList();
         List JugadoresV=new ArrayList();
+        local=this.ObtenerIdEquipoL(Id);
+        vis=this.ObtenerIdEquipoV(Id);
         
         JugadoresL=this.ObtenerListaIDJugador(LocalJugadores);
         JugadoresV=this.ObtenerListaIDJugador(VisJugadores);
-        this.AgregarLVPartido(JugadoresL, JugadoresV, Id);
+        
+        this.AgregarLVPartido(JugadoresL, JugadoresV, Id, local, vis);
         
         this.AgregarGoles(glocal, gvisitante, Id);
+        
     }
+    
+    public String ObtenerIdEquipoL(String Id)
+    {       
+        ResultSet res;
+        try{
+        res = st.executeQuery("select EquipoLocal from partidos where ID_Partido='"+Id+"'");
+            while(res.next())
+            {
+                return String.valueOf((Integer)res.getObject(1));
+            }
+        }
+        
+        
+         catch (SQLException ex) {
+             System.out.println(ex.toString());
+             System.out.println("Error");
+             
+         }
+        return null;
+    }
+    
+    public String ObtenerIdEquipoV(String Id)
+    {       
+        ResultSet res;
+        try{
+            System.out.println("Exito 3");
+            
+        
+        res = st.executeQuery("select EquipoVisita from partidos where ID_Partido='"+Id+"'");
+            while(res.next())
+            {
+                return String.valueOf((Integer)res.getObject(1));
+            }
+        }
+        
+        
+         catch (SQLException ex) {
+             System.out.println(ex.toString());
+             System.out.println("Error");
+             
+         }
+        return null;
+    }
+    
+    
 
     public List ObtenerListaIDJugador(List Jugador)
     {
@@ -309,15 +360,17 @@ public class ManejadorBD {
          }
     }
     
-    public void AgregarLVPartido(List LocalJugadores,List VisJugadores, String Id){
+    public void AgregarLVPartido(List LocalJugadores,List VisJugadores, String Id, String Local, String Vis){
         try{
-            for(int i=0;i<LocalJugadores.size();i++){
-                st.executeUpdate("insert into jugador_partido (ID_Partido, ID_Jugador, Cuadro) values ('"+Id+"','"+LocalJugadores.get(i)+"','Local')");
+            
+            for(int i=0;i<LocalJugadores.size();i++){                
+                st.executeUpdate("insert into jugador_partido (ID_Partido, ID_Jugador, ID_Equipo) values ('"+Id+"','"+LocalJugadores.get(i)+"','"+Local+"')");
             }
             
             for(int i=0;i<LocalJugadores.size();i++){
-                st.executeUpdate("insert into jugador_partido (ID_Partido, ID_Jugador, Cuadro) values ('"+Id+"','"+VisJugadores.get(i)+"','Visitante')");
-            }  
+                st.executeUpdate("insert into jugador_partido (ID_Partido, ID_Jugador, ID_Equipo) values ('"+Id+"','"+VisJugadores.get(i)+"','"+Vis+"')");
+            }
+            
             
         } catch (SQLException e){
             System.out.println("errorcompeticion"+e.toString());
@@ -328,6 +381,7 @@ public class ManejadorBD {
     public void AgregarGoles(int glocal, int gvisitante, String id){
         try {
             st.executeUpdate("update partidos set Goles_Local = "+glocal+", Goles_Visitante = "+gvisitante+" where ID_Partido = "+id+" ");
+            st.executeUpdate("update partidos set finalizado=1 where ID_Partido = "+id+" ");
         } catch (SQLException ex) {
             System.out.println("Error: "+ex.toString());
         }
