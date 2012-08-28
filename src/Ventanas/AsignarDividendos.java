@@ -13,33 +13,31 @@ import javax.swing.JOptionPane;
 
 public class AsignarDividendos extends javax.swing.JDialog {
     String partidos;
-   ManejadorBD mbd = ManejadorBD.getInstancia();
-   List <Integer> Idselect = new ArrayList<>();
-   Partido P = new Partido();
+    ManejadorBD mbd = ManejadorBD.getInstancia();
+    List <Integer> Idselect = new ArrayList<>();
+    Partido P = new Partido();
+    
     public AsignarDividendos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         Object Id, Local, Visita;
         try{
-                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                ResultSet part  = mbd.dividendos();
-                
-                
-                while (part.next()) {
-                    Id = part.getObject("ID_Partido");
-                    Local = part.getObject("E.nombre");
-                    Visita = part.getObject("E1.nombre");
-                    String concat =Id+" - "+ Local+" vs "+Visita;
-                    Idselect.add((Integer)part.getObject(2));
-                    modeloCombo.addElement(concat);
-                    P.setId(Id.toString());
-                }
-                ComboPartidos.setModel(modeloCombo);
+            DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+            ResultSet part  = mbd.dividendos();
+            
+            while (part.next()) {
+                Id = part.getObject("ID_Partido");
+                Local = part.getObject("E.nombre");
+                Visita = part.getObject("E1.nombre");
+                String concat =Id+" - "+ Local+" vs "+Visita;
+                Idselect.add((Integer)part.getObject(2));
+                modeloCombo.addElement(concat);
+                P.setId(Id.toString());
+            }  ComboPartidos.setModel(modeloCombo);
         } catch (SQLException ex) {
             System.out.println("Error"+ex.toString());
         }
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,29 +72,17 @@ public class AsignarDividendos extends javax.swing.JDialog {
 
         LID.setText("Partido ID: ");
 
+        ShowID.setText("...");
+
         LLocal.setText("Local:");
+
+        EquipoLocal.setText("...");
 
         LVisitante.setText("Visitante: ");
 
-        Local.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LocalActionPerformed(evt);
-            }
-        });
-
-        Visitante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VisitanteActionPerformed(evt);
-            }
-        });
+        EquipoVisita.setText("...");
 
         Lempate.setText("Empate:");
-
-        Empate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmpateActionPerformed(evt);
-            }
-        });
 
         Confirmar.setText("Confirmar");
         Confirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -110,36 +96,45 @@ public class AsignarDividendos extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LVisitante)
-                            .addComponent(LLocal))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EquipoLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(EquipoVisita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Visitante, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Local, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(LID)
-                        .addGap(18, 18, 18)
-                        .addComponent(ShowID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(Confirmar)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(LLocal)
+                                .addGap(26, 26, 26))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(LID)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(Lempate)
+                                        .addComponent(LVisitante)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                        .addComponent(Confirmar))
+                                    .addComponent(EquipoVisita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(EquipoLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Local, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Visitante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Empate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(ShowID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
                         .addComponent(LPartido)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ComboPartidos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Lempate)
-                        .addGap(148, 148, 148)
-                        .addComponent(Empate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ComboPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
@@ -149,40 +144,31 @@ public class AsignarDividendos extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LPartido)
                     .addComponent(ComboPartidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LID)
                     .addComponent(ShowID))
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LLocal)
                     .addComponent(EquipoLocal)
                     .addComponent(Local, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LVisitante)
                     .addComponent(EquipoVisita)
+                    .addComponent(LVisitante)
                     .addComponent(Visitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Empate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Lempate))
+                    .addComponent(Lempate)
+                    .addComponent(Empate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Confirmar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void VisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisitanteActionPerformed
-        try{
-            double num =Double.parseDouble(Visitante.getText());
-            P.setDiv_visita(num);
-        }catch(NumberFormatException e1){
-            JOptionPane.showMessageDialog(null, "Caracter no valido");
-        }  
-    }//GEN-LAST:event_VisitanteActionPerformed
 
     private void ComboPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboPartidosActionPerformed
         try {
@@ -196,42 +182,55 @@ public class AsignarDividendos extends javax.swing.JDialog {
         } catch (SQLException ex) {
             System.out.println("Error: "+ex);
         }
-                    
+        
     }//GEN-LAST:event_ComboPartidosActionPerformed
 
-    private void LocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocalActionPerformed
-       
-        try{
-            double num =Double.parseDouble(Local.getText());
-            P.setDiv_local(num);
-        }catch(NumberFormatException e1){
-            JOptionPane.showMessageDialog(null, "Caracter no valido");
-        }   
-    }//GEN-LAST:event_LocalActionPerformed
-
-    private void EmpateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpateActionPerformed
-        try{
-            P.setDiv_empate(4.5);
-        }catch(NumberFormatException e1){
-            JOptionPane.showMessageDialog(null, "Caracter no valido");
-        }  
-    }//GEN-LAST:event_EmpateActionPerformed
-
     private void ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarActionPerformed
+        String empate = Empate.getText(), visita = Visitante.getText(),local = Local.getText(), ID = ShowID.getText() ;
         
-        String empate = Empate.getText(), visita = Visitante.getText(),local = Local.getText();
-        if(local.equals("")){
-            JOptionPane.showMessageDialog(null, "Error: El campo Local no puede estar vacio");}
+        if(ID.equals("")){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar un partido", "Error", JOptionPane.ERROR_MESSAGE);}
+        else if(Visitante.equals("")) {
+            try{
+                double num =Double.parseDouble(Visitante.getText());
+            }catch(NumberFormatException e1){
+                JOptionPane.showMessageDialog(this, "Caracter no valido", "Error", JOptionPane.ERROR_MESSAGE);    
+            }
+        }
+        else if(Local.equals("")){
+            try{
+                double num = Double.parseDouble(Local.getText());
+            }catch(NumberFormatException e1){
+                JOptionPane.showMessageDialog(this, "Caracter no valido", "Error", JOptionPane.ERROR_MESSAGE);
+            }   
+        }
+        else if(Empate.equals("")){
+            try{
+                double num =Double.parseDouble(Empate.getText());
+            }catch(NumberFormatException e1){
+                JOptionPane.showMessageDialog(this, "Caracter no valido", "Error", JOptionPane.ERROR_MESSAGE);
+            }  
+        }
+        else if(local.equals("")){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un valor en el Campo Local", "Error", JOptionPane.ERROR_MESSAGE);}
         else if(visita.equals("")){
-            JOptionPane.showMessageDialog(null, "Error: El campo Visita no puede estar vacio");
+            JOptionPane.showMessageDialog(this, "Debe ingresar un valor en el Campo Visitante", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else if(empate.equals("")){
-            JOptionPane.showMessageDialog(null, "Error: El campo Empate no puede estar vacio");
+            JOptionPane.showMessageDialog(this, "Debe ingresar un valor en el Campo Empate", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
+            double l = Double.parseDouble(Local.getText()), v = Double.parseDouble(Visitante.getText()), e = Double.parseDouble(Empate.getText());
             int id = Integer.parseInt(P.getId()); 
-            JOptionPane.showMessageDialog(null,P.getDiv_empate());
-            mbd.asignarDividendo(id,P.getDiv_local(),P.getDiv_visita(),P.getDiv_empate());
+            
+            mbd.asignarDividendo(id,l,v,e);
+            JOptionPane.showMessageDialog(this,"Se ha realizado la operacion exito", "",JOptionPane.INFORMATION_MESSAGE);
+            LLocal.setText("");
+            LVisitante.setText("");
+            ShowID.setText("");
+            Local.setText("");
+            Visitante.setText("");
+            Empate.setText("");
         }
     }//GEN-LAST:event_ConfirmarActionPerformed
 
