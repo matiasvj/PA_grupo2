@@ -4,6 +4,7 @@ package Ventanas;
 import Clases.ManejadorBD;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class FinalizarPartido extends javax.swing.JDialog {
@@ -56,7 +57,6 @@ public class FinalizarPartido extends javax.swing.JDialog {
         jScrollPane5 = new javax.swing.JScrollPane();
         JugaronVisitante = new javax.swing.JTable();
         BotonJugaronLocal = new javax.swing.JButton();
-        Prueba = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -251,13 +251,6 @@ public class FinalizarPartido extends javax.swing.JDialog {
             }
         });
 
-        Prueba.setText("Prueba");
-        Prueba.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PruebaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,8 +309,6 @@ public class FinalizarPartido extends javax.swing.JDialog {
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(GolesVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Prueba)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,9 +370,8 @@ public class FinalizarPartido extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(GolesLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(GolesVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Prueba))
-                .addGap(38, 38, 38)
+                    .addComponent(GolesVisitante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel11)
@@ -407,7 +397,7 @@ public class FinalizarPartido extends javax.swing.JDialog {
                         .addComponent(BotonNoJugaronVisitante)))
                 .addGap(38, 38, 38)
                 .addComponent(Guardar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -570,7 +560,41 @@ public class FinalizarPartido extends javax.swing.JDialog {
             modeloNoJugaron.removeRow(fila);
         }
     }//GEN-LAST:event_BotonJugaronVisitanteActionPerformed
-
+    public boolean controlar(String check1, String check2)
+    {
+        if(check1.equalsIgnoreCase("") && check2.equalsIgnoreCase(""))
+        {
+            JOptionPane.showMessageDialog(this, "El Campo goles no peude estar vacio","Error", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }        
+        if(this.isNumeric(check1) && this.isNumeric(check2))
+        {
+            if(Integer.valueOf(check1)<50 && Integer.valueOf(check2)<50)
+            {
+                return true;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Los goles no puede ser mayor a 50","Error", JOptionPane.INFORMATION_MESSAGE);
+                return false;
+            }
+        }
+        else
+        {
+             JOptionPane.showMessageDialog(this, "Goles debe ser un numero","Error", JOptionPane.INFORMATION_MESSAGE);
+             return false;
+        }
+    }
+    
+    private static boolean isNumeric(String cadena){
+	try {
+		Integer.parseInt(cadena);
+		return true;
+	} catch (NumberFormatException nfe){
+		return false;
+	}
+}
+    
     private void NoJugaronLocalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NoJugaronLocalMouseClicked
  
     }//GEN-LAST:event_NoJugaronLocalMouseClicked
@@ -590,22 +614,39 @@ public class FinalizarPartido extends javax.swing.JDialog {
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         DefaultTableModel modeloJugaronLocal=(DefaultTableModel) JugaronLocal.getModel(); 
         DefaultTableModel modeloJugaronVis=(DefaultTableModel) JugaronVisitante.getModel();
-        List Local = new ArrayList();
-        List Vis = new ArrayList();
-        ManejadorBD Li = ManejadorBD.getInstancia();
-        for(int i=0; i<JugaronLocal.getRowCount();i++){
-            Local.add(modeloJugaronLocal.getValueAt(i, 0));
+        DefaultTableModel modeloPartido=(DefaultTableModel) Partido.getModel();
+        if(Partido.getSelectedRow()!=-1)
+        {
+            if(modeloJugaronLocal.getRowCount() != 0 && modeloJugaronVis.getRowCount() != 0)
+            {
+                if(controlar(GolesLocal.getText(), GolesVisitante.getText())== true)
+                {                
+                List Local = new ArrayList();
+                List Vis = new ArrayList();
+                ManejadorBD Li = ManejadorBD.getInstancia();
+                for(int i=0; i<JugaronLocal.getRowCount();i++){
+                    Local.add(modeloJugaronLocal.getValueAt(i, 0));
+                }
+                for(int i=0; i<JugaronVisitante.getRowCount();i++){
+                    Vis.add(modeloJugaronVis.getValueAt(i, 0));
+                }
+            
+                Li.AgregarFinalizarPartido(Integer.parseInt(GolesLocal.getText()), Integer.parseInt(GolesVisitante.getText()), Local, Vis, this.ID_Actual);
+                JOptionPane.showMessageDialog(this, "Se Finalizo Exitosamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
+                
+                modeloPartido.removeRow(Partido.getSelectedRow());
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Debe Agregar Almenos 1 Jugador por Equipo","Error", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
-        for(int i=0; i<JugaronVisitante.getRowCount();i++){
-            Vis.add(modeloJugaronVis.getValueAt(i, 0));
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Seleccione un Partido","Error", JOptionPane.INFORMATION_MESSAGE);
         }
-        
-        Li.AgregarFinalizarPartido(Integer.parseInt(GolesLocal.getText()), Integer.parseInt(GolesVisitante.getText()), Local, Vis, this.ID_Actual);
     }//GEN-LAST:event_GuardarActionPerformed
-
-    private void PruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PruebaActionPerformed
-
-    }//GEN-LAST:event_PruebaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonJugaronLocal;
@@ -627,7 +668,6 @@ public class FinalizarPartido extends javax.swing.JDialog {
     private javax.swing.JTable NoJugaronLocal;
     private javax.swing.JTable NoJugaronVisitante;
     private javax.swing.JTable Partido;
-    private javax.swing.JButton Prueba;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
