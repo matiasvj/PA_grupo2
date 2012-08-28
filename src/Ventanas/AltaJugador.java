@@ -236,24 +236,39 @@ public class AltaJugador extends javax.swing.JDialog {
         else{
             nom = campo_nombre.getText();
             nom_c = campo_nom_completo.getText();
-            if(campo_dia.getText() != "" && campo_mes.getText() != "" && campo_anio.getText() != ""){
+            if(!"".equals(campo_dia.getText()) && !"".equals(campo_mes.getText()) && !"".equals(campo_anio.getText())){
+                try{
                     dia = Integer.parseInt(campo_dia.getText());
                     mes = Integer.parseInt(campo_mes.getText());
                     anio = Integer.parseInt(campo_anio.getText());
-                    fecha_nac = new Date(dia, mes, anio);
+                    if( fecha_nac.esCorrecta(dia, mes, dia) ){
+                        fecha_nac = new Date(dia, mes, anio);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "La Fecha Ingresada No es Correcta", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(this, "Los campos de la fecha deben ser enteros", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
             else{
                 JOptionPane.showMessageDialog(this, "Ninguno de los campos de fecha puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
             }
             nac = campo_nacionalidad.getText();
             pos = campo_posicion.getText();
-            if(campo_altura.getText() != "") {
+            if(!"".equals(campo_altura.getText())) {
                 altura = Double.parseDouble(campo_altura.getText());
             }
-            if(campo_peso.getText() != "") {
+            else{
+                altura = 0;
+            }
+            if(!"".equals(campo_peso.getText())) {
                 peso = Double.parseDouble(campo_peso.getText());
             }
-            
+            else{
+                peso = 0;
+            }
             Jugador jugador = new Jugador(nom,nom_c,nac, fecha_nac, pos, altura, peso);
             int id = mbd.insertJugador(jugador);
             JOptionPane.showMessageDialog(this, "Se creo el jugador con id: "+id, "Informacion", JOptionPane.INFORMATION_MESSAGE);

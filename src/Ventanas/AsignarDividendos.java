@@ -15,7 +15,7 @@ public class AsignarDividendos extends javax.swing.JDialog {
     String partidos;
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> Idselect = new ArrayList<>();
-    Partido p = new Partido();
+    Partido part = new Partido();
     
     public AsignarDividendos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -32,7 +32,7 @@ public class AsignarDividendos extends javax.swing.JDialog {
                 String concat =Id+" - "+ local+" vs "+visita;
                 Idselect.add((Integer)part.getObject(2));
                 modeloCombo.addElement(concat);
-                this.p.setId(Id.toString());
+                this.part.setId(Id.toString());
             }  ComboPartidos.setModel(modeloCombo);
         } catch (SQLException ex) {
             System.out.println("Error"+ex.toString());
@@ -221,7 +221,7 @@ public class AsignarDividendos extends javax.swing.JDialog {
         }
         else{
             double l = Double.parseDouble(Local.getText()), v = Double.parseDouble(Visitante.getText()), e = Double.parseDouble(Empate.getText());
-            int id = Integer.parseInt(p.getId()); 
+            int id = Integer.parseInt(part.getId()); 
             
             mbd.asignarDividendo(id,l,v,e);
             JOptionPane.showMessageDialog(this,"Se ha realizado la operacion exito", "",JOptionPane.INFORMATION_MESSAGE);

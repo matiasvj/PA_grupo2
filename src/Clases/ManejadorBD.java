@@ -89,8 +89,14 @@ public class ManejadorBD {
     public int insertJugador(Jugador j){
         int id_generado;
         try {
-            st.executeUpdate("insert into jugadores (Nombre, NombreCompleto, Fecha_Nacimiento , Posicion, Nacionalidad, Altura, Peso)"+
-            "values ('"+j.getNombre()+"', '"+j.getNombre_completo()+"','"+j.getF_nac().DateToString()+"', '"+j.getPosicion()+"', '"+j.getNacionalidad()+"', '"+j.getAltura()+"', '"+j.getPeso()+"')");
+            String nombre = j.getNombre(), nom_completo = j.getNombre_completo();
+            String lugar_nac = j.getNacionalidad(), posicion = j.getPosicion(), fecha_nac = j.getF_nac().DateToString();
+            Double altura = j.getAltura(), peso = j.getPeso();
+            
+            String consulta = "insert into jugadores values ('"+nombre+"', '"+nom_completo+"', '"+fecha_nac+"',"+
+                              " '"+posicion+"', '"+lugar_nac+"', '"+altura+"', '"+peso+"')";
+            
+            st.executeUpdate(consulta);
             ResultSet max_id = st.executeQuery("select max(id_jugador) from jugadores");
             max_id.next();
             id_generado = max_id.getInt("id_jugador");
