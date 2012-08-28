@@ -25,6 +25,164 @@ public class ManejadorBD {
         return instancia;
     }
     
+    public Object ObtenerIdEquipo(String Nombre)
+    {
+        ResultSet res;
+        try {
+            res = st.executeQuery("select ID_Equipos from equipos where Nombre='"+Nombre+"'");
+            while(res.next())
+            {                
+                return res.getObject(1);                
+            }
+            return null;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+    public List ObtenerJugadores(String Equipo, String Partido)
+    {
+        Equipo=this.ObtenerIdEquipo(Equipo).toString();
+        ResultSet res;
+        List Lista = new ArrayList();
+        try {
+            res = st.executeQuery("select NombreCompleto from jugadores, partidos, jugador_partido where jugadores.ID_Jugador=jugador_partido.ID_Jugador and jugador_partido.ID_Partido=partidos.ID_Partido and jugador_partido.ID_Partido='"+Partido+"' and ID_Equipo='"+Equipo+"'");
+            while(res.next())
+            {                
+                Lista.add(res.getObject(1));                
+            }
+            return Lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+    
+    public List ListaCompeticion()
+    {
+        ResultSet res;
+        List Lista = new ArrayList();
+        try {
+            res = st.executeQuery("select ID_Competicion,Nombre,Anio,Tipo from competiciones");
+            //return res;
+            while(res.next())
+            {                
+                Lista.add(res.getObject(1));
+                Lista.add(res.getObject(2));
+                Lista.add(res.getObject(3));
+                Lista.add(res.getObject(4));
+            }
+            return Lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
+    
+    public List ObtenerTodoPartidosVerCompeticion(String nombre)
+    {
+        List Lista = new ArrayList();
+        List Nueva = new ArrayList();
+        Lista=this.ObtenerPartidosVerCompeticion(nombre);
+        int cont=0;
+        for(int i=0; i < Lista.size()/12;i++)
+        {
+                   
+            Nueva.add(this.BuscarNombreEquipo(Integer.valueOf(Lista.get(i*12).toString())));
+            Nueva.add(this.BuscarNombreEquipo(Integer.valueOf(Lista.get((i*12)+1).toString())));
+            Nueva.add(Lista.get((i*12)+2));
+            Nueva.add(Lista.get((i*12)+3));
+            Nueva.add(Lista.get((i*12)+4));
+            Nueva.add(Lista.get((i*12)+5));
+            Nueva.add(Lista.get((i*12)+6));
+            Nueva.add(Lista.get((i*12)+7));
+            Nueva.add(Lista.get((i*12)+8));
+            Nueva.add(Lista.get((i*12)+9));
+            Nueva.add(Lista.get((i*12)+10));
+            Nueva.add(Lista.get((i*12)+11));          
+                                
+            
+        }
+        return Nueva;
+    }
+    
+    public List ObtenerPartidosVerCompeticion(String nombre){
+        ResultSet res;
+        List Lista = new ArrayList();
+        try {
+            res = st.executeQuery("select EquipoLocal,EquipoVisita,Fecha,ID_Partido,Goles_Local,Goles_Visitante,DivLocal,DivVisita,DivEmpate,Finalizado,Lugar,Hora from partidos,competiciones where partidos.ID_Comp=competiciones.ID_Competicion and competiciones.Nombre='"+nombre+"' order by Fecha");
+            //return res;
+            while(res.next())
+            {                
+                Lista.add(res.getObject(1)); //EquipoLocal
+                Lista.add(res.getObject(2)); //EquipoVisita
+                Lista.add(res.getObject(3)); //Fecha
+                Lista.add(res.getObject(4)); //ID_Partido
+                Lista.add(res.getObject(5)); //Goles_Local
+                Lista.add(res.getObject(6)); //Goles_Visitante
+                Lista.add(res.getObject(7)); //DivLocal
+                Lista.add(res.getObject(8)); //DivVisita
+                Lista.add(res.getObject(9)); //DivEmpate
+                Lista.add(res.getObject(10));  //Finalizado   
+                Lista.add(res.getObject(11));  //Lugar
+                Lista.add(res.getObject(12));  //Hora                
+                
+                
+            }
+            return Lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+        
+    }
+    public List ObtenerDatosCompeticion(Object nombre)
+    {
+        
+        List Lista=new ArrayList();
+        ResultSet res;
+        try {
+            res = st.executeQuery("select Nombre,Anio,Tipo,ID_Competicion from competiciones where Nombre='"+nombre+"'");
+            while(res.next())
+            {
+                Lista.add(res.getObject(1));
+                Lista.add(res.getObject(2));
+                Lista.add(res.getObject(3));
+                Lista.add(res.getObject(4));
+            }
+            return Lista;
+        }
+         catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error");
+            return null;
+         }
+    }
+    public List ListarPartidosCompeticion2(String nombre){
+               
+        List Lista = new ArrayList();
+        List Nueva = new ArrayList();
+        
+        Lista=this.ObtenerPartidosCompeticion(nombre);
+        
+        for(int i=0; i < Lista.size(); i++){
+            
+            Nueva.add(this.BuscarNombreEquipo((Integer)Lista.get(i)));
+            i++;
+            Nueva.add(this.BuscarNombreEquipo((Integer)Lista.get(i)));            
+            i++;
+            Nueva.add(Lista.get(i));
+            i++;
+            Nueva.add(Lista.get(i));
+            i++;
+            Nueva.add(Lista.get(i));
+            i++;
+            Nueva.add(Lista.get(i));
+        }
+        System.out.println("Exito 2");
+        return Nueva;
+        }
+    
     private ManejadorBD() {
         try{
             Class.forName(driver);
