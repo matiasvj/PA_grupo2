@@ -2,6 +2,7 @@
 package Ventanas;
 
 import Clases.ManejadorBD;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -17,9 +18,9 @@ public class DividendoLiga extends javax.swing.JDialog {
         llenarListaDisponibles();
     }
     
-    List <String> nom_equipos; 
-    List <Integer> ids_agregados; 
-    List <Double> dividendos;
+    List <String> nom_equipos = new ArrayList<>(); 
+    List <Integer> ids_agregados = new ArrayList<>(); 
+    List <Double> dividendos = new ArrayList<>();
     int posible_id_c;
     String nom_comp;
     ManejadorBD mbd = ManejadorBD.getInstancia();
@@ -42,7 +43,7 @@ public class DividendoLiga extends javax.swing.JDialog {
         if (texto_dividendo.getText() != "1.00" && aux > 1){
             Object nombre_seleccionado = equipos.getSelectedValue();
             int posicion = nom_equipos.indexOf(nombre_seleccionado);
-            dividendos.set(posicion, aux);
+            dividendos.add(posicion, aux);
             equipos.remove(equipos.getSelectedIndex());
             if (equipos.getComponentCount() == 0){
                 try{

@@ -4,10 +4,22 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class ControlDeFecha {
-    Calendar calendario;
     
+    private static ControlDeFecha instancia = null;
+    private Calendar calendario;
+
+    public static ControlDeFecha getInstancia(){
+        if(instancia == null){
+            instancia = new ControlDeFecha();
+        }
+        return instancia;
+    }
     public ControlDeFecha(){
         calendario = new GregorianCalendar(2010,9,1,15,00,00);
+    }
+    
+    public Calendar getCalendario(){
+        return calendario;
     }
     
     public String getFecha(){

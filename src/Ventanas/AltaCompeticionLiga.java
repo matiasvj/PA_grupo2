@@ -232,8 +232,7 @@ public class AltaCompeticionLiga extends javax.swing.JDialog {
             max_id.next();
             id_posible = max_id.getInt(1);
             
-            
-            
+
             DividendoLiga dl = new DividendoLiga(null, true, getNombreComp(),getListaNombreEquipos(), getListaEquipos(), getPosibleID());
             dl.setLocation(350, 220);
             dl.setVisible(true);        
