@@ -15,24 +15,24 @@ public class AsignarDividendos extends javax.swing.JDialog {
     String partidos;
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> Idselect = new ArrayList<>();
-    Partido P = new Partido();
+    Partido p = new Partido();
     
     public AsignarDividendos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Object Id, Local, Visita;
+        Object Id, local, visita;
         try{
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
             ResultSet part  = mbd.dividendos();
             
             while (part.next()) {
                 Id = part.getObject("ID_Partido");
-                Local = part.getObject("E.nombre");
-                Visita = part.getObject("E1.nombre");
-                String concat =Id+" - "+ Local+" vs "+Visita;
+                local = part.getObject("E.nombre");
+                visita = part.getObject("E1.nombre");
+                String concat =Id+" - "+ local+" vs "+visita;
                 Idselect.add((Integer)part.getObject(2));
                 modeloCombo.addElement(concat);
-                P.setId(Id.toString());
+                this.p.setId(Id.toString());
             }  ComboPartidos.setModel(modeloCombo);
         } catch (SQLException ex) {
             System.out.println("Error"+ex.toString());
@@ -221,7 +221,7 @@ public class AsignarDividendos extends javax.swing.JDialog {
         }
         else{
             double l = Double.parseDouble(Local.getText()), v = Double.parseDouble(Visitante.getText()), e = Double.parseDouble(Empate.getText());
-            int id = Integer.parseInt(P.getId()); 
+            int id = Integer.parseInt(p.getId()); 
             
             mbd.asignarDividendo(id,l,v,e);
             JOptionPane.showMessageDialog(this,"Se ha realizado la operacion exito", "",JOptionPane.INFORMATION_MESSAGE);
