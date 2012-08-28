@@ -231,7 +231,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_partidoIndividual
 
     private void verInformacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verInformacion
-       
+       VerCompeticion api = new VerCompeticion(this, true);
+        api.setLocation(250, 180);
+        api.setVisible(true);
     }//GEN-LAST:event_verInformacion
 
     private void altaJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJugador
