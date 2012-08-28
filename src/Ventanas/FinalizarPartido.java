@@ -428,30 +428,20 @@ public class FinalizarPartido extends javax.swing.JDialog {
         valor=(Partido.getSelectedRow()*6)+5;
         this.ID_Actual=String.valueOf(Lista.get(valor));
         
-         for(int b=0;b<modeloLocal.getRowCount();b++){
+         while(modeloLocal.getRowCount()!=0){
            modeloLocal.removeRow(0); 
         }
-         for(int b=0;b<modeloLocal.getRowCount();b++){
-           modeloLocal.removeRow(0); 
-        }
-         for(int b=0;b<modeloVisitante.getRowCount();b++){
+         
+         while(modeloVisitante.getRowCount()!= 0){
            modeloVisitante.removeRow(0); 
-        }
-         for(int b=0;b<modeloVisitante.getRowCount();b++){
-           modeloVisitante.removeRow(0); 
-        }
-         for(int b=0;b<modeloLocal2.getRowCount();b++){
+        }         
+         while(modeloLocal2.getRowCount()!= 0){
            modeloLocal2.removeRow(0); 
-        }
-         for(int b=0;b<modeloLocal2.getRowCount();b++){
-           modeloLocal2.removeRow(0); 
-        }
-         for(int b=0;b<modeloVisitante2.getRowCount();b++){
+        }         
+         while(modeloVisitante2.getRowCount()!= 0){
            modeloVisitante2.removeRow(0); 
         }
-         for(int b=0;b<modeloVisitante2.getRowCount();b++){
-           modeloVisitante2.removeRow(0); 
-        }
+         
        
         ListaLoc=Li.ObtenerJugador(EquipoLocal.getText());
         ListaVis=Li.ObtenerJugador(EquipoVisitante.getText());
@@ -474,7 +464,7 @@ public class FinalizarPartido extends javax.swing.JDialog {
         int filas=Partido.getRowCount();
         int count=0;
         
-        Lista=Li.ListarPartidosCompeticion(Competicion.getText());  
+        Lista=Li.ListarPartidosCompeticion(Competicion.getText());
         this.Datos=Lista;
         
         for(int b=0;b<filas;b++){
@@ -633,8 +623,7 @@ public class FinalizarPartido extends javax.swing.JDialog {
             
                 Li.AgregarFinalizarPartido(Integer.parseInt(GolesLocal.getText()), Integer.parseInt(GolesVisitante.getText()), Local, Vis, this.ID_Actual);
                 JOptionPane.showMessageDialog(this, "Se Finalizo Exitosamente","Informacion", JOptionPane.INFORMATION_MESSAGE);
-                
-                modeloPartido.removeRow(Partido.getSelectedRow());
+                this.BuscarCActionPerformed(evt);
                 }
             }
             else
