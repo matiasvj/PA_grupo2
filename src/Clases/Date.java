@@ -36,37 +36,46 @@ public class Date {
     public boolean esCorrecta(int d, int m, int a){
         int diasDelMes[]={31,29,31,30,31,30,31,31,30,31,30,31};
         
-        if(a<=0)
+        if(a<=0) {
             return false;
-        if(d<=0 || d>31)
+        }
+        if(d<=0 || d>31) {
             return false;
-        if(m<=0 || m>12)
+        }
+        if(m<=0 || m>12) {
             return false;
-        if(d>diasDelMes[m-1])
+        }
+        if(d>diasDelMes[m-1]) {
             return false;
-        if(m==2 && d==29 && !esBisiesto(a))
+        }
+        if(m==2 && d==29 && !esBisiesto(a)) {
             return false;
+        }
         return true;
     }
     
     boolean esBisiesto(int a){
-        if ((a%4==0) || (a%400==0) && (a%100!=0))
+        if ((a%4==0) || (a%400==0) && (a%100!=0)) {
             return true;
-        else
+        }
+        else {
             return false;
+        }
     }
     
     public String DateToString(){
-        String dia = Integer.toString(this.dia);
-        String mes = Integer.toString(this.mes);
-        String anio = Integer.toString(this.anio);
+        String dia_string = Integer.toString(this.dia);
+        String mes_string = Integer.toString(this.mes);
+        String anio_string = Integer.toString(this.anio);
         
-        if(this.dia<10)
-            dia = "0"+dia;
-        if(this.mes<10)
-            mes = "0"+mes;
+        if(this.dia<10) {
+            dia_string = "0"+dia_string;
+        }
+        if(this.mes<10) {
+            mes_string = "0"+mes_string;
+        }
         
-        String res = anio+"-"+mes+"-"+dia;
+        String res = anio_string+"-"+mes_string+"-"+dia;
         return res;
     }
 }

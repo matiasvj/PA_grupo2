@@ -17,7 +17,7 @@ public class VerJugador extends javax.swing.JDialog {
     }
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> ids = new ArrayList<>();
-    
+     
     private void llenarLista(){
         Statement st = mbd.getStatement();
         ResultSet res;

@@ -93,13 +93,14 @@ public class ManejadorBD {
             String lugar_nac = j.getNacionalidad(), posicion = j.getPosicion(), fecha_nac = j.getF_nac().DateToString();
             Double altura = j.getAltura(), peso = j.getPeso();
             
-            String consulta = "insert into jugadores values ('"+nombre+"', '"+nom_completo+"', '"+fecha_nac+"',"+
+            String consulta = "insert into jugadores (nombre, nombreCompleto, fecha_nacimiento, posicion, nacionalidad, altura, peso) "+
+                              "values ('"+nombre+"', '"+nom_completo+"', '"+fecha_nac+"',"+
                               " '"+posicion+"', '"+lugar_nac+"', '"+altura+"', '"+peso+"')";
             
             st.executeUpdate(consulta);
             ResultSet max_id = st.executeQuery("select max(id_jugador) from jugadores");
             max_id.next();
-            id_generado = max_id.getInt("id_jugador");
+            id_generado = max_id.getInt(1);
             return id_generado;
         } catch (SQLException ex) {
             System.out.println(ex.toString());

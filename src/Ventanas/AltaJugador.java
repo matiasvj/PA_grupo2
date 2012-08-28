@@ -225,8 +225,8 @@ public class AltaJugador extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmarAlta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarAlta
-        String nom = "", nom_c = "", nac = "", pos = "";
-        double altura = 0, peso = 0;
+        String nom, nom_c, nac, pos;
+        double altura, peso;
         int dia, mes, anio;
         Date fecha_nac = null;
         
@@ -236,42 +236,61 @@ public class AltaJugador extends javax.swing.JDialog {
         else{
             nom = campo_nombre.getText();
             nom_c = campo_nom_completo.getText();
-            if(!"".equals(campo_dia.getText()) && !"".equals(campo_mes.getText()) && !"".equals(campo_anio.getText())){
-                try{
+            Jugador jugador = new Jugador(nom_c);
+            jugador.setNombre(nom);
+            
+            try{
+                if(campo_dia.getText() != "" && campo_mes.getText() != "" && campo_anio.getText() != ""){
                     dia = Integer.parseInt(campo_dia.getText());
                     mes = Integer.parseInt(campo_mes.getText());
                     anio = Integer.parseInt(campo_anio.getText());
+                    fecha_nac = new Date(dia, mes, anio);
                     if( fecha_nac.esCorrecta(dia, mes, dia) ){
-                        fecha_nac = new Date(dia, mes, anio);
+                        jugador.setF_nac(fecha_nac);
                     }
                     else{
                         JOptionPane.showMessageDialog(this, "La Fecha Ingresada No es Correcta", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
-                catch(NumberFormatException ex){
-                    JOptionPane.showMessageDialog(this, "Los campos de la fecha deben ser enteros", "Error", JOptionPane.ERROR_MESSAGE);
+                else{
+                    JOptionPane.showMessageDialog(this, "Ninguno de los campos de fecha puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            else{
-                JOptionPane.showMessageDialog(this, "Ninguno de los campos de fecha puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Los campos de la fecha deben ser enteros", "Error", JOptionPane.ERROR_MESSAGE);
             }
             nac = campo_nacionalidad.getText();
+            jugador.setNacionalidad(nac);
             pos = campo_posicion.getText();
-            if(!"".equals(campo_altura.getText())) {
-                altura = Double.parseDouble(campo_altura.getText());
+            jugador.setPosicion(pos);
+            try{
+                if(!"".equals(campo_altura.getText())) {
+                    altura = Double.parseDouble(campo_altura.getText());
+                }
+                else{
+                    altura = 0;
+                }
+                jugador.setAltura(altura);
+                
+                if(!"".equals(campo_peso.getText())) {
+                    peso = Double.parseDouble(campo_peso.getText());
+                }
+                else{
+                    peso = 0;
+                }
+                jugador.setPeso(peso);
             }
-            else{
-                altura = 0;
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Los campos altura y peso deben ser numeros", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            if(!"".equals(campo_peso.getText())) {
-                peso = Double.parseDouble(campo_peso.getText());
-            }
-            else{
-                peso = 0;
-            }
-            Jugador jugador = new Jugador(nom,nom_c,nac, fecha_nac, pos, altura, peso);
+            
             int id = mbd.insertJugador(jugador);
-            JOptionPane.showMessageDialog(this, "Se creo el jugador con id: "+id, "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            if(id != 0){
+                JOptionPane.showMessageDialog(this, "Se creo el jugador con id: "+id, "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "No se pudo crear el jugador, intentelo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             dispose();
         }
     }//GEN-LAST:event_confirmarAlta

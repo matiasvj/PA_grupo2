@@ -6,16 +6,10 @@ public class Jugador {
     private Date f_nac;
     private double altura;
     private double peso;
-    private String nombre, nombre_completo, posicion, Nacionalidad;
+    private String nombre, nombre_completo, posicion, nacionalidad;
     
-    public Jugador(String nombre, String nombre_completo, String posicion, Date f_nac, String nacionalidad, double altura, double peso) {
-        this.nombre = nombre;
+    public Jugador(String nombre_completo) {
         this.nombre_completo = nombre_completo;
-        this.f_nac = f_nac;
-        this.posicion = posicion;
-        Nacionalidad = nacionalidad;
-        this.altura = altura;
-        this.peso = peso;
     }
     public int getId() {
         return id;
@@ -29,13 +23,13 @@ public class Jugador {
     public double getAltura() {
         return altura;
     }
-    public void setAltura(float altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
     public double getPeso() {
         return peso;
     }
-    public void setPeso(float peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
     public String getNombre() {
@@ -57,10 +51,10 @@ public class Jugador {
         this.posicion = posicion;
     }
     public String getNacionalidad() {
-        return Nacionalidad;
+        return nacionalidad;
     }
     public void setNacionalidad(String nacionalidad) {
-        Nacionalidad = nacionalidad;
+        this.nacionalidad = nacionalidad;
     }
     public Date getF_nac() {
         return f_nac;
