@@ -156,18 +156,18 @@ public class AltaJugador extends javax.swing.JDialog {
                     .addComponent(lab_fecha_nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(campo_peso)
                     .addComponent(campo_nombre)
                     .addComponent(campo_nacionalidad)
                     .addComponent(campo_posicion)
-                    .addComponent(campo_altura)
                     .addComponent(campo_nom_completo)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(campo_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(campo_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(campo_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(campo_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campo_altura)
+                    .addComponent(campo_peso))
                 .addContainerGap(39, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(76, 76, 76)
@@ -301,8 +301,6 @@ public class AltaJugador extends javax.swing.JDialog {
         if(res == JFileChooser.APPROVE_OPTION){
             java.io.File archivo = sel.getSelectedFile();
         }
-        sel.setLocation(300,200);
-
     }//GEN-LAST:event_seleccionarImagen
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
