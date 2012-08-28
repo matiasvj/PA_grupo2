@@ -409,4 +409,13 @@ public class ManejadorBD {
             return null;
         }
      }
+     
+     public void setPartidoIndividual(int id_c, String hora, Date fecha, String lugar){
+        try {
+            
+            st.executeUpdate("update partidos set Hora='"+hora+"', Fecha='"+fecha.DateToString()+"', Lugar='"+lugar+"' where ID_Comp="+id_c+" ");
+        } catch (SQLException ex) {
+            System.out.println("error consulta "+ex.toString());
+        }
+    }
 }
