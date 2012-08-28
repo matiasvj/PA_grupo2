@@ -27,7 +27,7 @@ public class VerJugador extends javax.swing.JDialog {
         lista_jugadores.setModel(modelo);
         
         try {
-             res = st.executeQuery("select ID_Jugador, Nombre from jugadores");
+             res = st.executeQuery("select ID_Jugador, NombreCompleto from jugadores");
              while(res.next()){
                  nombre = res.getObject(2);
                  modelo.addElement(nombre);
