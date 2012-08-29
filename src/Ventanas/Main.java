@@ -270,7 +270,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_modificarJugador
 
     private void eliminarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugador
-        // TODO add your handling code here:
+        EliminarJugador ej = new EliminarJugador(this,true);
+        ej.setLocation(300,200);
+        ej.setVisible(true);
     }//GEN-LAST:event_eliminarJugador
 
     private void nuevaCompIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaCompIndividual

@@ -596,6 +596,39 @@ public class ManejadorBD {
         }
     }
      
+     public void InsertarFechaHora(int dia,int mes,int anio, int hora,int minuto)
+    {  
+        
+     try {
+            st.executeUpdate("UPDATE Fecha set Dia = "+dia+", Mes = "+mes+", año = "+anio+", Hora= "+hora+", Minuto="+minuto+" where ID = 1");
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+        }
+        
+    }
+
+public List ObtenerFechaHora()
+    {
+        ResultSet res;
+        List Lista= new ArrayList();
+         try {
+            res = st.executeQuery("select * from fecha where Id=1");
+            while(res.next())
+            {         
+                Lista.add(res.getObject(1));
+                Lista.add(res.getObject(2));
+                Lista.add(res.getObject(3));
+                Lista.add(res.getObject(4));
+                Lista.add(res.getObject(5));              
+            }
+            return Lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            return null;
+        }
+        
+    }
+     
      public void cargarDatosDePrueba(){
         //JUGADORES
         try{
@@ -733,6 +766,8 @@ public class ManejadorBD {
                 System.out.println("Error comp1");
             } else {
                 int id_p1 = instancia.insertPartido(id_l1, id_v1, id_c1);
+                instancia.asignarDividendo(id_p1, 2.1, 1.3, 1.2);
+                instancia.getStatement().executeUpdate("update partidos set finalizado='1' where id_partido = "+id_p1+" ");
                 
             }
             
@@ -751,6 +786,7 @@ public class ManejadorBD {
                 System.out.println("Error comp2");
             } else {
                 int id_p2 = instancia.insertPartido(id_l2, id_v2, id_c2);
+                instancia.asignarDividendo(id_p2, 1.1, 3, 2.1);
                 
             }
             
@@ -769,6 +805,7 @@ public class ManejadorBD {
                 System.out.println("Error comp3");
             } else {
                 int id_p3 = instancia.insertPartido(id_l3, id_v3, id_c3);
+                instancia.asignarDividendo(id_p3, 3.1, 1.1, 2.1);
                 
             }
             
@@ -786,7 +823,7 @@ public class ManejadorBD {
                 ids_eq.add(Integer.parseInt(res4.getObject("e4.id_equipos").toString()));
                 id_c4= Integer.parseInt(res4.getObject("c.id_competicion").toString());
             }
-            //faltan dividendos
+            
             
             
             //comp5
@@ -803,7 +840,7 @@ public class ManejadorBD {
                 ids_eqs.add(Integer.parseInt(res5.getObject("e4.id_equipos").toString()));
                 id_c5= Integer.parseInt(res5.getObject("c.id_competicion").toString());
             }
-            //faltan dividendos
+            
             
             
         } catch(SQLException e){
@@ -839,5 +876,5 @@ public class ManejadorBD {
         } catch(SQLException e){
             System.out.println(e.toString());
         }
-    }
+     }
 }
