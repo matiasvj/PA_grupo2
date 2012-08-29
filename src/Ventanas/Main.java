@@ -1,11 +1,13 @@
 package Ventanas;
 import Clases.*;
+import javax.swing.JOptionPane;
 
 public class Main extends javax.swing.JFrame {
    
+    private ManejadorBD mbd = ManejadorBD.getInstancia();
+    
     public Main() {
         initComponents();
-        ManejadorBD mbd = ManejadorBD.getInstancia();
     }
 
     @SuppressWarnings("unchecked")
@@ -34,6 +36,7 @@ public class Main extends javax.swing.JFrame {
         finalizar_partido = new javax.swing.JMenuItem();
         dividendos = new javax.swing.JMenuItem();
         menu_fechaYhora = new javax.swing.JMenu();
+        cargar_datos_prueba = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -180,6 +183,14 @@ public class Main extends javax.swing.JFrame {
 
         menu_fechaYhora.setText("Opciones");
 
+        cargar_datos_prueba.setText("Cargar datos de prueba");
+        cargar_datos_prueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarDatosPrueba(evt);
+            }
+        });
+        menu_fechaYhora.add(cargar_datos_prueba);
+
         jMenuItem1.setText("Ver Fecha y hora");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +305,11 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_verFechaYhora
 
+    private void cargarDatosPrueba(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDatosPrueba
+        mbd.cargarDatosDePrueba();
+        JOptionPane.showMessageDialog(this, "Los datos de prueba se cargaron exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_cargarDatosPrueba
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -306,6 +322,7 @@ public class Main extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barra_menu;
+    private javax.swing.JMenuItem cargar_datos_prueba;
     private javax.swing.JMenuItem crear_equipo;
     private javax.swing.JMenuItem crear_jugador;
     private javax.swing.JMenuItem dividendos;

@@ -6,20 +6,32 @@ import java.util.GregorianCalendar;
 public class FechaYhora extends javax.swing.JDialog {
     
     private Calendar cal = new GregorianCalendar();
+    private Calendar actual = new GregorianCalendar();
     private String s_fecha, s_time;
+    private int dia_resta, mes_resta, anio_resta, hora_resta, min_resta;
 
     public FechaYhora(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        cal.set(2010, 8, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 15);
+        cal.set(Calendar.MINUTE, 00);
+        
+        dia_resta = cal.get(Calendar.DAY_OF_MONTH) - actual.get(Calendar.DAY_OF_MONTH);
+        mes_resta = cal.get(Calendar.MONTH) - actual.get(Calendar.MONTH);
+        anio_resta = cal.get(Calendar.YEAR) - actual.get(Calendar.YEAR);
+        
+        hora_resta = cal.get(Calendar.HOUR_OF_DAY) - actual.get(Calendar.HOUR_OF_DAY);
+        min_resta = cal.get(Calendar.MINUTE) - actual.get(Calendar.MINUTE);
     }
     
     public void obtenerFechaHora(){
-        int dia = cal.get(Calendar.DAY_OF_MONTH);
-        int mes = cal.get(Calendar.MONTH) + 1;
-        int anio = cal.get(Calendar.YEAR);
+        int dia = actual.get(Calendar.DAY_OF_MONTH) + dia_resta;
+        int mes = actual.get(Calendar.MONTH) + mes_resta + 1;
+        int anio = actual.get(Calendar.YEAR) + anio_resta;
         
-        int hora = cal.get(Calendar.HOUR_OF_DAY);
-        int min = cal.get(Calendar.MINUTE);
+        int hora = actual.get(Calendar.HOUR_OF_DAY) + hora_resta;
+        int min = actual.get(Calendar.MINUTE) + min_resta;
         
         s_fecha = dia+"/"+mes+"/"+anio;
         this.construirHora(hora, min);
