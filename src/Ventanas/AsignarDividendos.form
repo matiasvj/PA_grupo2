@@ -148,9 +148,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="ShowID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LLocal">
       <Properties>
@@ -158,9 +155,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="EquipoLocal">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="LVisitante">
       <Properties>
@@ -168,9 +162,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="EquipoVisita">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="..."/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="Local">
     </Component>

@@ -2,7 +2,7 @@ package Ventanas;
 import Clases.*;
 
 public class Main extends javax.swing.JFrame {
-    
+   
     public Main() {
         initComponents();
         ManejadorBD mbd = ManejadorBD.getInstancia();
@@ -12,8 +12,6 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        label_hora = new javax.swing.JLabel();
-        label_fecha = new javax.swing.JLabel();
         barra_menu = new javax.swing.JMenuBar();
         menu_archivo = new javax.swing.JMenu();
         salir = new javax.swing.JMenuItem();
@@ -35,19 +33,14 @@ public class Main extends javax.swing.JFrame {
         partido_liga = new javax.swing.JMenuItem();
         finalizar_partido = new javax.swing.JMenuItem();
         dividendos = new javax.swing.JMenuItem();
-        menu_ayuda = new javax.swing.JMenu();
+        menu_fechaYhora = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplicacion Administrador");
         setBounds(new java.awt.Rectangle(200, 100, 800, 600));
         setName("ventana"); // NOI18N
         setResizable(false);
-
-        label_hora.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        label_hora.setText("hora");
-
-        label_fecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        label_fecha.setText("Fecha");
 
         menu_archivo.setText("Archivo");
 
@@ -185,8 +178,17 @@ public class Main extends javax.swing.JFrame {
 
         barra_menu.add(menu_comp);
 
-        menu_ayuda.setText("Ayuda");
-        barra_menu.add(menu_ayuda);
+        menu_fechaYhora.setText("Opciones");
+
+        jMenuItem1.setText("Ver Fecha y hora");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verFechaYhora(evt);
+            }
+        });
+        menu_fechaYhora.add(jMenuItem1);
+
+        barra_menu.add(menu_fechaYhora);
 
         setJMenuBar(barra_menu);
 
@@ -194,21 +196,11 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(690, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label_hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 750, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(347, Short.MAX_VALUE)
-                .addComponent(label_hora)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_fecha)
-                .addContainerGap())
+            .addGap(0, 404, Short.MAX_VALUE)
         );
 
         pack();
@@ -294,14 +286,14 @@ public class Main extends javax.swing.JFrame {
         fp.setVisible(true);
     }//GEN-LAST:event_finalizarPartido
 
-    public javax.swing.JLabel getLabelHora(){
-        return this.label_hora;
-    }
-    
-    public javax.swing.JLabel getLabelFecha(){
-        return this.label_fecha;
-    }
-    
+    private void verFechaYhora(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFechaYhora
+        FechaYhora fh = new FechaYhora(this, true);
+        fh.setLocation(550, 200);
+        fh.obtenerFechaHora();
+        fh.setVisible(true);
+        
+    }//GEN-LAST:event_verFechaYhora
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -310,7 +302,7 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(true);
             }
         });
-      
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barra_menu;
@@ -320,13 +312,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem eliminar_jugador;
     private javax.swing.JMenuItem finalizar_partido;
     private javax.swing.JMenuItem individual;
-    private javax.swing.JLabel label_fecha;
-    private javax.swing.JLabel label_hora;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem liga;
     private javax.swing.JMenu menu_archivo;
-    private javax.swing.JMenu menu_ayuda;
     private javax.swing.JMenu menu_comp;
     private javax.swing.JMenu menu_equipo;
+    private javax.swing.JMenu menu_fechaYhora;
     private javax.swing.JMenu menu_jugador;
     private javax.swing.JMenuItem modificar_jugador;
     private javax.swing.JMenu nueva_competicion;

@@ -15,8 +15,7 @@ public class AsignarDividendos extends javax.swing.JDialog {
     String partidos;
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> Idselect = new ArrayList<>();
-    Partido part = new Partido();
-    
+    int ids;
     public AsignarDividendos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -32,7 +31,6 @@ public class AsignarDividendos extends javax.swing.JDialog {
                 String concat =Id+" - "+ local+" vs "+visita;
                 Idselect.add((Integer)part.getObject(2));
                 modeloCombo.addElement(concat);
-                this.part.setId(Id.toString());
             }  ComboPartidos.setModel(modeloCombo);
         } catch (SQLException ex) {
             System.out.println("Error"+ex.toString());
@@ -72,15 +70,9 @@ public class AsignarDividendos extends javax.swing.JDialog {
 
         LID.setText("Partido ID: ");
 
-        ShowID.setText("...");
-
         LLocal.setText("Local:");
 
-        EquipoLocal.setText("...");
-
         LVisitante.setText("Visitante: ");
-
-        EquipoVisita.setText("...");
 
         Lempate.setText("Empate:");
 
@@ -174,6 +166,8 @@ public class AsignarDividendos extends javax.swing.JDialog {
         try {
             int Lugar = ComboPartidos.getSelectedIndex();
             Integer id = Idselect.get(Lugar);
+           ids = id;
+            //System.out.println(Lugar); System.out.println(id);
             ResultSet resultado = mbd.selectPartidos(id);
             resultado.next();
             ShowID.setText(resultado.getString(2));
@@ -186,43 +180,32 @@ public class AsignarDividendos extends javax.swing.JDialog {
     }//GEN-LAST:event_ComboPartidosActionPerformed
 
     private void ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmarActionPerformed
-        String empate = Empate.getText(), visita = Visitante.getText(),local = Local.getText(), ID = ShowID.getText() ;
         
-        if(ID.equals("")){
-            JOptionPane.showMessageDialog(this, "Debe Seleccionar un partido", "Error", JOptionPane.ERROR_MESSAGE);}
-        else if(Visitante.equals("")) {
-            try{
-                double num =Double.parseDouble(Visitante.getText());
+              
+        if(ShowID.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Debe Seleccionar un partido", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(Local.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un valor en el Campo Local", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(!Local.getText().equals("")){
+        try{
+                double num =Double.parseDouble(Local.getText());
             }catch(NumberFormatException e1){
-                JOptionPane.showMessageDialog(this, "Caracter no valido", "Error", JOptionPane.ERROR_MESSAGE);    
+                Local.setText("");
+                JOptionPane.showMessageDialog(this, "Caracter no valido en campo Local", "Error", JOptionPane.ERROR_MESSAGE);    
             }
+        
         }
-        else if(Local.equals("")){
-            try{
-                double num = Double.parseDouble(Local.getText());
-            }catch(NumberFormatException e1){
-                JOptionPane.showMessageDialog(this, "Caracter no valido", "Error", JOptionPane.ERROR_MESSAGE);
-            }   
-        }
-        else if(Empate.equals("")){
-            try{
-                double num =Double.parseDouble(Empate.getText());
-            }catch(NumberFormatException e1){
-                JOptionPane.showMessageDialog(this, "Caracter no valido", "Error", JOptionPane.ERROR_MESSAGE);
-            }  
-        }
-        else if(local.equals("")){
-            JOptionPane.showMessageDialog(this, "Debe ingresar un valor en el Campo Local", "Error", JOptionPane.ERROR_MESSAGE);}
-        else if(visita.equals("")){
+        if(Visitante.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Debe ingresar un valor en el Campo Visitante", "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
-        else if(empate.equals("")){
-            JOptionPane.showMessageDialog(this, "Debe ingresar un valor en el Campo Empate", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
         else{
             double l = Double.parseDouble(Local.getText()), v = Double.parseDouble(Visitante.getText()), e = Double.parseDouble(Empate.getText());
-            int id = Integer.parseInt(part.getId()); 
-            
+            int id = ids;
+            System.out.println(ids);
             mbd.asignarDividendo(id,l,v,e);
             JOptionPane.showMessageDialog(this,"Se ha realizado la operacion exito", "",JOptionPane.INFORMATION_MESSAGE);
             LLocal.setText("");
