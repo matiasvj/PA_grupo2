@@ -2,6 +2,8 @@
 package Ventanas;
 
 import Clases.ManejadorBD;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -16,17 +18,22 @@ public class DividendoLiga extends javax.swing.JDialog {
         nom_comp = nom_liga;
         initComponents();
         llenarListaDisponibles();
+        for (int i=1; i<=nom_equipos.size(); i++){
+            dividendos.add(1.0);
+        }
     }
     
-    List <String> nom_equipos = new ArrayList<>(); 
-    List <Integer> ids_agregados = new ArrayList<>(); 
-    List <Double> dividendos = new ArrayList<>();
+    List <String> nom_equipos = new ArrayList<>();; 
+    List <Integer> ids_agregados = new ArrayList<>();; 
+    List <Double> dividendos = new ArrayList<>();;
     int posible_id_c;
     String nom_comp;
     ManejadorBD mbd = ManejadorBD.getInstancia();
+    Statement st = mbd.getStatement();
+    DefaultListModel modelo = new DefaultListModel();
     
     private void llenarListaDisponibles(){
-        DefaultListModel modelo = new DefaultListModel();
+        
         equipos.setModel(modelo);
         try{
             for (int i=0; i<nom_equipos.size(); i++){
@@ -43,13 +50,20 @@ public class DividendoLiga extends javax.swing.JDialog {
         if (texto_dividendo.getText() != "1.00" && aux > 1){
             Object nombre_seleccionado = equipos.getSelectedValue();
             int posicion = nom_equipos.indexOf(nombre_seleccionado);
+            
             dividendos.add(posicion, aux);
-            equipos.remove(equipos.getSelectedIndex());
-            if (equipos.getComponentCount() == 0){
+            modelo.removeElementAt(equipos.getSelectedIndex());
+            //equipos.remove(equipos.getSelectedIndex());
+            if (modelo.getSize() == 0){
                 try{
                 mbd.insertCompeticion(nom_comp, "Liga");
-                mbd.insertEquiposALiga(posible_id_c, ids_agregados, dividendos);
-                JOptionPane.showMessageDialog(this, "Competicion creada! ID = "+posible_id_c+".", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                ResultSet resx = st.executeQuery("select max(ID_Competicion) from competiciones");
+                int id_cmp=0;
+                while (resx.next()){
+                    id_cmp = Integer.parseInt(resx.getObject(1).toString());
+                }
+                mbd.insertEquiposALiga(id_cmp, ids_agregados, dividendos);
+                JOptionPane.showMessageDialog(this, "Competicion creada! ID = "+id_cmp+".", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 } catch (Exception e){
                     System.out.println("señal1"+e);

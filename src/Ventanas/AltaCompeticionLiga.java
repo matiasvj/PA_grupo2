@@ -230,9 +230,10 @@ public class AltaCompeticionLiga extends javax.swing.JDialog {
             try{
             ResultSet max_id = st.executeQuery("select max(ID_Competicion) from competiciones");
             max_id.next();
-            id_posible = max_id.getInt(1);
+            id_posible = max_id.getInt(1)+1;
             
-
+            
+            
             DividendoLiga dl = new DividendoLiga(null, true, getNombreComp(),getListaNombreEquipos(), getListaEquipos(), getPosibleID());
             dl.setLocation(350, 220);
             dl.setVisible(true);        

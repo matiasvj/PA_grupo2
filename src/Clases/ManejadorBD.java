@@ -576,4 +576,264 @@ public class ManejadorBD {
             System.out.println("error consulta "+ex.toString());
         }
     }
+     
+     public void modificarJugador(Jugador j){
+        try {
+            String nombre = j.getNombre(), nom_completo = j.getNombre_completo();
+            String lugar_nac = j.getNacionalidad(), posicion = j.getPosicion(), fecha_nac = j.getF_nac().DateToString();
+            Double altura = j.getAltura(), peso = j.getPeso();
+            int id= j.getId();
+            System.out.println(id);
+            String consulta = "update  jugadores  set nombre = '"+nombre+"', nombreCompleto= '"+nom_completo+"' , fecha_nacimiento='"+fecha_nac+"' , nacionalidad= '"+lugar_nac+"' , posicion='"+posicion+"' , altura='"+altura+"' , peso='"+peso+"' where id_jugador="+id+"";
+            
+            st.executeUpdate(consulta);
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+    }
+     
+     public void cargarDatosDePrueba(){
+        //JUGADORES
+        try{
+            
+            //jugador 1
+            Jugador j1 = new Jugador("Tony Stark");
+            j1.setNombre("Iron Man");
+            j1.setPosicion("forward");
+            j1.setF_nac(new Date(3,12,1981));
+            j1.setNacionalidad("USA");
+            j1.setAltura(1.70);
+            j1.setPeso(80);
+            instancia.insertJugador(j1);
+            
+            //jugador 2
+            Jugador j2 = new Jugador("Colonel Nick Fury");
+            j2.setNombre("Nick Fury");
+            j2.setPosicion("defender");
+            j2.setF_nac(new Date(22,8,1961));
+            j2.setNacionalidad("USA");
+            j2.setAltura(1.80);
+            j2.setPeso(80);
+            instancia.insertJugador(j2);
+            
+            //jugador 3
+            Jugador j3 = new Jugador("Bruce Banner");
+            j3.setNombre("The Hulk");
+            j3.setPosicion("forward");
+            j3.setF_nac(new Date(15,3,1980));
+            j3.setNacionalidad("USA");
+            j3.setAltura(2.06);
+            j3.setPeso(120);
+            instancia.insertJugador(j3);
+            
+            //jugador 4
+            Jugador j4 = new Jugador("Panthro");
+            j4.setNombre("Panthro");
+            j4.setPosicion("defender");
+            j4.setF_nac(new Date(12,10,1963));
+            j4.setNacionalidad("Thundera");
+            j4.setAltura(2.00);
+            j4.setPeso(100);
+            instancia.insertJugador(j4);
+            
+            //jugador 5
+            Jugador j5 = new Jugador("Logan");
+            j5.setNombre("Wolverine");
+            j5.setPosicion("forward");
+            j5.setF_nac(new Date(3,11,1980));
+            j5.setNacionalidad("USA");
+            j5.setAltura(1.80);
+            j5.setPeso(80);
+            instancia.insertJugador(j5);
+            
+            //jugador 6
+            Jugador j6 = new Jugador("Laurie Juspeczyk");
+            j6.setNombre("Silk Spectre");
+            j6.setPosicion("defender");
+            j6.setF_nac(new Date(11,9,1984));
+            j6.setNacionalidad("USA");
+            j6.setAltura(1.76);
+            j6.setPeso(72);
+            instancia.insertJugador(j6);
+            
+            //jugador 7
+            Jugador j7 = new Jugador("Bruce Wayne");
+            j7.setNombre("Batman");
+            j7.setPosicion("defender");
+            j7.setF_nac(new Date(21,3,1977));
+            j7.setNacionalidad("USA");
+            j7.setAltura(1.78);
+            j7.setPeso(80);
+            instancia.insertJugador(j7);
+            
+            //jugador 5
+            Jugador j8 = new Jugador("Harold Jordan");
+            j8.setNombre("Green Lantern");
+            j8.setPosicion("forward");
+            j8.setF_nac(new Date(10,3,1980));
+            j8.setNacionalidad("USA");
+            j8.setAltura(1.90);
+            j8.setPeso(80);
+            instancia.insertJugador(j8);
+            
+        } catch (Exception e){
+            System.out.println("error jugadores"+e.toString());
+        
+        }
+        
+        //EQUIPOS
+        try{
+            
+            Equipo e1 = new Equipo("Thundercats");
+            instancia.insertEquipo(e1);
+            
+            Equipo e2 = new Equipo("Avengers");
+            instancia.insertEquipo(e2);
+            
+            Equipo e3 = new Equipo("X-Mens");
+            instancia.insertEquipo(e3);
+            
+            Equipo e4 = new Equipo("S.H.I.E.L.D.");
+            instancia.insertEquipo(e4);
+            
+            Equipo e8 = new Equipo("Green Lantern Corps");
+            instancia.insertEquipo(e8);
+            
+            Equipo e5 = new Equipo("Justice League");
+            instancia.insertEquipo(e5);
+            
+            Equipo e6 = new Equipo("Watchmen");
+            instancia.insertEquipo(e6);
+            
+            Equipo e7 = new Equipo("Future Foundation");
+            instancia.insertEquipo(e7);
+            
+        } catch(Exception e){
+            System.out.println("error equipos"+e.toString());
+        }
+        
+        //COMPETICIONES
+        try{
+            //comp1
+            instancia.insertCompeticion("Fabs. Match", "Individual");
+            int id_l1=0;
+            int id_v1=0; 
+            int id_c1=0;
+            ResultSet res1 = st.executeQuery("select distinct * from equipos el, equipos ev, competiciones c where el.nombre='Watchmen' and ev.nombre='Avengers' and c.nombre='Fabs. Match'");
+            while(res1.next()){
+                id_l1= Integer.parseInt(res1.getObject("el.id_equipos").toString());
+                id_v1= Integer.parseInt(res1.getObject("ev.id_equipos").toString());
+                id_c1= Integer.parseInt(res1.getObject("c.id_competicion").toString());
+            }
+            if (id_l1 == 0 || id_v1 == 0 || id_c1 == 0){
+                System.out.println("Error comp1");
+            } else {
+                int id_p1 = instancia.insertPartido(id_l1, id_v1, id_c1);
+                
+            }
+            
+            //comp2
+            instancia.insertCompeticion("Marbles Just", "Individual");
+            int id_l2=0;
+            int id_v2=0; 
+            int id_c2=0;
+            ResultSet res2 = st.executeQuery("select distinct * from equipos el, equipos ev, competiciones c where el.nombre='S.H.I.E.L.D.' and ev.nombre='Future Foundation' and c.nombre='Marbles Just'");
+            while(res2.next()){
+                id_l2= Integer.parseInt(res2.getObject("el.id_equipos").toString());
+                id_v2= Integer.parseInt(res2.getObject("ev.id_equipos").toString());
+                id_c2= Integer.parseInt(res2.getObject("c.id_competicion").toString());
+            }
+            if (id_l2 == 0 || id_v2 == 0 || id_c2 == 0){
+                System.out.println("Error comp2");
+            } else {
+                int id_p2 = instancia.insertPartido(id_l2, id_v2, id_c2);
+                
+            }
+            
+            //comp3
+            instancia.insertCompeticion("Epic Competition", "Individual");
+            int id_l3=0;
+            int id_v3=0; 
+            int id_c3=0;
+            ResultSet res3 = st.executeQuery("select distinct * from equipos el, equipos ev, competiciones c where el.nombre='Green Lantern Corps' and ev.nombre='Justice League' and c.nombre='Epic Competition'");
+            while(res3.next()){
+                id_l3= Integer.parseInt(res3.getObject("el.id_equipos").toString());
+                id_v3= Integer.parseInt(res3.getObject("ev.id_equipos").toString());
+                id_c3= Integer.parseInt(res3.getObject("c.id_competicion").toString());
+            }
+            if (id_l3 == 0 || id_v3 == 0 || id_c3 == 0){
+                System.out.println("Error comp3");
+            } else {
+                int id_p3 = instancia.insertPartido(id_l3, id_v3, id_c3);
+                
+            }
+            
+            //comp4
+            instancia.insertCompeticion("Special Cup", "Liga");
+            
+            List <Integer> ids_eq = new ArrayList<>();
+            List <Double> divs = new ArrayList<>();
+            int id_c4=0;
+            ResultSet res4 = st.executeQuery("select distinct * from equipos e2, equipos e1, equipos e3, equipos e4, competiciones c where e1.nombre='Thundercats' and e2.nombre='Avengers' and e3.nombre='X-Mens' and e4.nombre='S.H.I.E.L.D.' and c.nombre='Special Cup'");
+            while(res4.next()){
+                ids_eq.add(Integer.parseInt(res4.getObject("e1.id_equipos").toString()));
+                ids_eq.add(Integer.parseInt(res4.getObject("e2.id_equipos").toString()));
+                ids_eq.add(Integer.parseInt(res4.getObject("e3.id_equipos").toString()));
+                ids_eq.add(Integer.parseInt(res4.getObject("e4.id_equipos").toString()));
+                id_c4= Integer.parseInt(res4.getObject("c.id_competicion").toString());
+            }
+            //faltan dividendos
+            
+            
+            //comp5
+            instancia.insertCompeticion("Awesome League", "Liga");
+            
+            List <Integer> ids_eqs = new ArrayList<>();
+            List <Double> div = new ArrayList<>();
+            int id_c5=0;
+            ResultSet res5 = st.executeQuery("select * from equipos e2, equipos e1, equipos e3, equipos e4, competiciones c where e1.nombre='Green Lantern Corps' and e2.nombre='Justice League' and e3.nombre='Watchmen' and e4.nombre='Future Foundation' and c.nombre='Awesome League'");
+            while(res5.next()){
+                ids_eqs.add(Integer.parseInt(res5.getObject("e1.id_equipos").toString()));
+                ids_eqs.add(Integer.parseInt(res5.getObject("e2.id_equipos").toString()));
+                ids_eqs.add(Integer.parseInt(res5.getObject("e3.id_equipos").toString()));
+                ids_eqs.add(Integer.parseInt(res5.getObject("e4.id_equipos").toString()));
+                id_c5= Integer.parseInt(res5.getObject("c.id_competicion").toString());
+            }
+            //faltan dividendos
+            
+            
+        } catch(SQLException e){
+            System.out.println("error competiciones"+e.toString());
+        }
+        
+        //PARTIDOS INDIVIDUALES
+        try{
+        ResultSet res = st.executeQuery("select * from partidos p1, competiciones c where p1.id_comp=c.id_competicion and c.nombre='Fabs. Match'");
+        int id1=0;
+        while (res.next()){
+            id1=res.getInt("c.id_competicion");
+        }
+        Date f1 = new Date(1,9,2011);
+        instancia.setPartidoIndividual(id1, "203000", f1, "Anexo");
+        
+        
+        ResultSet res2 = st.executeQuery("select * from partidos p1, competiciones c where p1.id_comp=c.id_competicion and c.nombre='Marbles Just'");
+        int id2=0;
+        while (res2.next()){
+            id2=res2.getInt("c.id_competicion");
+        }
+        Date f2 = new Date(11,9,2011);
+        instancia.setPartidoIndividual(id2, "203000", f2, "Aulario");
+        
+        ResultSet res3 = st.executeQuery("select * from partidos p1, competiciones c where p1.id_comp=c.id_competicion and c.nombre='Epic Competition'");
+        int id3=0;
+        while (res3.next()){
+            id3=res3.getInt("c.id_competicion");
+        }
+        Date f3 = new Date(9,9,2011);
+        instancia.setPartidoIndividual(id3, "203000", f3, "2do Piso");
+        } catch(SQLException e){
+            System.out.println(e.toString());
+        }
+    }
 }
