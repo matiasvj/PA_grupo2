@@ -27,9 +27,4 @@ public class TestManejadorBD {
         
         assertEquals(esperado, obtenido);
     }
-    
-    @Test
-    public void selectJugadoresEquipos(){
-        
-    }
 }
