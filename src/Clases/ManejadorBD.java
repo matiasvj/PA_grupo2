@@ -9,7 +9,7 @@ import java.util.List;
 public class ManejadorBD {
     
     private final static String driver = "com.mysql.jdbc.Driver";
-    private final static String bd = "jdbc:mysql://192.168.56.101:3306/grupo2";
+    private final static String bd = "jdbc:mysql://192.168.1.115:3306/grupo2";
     private final static String usuario = "grupo2";
     private final static String password = "pa2012";
     
@@ -340,8 +340,7 @@ public class ManejadorBD {
     public ResultSet selectJugadoresEquipo(int id){
         ResultSet retorno;
         try{
-            String consulta = "select j.nombre from jugadores j, jugador_partido jp"+
-                              " where jp.id_equipo = "+id+" and j.id_jugador = jp.id_jugador";
+            String consulta = "select nombrecompleto from jugadores_equipos, jugadores where jugadores_equipos.equipo = "+id+" and jugadores_equipos.jugador=jugadores.ID_Jugador";
         
             retorno = st.executeQuery(consulta);
             return retorno;

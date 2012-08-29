@@ -193,6 +193,7 @@ public class VerEquipo extends javax.swing.JDialog {
                 
                 ResultSet jug = mbd.selectJugadoresEquipo(id);
                 while(jug.next()){
+                    System.out.println(jug.getString(1));
                     fila = jug.getString(1);
                     modelo_jugadores.addElement(fila);
                 }
