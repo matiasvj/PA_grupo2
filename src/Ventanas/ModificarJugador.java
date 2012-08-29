@@ -21,6 +21,7 @@ public class ModificarJugador extends javax.swing.JDialog {
     
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> ids = new ArrayList<>();
+    int id_jugador;
     
     private void llenarLista(){
         Statement st = mbd.getStatement();
@@ -31,19 +32,17 @@ public class ModificarJugador extends javax.swing.JDialog {
         lista_jugadores.setModel(modelo);
         
         try {
-             res = st.executeQuery("select ID_Jugador, Nombre from jugadores");
+             res = st.executeQuery("select ID_Jugador, NombreCompleto from jugadores");
              while(res.next()){
                  nombre = res.getObject(2);
                  modelo.addElement(nombre);
-                 ids.add((Integer)res.getObject(1));
+                 ids.add(res.getInt(1));
              }
         } catch (SQLException ex) {
-            System.out.println("Error");
+            System.out.println(ex.toString());
         }
-        
     }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -223,10 +222,7 @@ public class ModificarJugador extends javax.swing.JDialog {
         String nom, nom_c, nac, pos;
         double altura, peso;
         int dia, mes, anio;
-        Date fecha_nac= null ;
-        int id= Integer.parseInt(label_id.getText());
-        System.out.println(id);
-        
+        Date fecha_nac = null;
         
         if(campo_nom_comp.getText().equals("")){
             JOptionPane.showMessageDialog(this, "El campo nombre completo no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
@@ -235,11 +231,11 @@ public class ModificarJugador extends javax.swing.JDialog {
             nom = campo_nombre.getText();
             nom_c = campo_nom_comp.getText();
             Jugador jugador = new Jugador(nom_c);
-            jugador.setId(id);
+            jugador.setId(id_jugador);
             jugador.setNombre(nom);
             
             try{
-                if(campo_dia.getText() != "" && campo_mes.getText() != "" && campo_anio.getText() != ""){
+                if(!"".equals(campo_dia.getText()) && !"".equals(campo_mes.getText()) && !"".equals(campo_anio.getText())){
                     dia = Integer.parseInt(campo_dia.getText());
                     mes = Integer.parseInt(campo_mes.getText());
                     anio = Integer.parseInt(campo_anio.getText());
@@ -293,13 +289,21 @@ public class ModificarJugador extends javax.swing.JDialog {
     private void seleccionar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionar
         try {
             int lugar_lista = lista_jugadores.getSelectedIndex();
+            String dia, mes, anio;
             Integer id = ids.get(lugar_lista);
+            id_jugador = id;
             ResultSet resultado = mbd.selectJugador(id);
             resultado.next();
             String fecha = resultado.getString(4);
-            String anio = fecha.substring(0, 4);
-            String mes = fecha.substring( 5, 7);
-            String dia =fecha.substring( 8, 10);
+            if (fecha != null){
+                anio = fecha.substring(0, 4);
+                mes = fecha.substring( 5, 7);
+                dia =fecha.substring( 8, 10);
+            }
+            else{
+                anio = mes = dia = "";
+            }
+            
             label_id.setText("ID: "+resultado.getString(1));
             campo_nombre.setText(resultado.getString(2));
             campo_nom_comp.setText(resultado.getString(3));

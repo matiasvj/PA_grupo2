@@ -25,6 +25,22 @@ public class ManejadorBD {
         return instancia;
     }
     
+    private ManejadorBD() {
+        try{
+            Class.forName(driver);
+            conexion = DriverManager.getConnection(bd, usuario, password);
+            st = conexion.createStatement();
+            System.out.println("Conexion exitosa");
+        }
+        catch(Exception ex){
+            System.out.println(ex.toString());
+        }
+    }
+    
+    public java.sql.Statement getStatement(){
+        return st;
+    }
+    
     public Object ObtenerIdEquipo(String Nombre)
     {
         ResultSet res;
@@ -183,21 +199,7 @@ public class ManejadorBD {
         return Nueva;
         }
     
-    private ManejadorBD() {
-        try{
-            Class.forName(driver);
-            conexion = DriverManager.getConnection(bd, usuario, password);
-            st = conexion.createStatement();
-            System.out.println("Conexion exitosa");
-        }
-        catch(Exception ex){
-            System.out.println(ex.toString());
-        }
-    }
     
-    public java.sql.Statement getStatement(){
-        return st;
-    }
     
     public void insertEquipo(Equipo equipo){
         
@@ -584,7 +586,9 @@ public class ManejadorBD {
             Double altura = j.getAltura(), peso = j.getPeso();
             int id= j.getId();
             System.out.println(id);
-            String consulta = "update  jugadores  set nombre = '"+nombre+"', nombreCompleto= '"+nom_completo+"' , fecha_nacimiento='"+fecha_nac+"' , nacionalidad= '"+lugar_nac+"' , posicion='"+posicion+"' , altura='"+altura+"' , peso='"+peso+"' where id_jugador="+id+"";
+            String consulta = "update  jugadores  set nombre = '"+nombre+"', nombreCompleto= '"+nom_completo+
+                    "' , fecha_nacimiento='"+fecha_nac+"' , nacionalidad= '"+lugar_nac+"' , posicion='"+posicion+
+                    "' , altura='"+altura+"' , peso='"+peso+"' where id_jugador="+j.getId()+"";
             
             st.executeUpdate(consulta);
         } catch (SQLException ex) {

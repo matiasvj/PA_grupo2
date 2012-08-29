@@ -240,7 +240,7 @@ public class AltaJugador extends javax.swing.JDialog {
             jugador.setNombre(nom);
             
             try{
-                if(campo_dia.getText() != "" && campo_mes.getText() != "" && campo_anio.getText() != ""){
+                if(!"".equals(campo_dia.getText()) && !"".equals(campo_mes.getText()) && !"".equals(campo_anio.getText())){
                     dia = Integer.parseInt(campo_dia.getText());
                     mes = Integer.parseInt(campo_mes.getText());
                     anio = Integer.parseInt(campo_anio.getText());
