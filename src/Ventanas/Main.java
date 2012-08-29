@@ -171,7 +171,7 @@ public class Main extends javax.swing.JFrame {
 
         menu_comp.add(partido);
 
-        dividendos.setText("Dividendos");
+        dividendos.setText("Asignar dividendos");
         dividendos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 asignarDividendos(evt);
@@ -302,7 +302,6 @@ public class Main extends javax.swing.JFrame {
         fh.setLocation(550, 200);
         fh.obtenerFechaHora();
         fh.setVisible(true);
-        
     }//GEN-LAST:event_verFechaYhora
 
     private void cargarDatosPrueba(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDatosPrueba

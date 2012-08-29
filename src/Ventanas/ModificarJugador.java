@@ -71,6 +71,7 @@ public class ModificarJugador extends javax.swing.JDialog {
         label_id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Modificar Informacion de Jugador");
 
         label_titulo_lista.setText("Jugadores");
 
