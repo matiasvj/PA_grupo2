@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -19,13 +21,14 @@ public class EliminarJugador extends javax.swing.JDialog {
     
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> ids = new ArrayList<>();
+    DefaultListModel modelo = new DefaultListModel();
     
     private void llenarListaDisponibles(){
         Statement st = mbd.getStatement();
         ResultSet res;
         Object nombre;
         
-        DefaultListModel modelo = new DefaultListModel();
+        
         lista_jug.setModel(modelo);
         
         
@@ -126,10 +129,29 @@ public class EliminarJugador extends javax.swing.JDialog {
             int id_j = ids.get(lista_jug.getSelectedIndex());
             int flag=0;
             Statement st = mbd.getStatement();
-            /*
-            ResultSet res = st.executeQuery("");
-            res.
-            */
+            try {
+                ResultSet res = st.executeQuery("select * from jugador_partido where id_jugador="+id_j+" ");
+                while (res.next()){
+                    if (res.first()){
+                        flag=1;
+                    }
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.toString());
+            }
+            if (flag==0){
+                try {
+                    st.executeUpdate("delete from jugadores_equipos where jugador="+id_j+" ");
+                    st.executeUpdate("delete from jugadores where id_jugador="+id_j+" ");
+                    modelo.remove(lista_jug.getSelectedIndex());
+                    JOptionPane.showMessageDialog(this, "El jugador fue eliminado correctamente!", "Exito!", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    System.out.println(ex.toString());
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "El jugador esta relacionado a un partido. NO PUEDE SER ELIMINADO!", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_eliminarActionPerformed
