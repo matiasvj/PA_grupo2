@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ManejadorBD {
     
@@ -293,7 +295,7 @@ public class ManejadorBD {
     public ResultSet selectLigas(){
         ResultSet res;
         try {
-            res = st.executeQuery("SELECT * from competiciones WHERE tipo like '%liga%'");
+            res = st.executeQuery("SELECT DISTINCT c.* from competiciones c, partidos p WHERE tipo like '%liga%'  and p.id_comp = c.id_competicion and p.lugar is null");
             return res;
         } catch (SQLException ex) {
              System.out.println(ex.toString());
@@ -301,20 +303,20 @@ public class ManejadorBD {
         }
     }
     
-    public ResultSet selectPartidosNoFinalizados(){
+    public ResultSet selectPartidosNoFinalizados(Integer id){
         ResultSet res;
         try {
-            res = st.executeQuery("SELECT * FROM partidos WHERE finalizado = '0'");
+            res = st.executeQuery("SELECT * FROM equipos e1, equipos e2,partidos p, competiciones c WHERE c.id_competicion = "+id+" and c.id_competicion = p.id_comp and finalizado = '0' and p.equipolocal = e1.id_equipos and p.equipovisita = e2.id_equipos and p.lugar is null");
             return res;
         } catch (SQLException ex) {
-             System.out.println(ex.toString());
+             System.out.println("No se pudo realizar la consulta"+ex.toString());
               return null;
         }
     }
     public ResultSet selectPartidos(Integer id){
         ResultSet retorno;
         try {
-            retorno = st.executeQuery("select * from partidos p, equipos e1, equipos e2 where ID_Partido='"+id+"' and p.equipolocal = e1.id_equipos and p.equipovisita = e2.id_equipos");
+            retorno = st.executeQuery("select * from partidos p, equipos e1, equipos e2 where ID_Partido='"+id+"' and p.lugar is null  and p.equipolocal = e1.id_equipos and p.equipovisita = e2.id_equipos");
             return retorno;
         } catch (SQLException ex) {
             System.out.println("Error: "+ex.toString());
@@ -578,6 +580,14 @@ public class ManejadorBD {
             System.out.println("error consulta "+ex.toString());
         }
     }
+     public void PartidoLiga(int id_c, String hora, Date fecha, String lugar,String id_p){
+        try {
+            int id = Integer.parseInt(id_p);
+            st.executeUpdate("UPDATE partidos set hora = '"+hora+"', fecha='"+fecha.DateToString()+"', Lugar = '"+lugar+"' WHERE ID_Comp = "+id_c+" and id_partido = "+id+"");
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+        }
+     }
      
      public void modificarJugador(Jugador j){
         try {
