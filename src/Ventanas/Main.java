@@ -21,10 +21,7 @@ public class Main extends javax.swing.JFrame {
         crear_equipo = new javax.swing.JMenuItem();
         ver_equipo = new javax.swing.JMenuItem();
         menu_jugador = new javax.swing.JMenu();
-        crear_jugador = new javax.swing.JMenuItem();
-        ver_jugador = new javax.swing.JMenuItem();
-        modificar_jugador = new javax.swing.JMenuItem();
-        eliminar_jugador = new javax.swing.JMenuItem();
+        menu_admin_jugadores = new javax.swing.JMenuItem();
         menu_comp = new javax.swing.JMenu();
         nueva_competicion = new javax.swing.JMenu();
         individual = new javax.swing.JMenuItem();
@@ -79,37 +76,13 @@ public class Main extends javax.swing.JFrame {
 
         menu_jugador.setText("Jugador");
 
-        crear_jugador.setText("Crear Jugador");
-        crear_jugador.addActionListener(new java.awt.event.ActionListener() {
+        menu_admin_jugadores.setText("Administrar Jugadores");
+        menu_admin_jugadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                altaJugador(evt);
+                administrarJugadores(evt);
             }
         });
-        menu_jugador.add(crear_jugador);
-
-        ver_jugador.setText("Ver Informacion");
-        ver_jugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verJugador(evt);
-            }
-        });
-        menu_jugador.add(ver_jugador);
-
-        modificar_jugador.setText("Modificar Informacion");
-        modificar_jugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modificarJugador(evt);
-            }
-        });
-        menu_jugador.add(modificar_jugador);
-
-        eliminar_jugador.setText("Eliminar Jugador");
-        eliminar_jugador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarJugador(evt);
-            }
-        });
-        menu_jugador.add(eliminar_jugador);
+        menu_jugador.add(menu_admin_jugadores);
 
         barra_menu.add(menu_jugador);
 
@@ -229,14 +202,8 @@ public class Main extends javax.swing.JFrame {
         ve.setVisible(true);
     }//GEN-LAST:event_verEquipo
 
-    private void verJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verJugador
-        VerJugador vj = new VerJugador(this, true);
-        vj.setLocation(100,50);
-        vj.setVisible(true);
-    }//GEN-LAST:event_verJugador
-
     private void salir(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir
-        System.exit(0);
+        System.exit(0);       
     }//GEN-LAST:event_salir
 
     private void partidoLiga(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidoLiga
@@ -256,24 +223,6 @@ public class Main extends javax.swing.JFrame {
         api.setLocation(250, 180);
         api.setVisible(true);
     }//GEN-LAST:event_verInformacion
-
-    private void altaJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaJugador
-        AltaJugador aj = new AltaJugador(this, true);
-        aj.setLocation(300,200);
-        aj.setVisible(true);
-    }//GEN-LAST:event_altaJugador
-
-    private void modificarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarJugador
-        ModificarJugador mj = new ModificarJugador(this, true);
-        mj.setLocation(300,200);
-        mj.setVisible(true);
-    }//GEN-LAST:event_modificarJugador
-
-    private void eliminarJugador(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarJugador
-        EliminarJugador ej = new EliminarJugador(this,true);
-        ej.setLocation(300,200);
-        ej.setVisible(true);
-    }//GEN-LAST:event_eliminarJugador
 
     private void nuevaCompIndividual(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaCompIndividual
         AltaCompeticionIndividual aci = new AltaCompeticionIndividual(this, true);
@@ -311,6 +260,12 @@ public class Main extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Los datos de prueba se cargaron exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_cargarDatosPrueba
 
+    private void administrarJugadores(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_administrarJugadores
+        GestionJugadores gj = new GestionJugadores(this,true);
+        gj.setLocation(200, 150);
+        gj.setVisible(true);
+    }//GEN-LAST:event_administrarJugadores
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -325,19 +280,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuBar barra_menu;
     private javax.swing.JMenuItem cargar_datos_prueba;
     private javax.swing.JMenuItem crear_equipo;
-    private javax.swing.JMenuItem crear_jugador;
     private javax.swing.JMenuItem dividendos;
-    private javax.swing.JMenuItem eliminar_jugador;
     private javax.swing.JMenuItem finalizar_partido;
     private javax.swing.JMenuItem individual;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem liga;
+    private javax.swing.JMenuItem menu_admin_jugadores;
     private javax.swing.JMenu menu_archivo;
     private javax.swing.JMenu menu_comp;
     private javax.swing.JMenu menu_equipo;
     private javax.swing.JMenu menu_fechaYhora;
     private javax.swing.JMenu menu_jugador;
-    private javax.swing.JMenuItem modificar_jugador;
     private javax.swing.JMenu nueva_competicion;
     private javax.swing.JMenu partido;
     private javax.swing.JMenuItem partido_individual;
@@ -345,7 +298,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem salir;
     private javax.swing.JMenuItem ver_equipo;
     private javax.swing.JMenuItem ver_informacion;
-    private javax.swing.JMenuItem ver_jugador;
     // End of variables declaration//GEN-END:variables
     
 }
