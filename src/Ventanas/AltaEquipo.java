@@ -22,7 +22,7 @@ public class AltaEquipo extends javax.swing.JDialog {
         initComponents();
     }
     ManejadorBD mbd = ManejadorBD.getInstancia();
-    String inicio, termina;
+    String inicio="", termina="";
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -119,6 +119,8 @@ public class AltaEquipo extends javax.swing.JDialog {
             Equipo eq = new Equipo(nombre);
             mbd.insertEquipo(eq);
             int id = eq.getId();
+            if(!inicio.equals(""))
+            {
             File archivo = new File(fileChooser.getSelectedFile().getPath());
             String nameC = "Imagen ("+id+").jpg";
             termina = "////192.168.56.101//Archivos//Equipos// "+nameC;
@@ -130,6 +132,7 @@ public class AltaEquipo extends javax.swing.JDialog {
                 System.out.println("Error E/S: "+ex);
             }
             mbd.ActualizarFotoEquipo(termina, id);
+            }
             JOptionPane.showMessageDialog(this, "Se creo el equipo con id: "+eq.getId(), "Informacion", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         }
