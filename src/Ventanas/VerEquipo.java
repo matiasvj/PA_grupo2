@@ -20,7 +20,7 @@ public class VerEquipo extends javax.swing.JDialog {
     
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> ids = new ArrayList<>();
-    String url;
+    String url="";
     private void llenarLista(){
         Statement st = mbd.getStatement();
         ResultSet res;
@@ -90,8 +90,6 @@ public class VerEquipo extends javax.swing.JDialog {
         texto_jugadores.setText("Jugadores");
 
         texto_nombre.setText("Nombre:");
-
-        label_imagen.setText(".");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,23 +175,37 @@ public class VerEquipo extends javax.swing.JDialog {
                 Integer id = ids.get(lugar_lista);
                 ResultSet resultado = mbd.selectEquipo(id);
                 resultado.next();
-                ImageIcon image = new ImageIcon(resultado.getString(3));
-                ImageIcon imageResize = new ImageIcon(image.getImage().getScaledInstance(90, 100, 100));
-                label_imagen.setIcon(imageResize);
-                texto_id.setText("ID: "+resultado.getString(1));
-                texto_nombre.setText("Nombre: "+resultado.getString(2));
-                
-                DefaultListModel modelo_jugadores = new DefaultListModel();
-                lista_jugadores.setModel(modelo_jugadores);
-                modelo_jugadores.clear();
-                
-                ResultSet jug = mbd.selectJugadoresEquipo(id);
-                while(jug.next()){
-                    fila = jug.getString(1);
-                    modelo_jugadores.addElement(fila);
+                url = resultado.getString(3);
+                System.out.println(url);
+                if(url!=null){
+                    ImageIcon image = new ImageIcon(resultado.getString(3));
+                    ImageIcon imageResize = new ImageIcon(image.getImage().getScaledInstance(90, 100, 100));
+                    label_imagen.setIcon(imageResize);
+                    texto_id.setText("ID: "+resultado.getString(1));
+                    texto_nombre.setText("Nombre: "+resultado.getString(2));
+                    DefaultListModel modelo_jugadores = new DefaultListModel();
+                    lista_jugadores.setModel(modelo_jugadores);
+                    modelo_jugadores.clear(); 
+                    ResultSet jug = mbd.selectJugadoresEquipo(id);
+                    while(jug.next()){
+                        fila = jug.getString(1);
+                        modelo_jugadores.addElement(fila);
+                        }
                 }
-            }
-        } catch (SQLException ex) {
+                else{
+                    texto_id.setText("ID: "+resultado.getString(1));
+                    texto_nombre.setText("Nombre: "+resultado.getString(2));
+                    DefaultListModel modelo_jugadores = new DefaultListModel();
+                    lista_jugadores.setModel(modelo_jugadores);
+                    modelo_jugadores.clear(); 
+                    ResultSet jug = mbd.selectJugadoresEquipo(id);
+                    while(jug.next()){
+                        fila = jug.getString(1);
+                        modelo_jugadores.addElement(fila);
+                    }
+                }
+                            }
+        } catch (SQLException ex) { 
             System.out.println(ex.toString());
         }
     }//GEN-LAST:event_seleccionar
