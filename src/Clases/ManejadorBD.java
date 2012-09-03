@@ -887,4 +887,21 @@ public List ObtenerFechaHora()
             System.out.println(e.toString());
         }
      }
+     public ResultSet ObtenerEquipo(int id){
+        try {
+            ResultSet re = st.executeQuery("select * from equipos where id_equipos = "+id+"");
+            return re;
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex);
+            return null;
+        }
+     }
+     public void ActualizarFotoEquipo(String urls, int id){
+         try {
+            st.executeUpdate("UPDATE equipos set url = '"+urls+"' WHERE id_equipos = "+id+"");
+        } catch (SQLException ex) {
+            System.out.println("Error: "+ex.toString());
+        }
+     
+     }
 }
