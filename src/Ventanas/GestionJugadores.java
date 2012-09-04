@@ -1,6 +1,7 @@
 
 package Ventanas;
 
+import Clases.Date;
 import Clases.ManejadorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,8 @@ public class GestionJugadores extends javax.swing.JDialog {
     private ManejadorBD mbd;
     private List ids;
     DefaultListModel modelo = new DefaultListModel();
+    int lugar_lista;
+    int id;
     
     
     public GestionJugadores(java.awt.Frame parent, boolean modal) {
@@ -383,8 +386,8 @@ public class GestionJugadores extends javax.swing.JDialog {
     }//GEN-LAST:event_modificar
 
     private void filaSeleccionada(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_filaSeleccionada
-        int lugar_lista = lista_jugadores.getSelectedIndex();
-        int id = (int) ids.get(lugar_lista);
+        lugar_lista = lista_jugadores.getSelectedIndex();
+        id = (int) ids.get(lugar_lista);
         String fecha = "";
         try{
             ResultSet res = mbd.selectJugador(id);
@@ -420,8 +423,6 @@ public class GestionJugadores extends javax.swing.JDialog {
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar a "+nombre+"?", "Confirmacion", JOptionPane.OK_CANCEL_OPTION);
         
         if(confirmacion == 0){
-            int lugar_lista = lista_jugadores.getSelectedIndex();
-            int id = (int) ids.get(lugar_lista);
             try{
                 res = st.executeQuery("select * from jugador_partido where id_jugador="+id+" ");
                 res.next();
@@ -479,11 +480,20 @@ public class GestionJugadores extends javax.swing.JDialog {
     private void aceptar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar
         
         if(boton_nuevo.isSelected()){
-            System.out.println("nuevo seleccionado");
+            String nombre, nom_comp, pais, posicion;
+            double altura, peso;
+            int id_generado, dia, mes, anio;
+            
+            
+            
+            
             boton_nuevo.setSelected(false);
         }
         if(boton_modificar.isSelected()){
             System.out.println("modificar seleccionado");
+            
+            
+            
             boton_modificar.setSelected(false);
         }
     }//GEN-LAST:event_aceptar
