@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class GestionJugadores extends javax.swing.JDialog {
 
@@ -161,30 +162,75 @@ public class GestionJugadores extends javax.swing.JDialog {
 
         tf_nombre.setEditable(false);
         tf_nombre.setText("jTextField1");
+        tf_nombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_nom_comp.setEditable(false);
         tf_nom_comp.setText("jTextField2");
+        tf_nom_comp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_anio.setEditable(false);
         tf_anio.setText("jTextField3");
+        tf_anio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_mes.setEditable(false);
         tf_mes.setText("jTextField3");
+        tf_mes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_dia.setEditable(false);
         tf_dia.setText("jTextField3");
+        tf_dia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_pais.setEditable(false);
         tf_pais.setText("jTextField6");
+        tf_pais.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_pos.setEditable(false);
         tf_pos.setText("jTextField7");
+        tf_pos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_altura.setEditable(false);
         tf_altura.setText("jTextField8");
+        tf_altura.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         tf_peso.setEditable(false);
         tf_peso.setText("jTextField9");
+        tf_peso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
 
         panel_imagen.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -371,7 +417,7 @@ public class GestionJugadores extends javax.swing.JDialog {
                         .addComponent(boton_modificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(boton_eliminar)
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         boton_aceptar.getAccessibleContext().setAccessibleDescription("");
@@ -387,27 +433,29 @@ public class GestionJugadores extends javax.swing.JDialog {
 
     private void filaSeleccionada(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_filaSeleccionada
         lugar_lista = lista_jugadores.getSelectedIndex();
-        id = (int) ids.get(lugar_lista);
-        String fecha = "";
-        try{
-            ResultSet res = mbd.selectJugador(id);
-            res.next();
-            
-            tf_nombre.setText(res.getString(2));
-            tf_nom_comp.setText(res.getString(3));
-            
-            fecha = res.getString(4);
-            tf_dia.setText(fecha.substring(8, 10));
-            tf_mes.setText(fecha.substring(5, 7));
-            tf_anio.setText(fecha.substring(0, 4));
-            
-            tf_pais.setText(res.getString(5));
-            tf_pos.setText(res.getString(6));
-            tf_altura.setText(res.getString(7)+" m");
-            tf_peso.setText(res.getString(8)+" Kg");
-        }
-        catch(SQLException ex){
-            System.out.println(ex.toString());
+        if(lugar_lista != -1){
+            id = (int) ids.get(lugar_lista);
+            String fecha = "";
+            try{
+                ResultSet res = mbd.selectJugador(id);
+                res.next();
+                
+                tf_nombre.setText(res.getString(2));
+                tf_nom_comp.setText(res.getString(3));
+                
+                fecha = res.getString(4);
+                tf_dia.setText(fecha.substring(8, 10));
+                tf_mes.setText(fecha.substring(5, 7));
+                tf_anio.setText(fecha.substring(0, 4));
+                
+                tf_pais.setText(res.getString(5));
+                tf_pos.setText(res.getString(6));
+                tf_altura.setText(res.getString(7)+" m");
+                tf_peso.setText(res.getString(8)+" Kg");
+            }
+            catch(SQLException ex){
+                System.out.println(ex.toString());
+            }
         }
     }//GEN-LAST:event_filaSeleccionada
 
@@ -432,7 +480,6 @@ public class GestionJugadores extends javax.swing.JDialog {
                 else{
                     st.executeUpdate("delete from jugadores_equipos where jugador="+id+" ");
                     st.executeUpdate("delete from jugadores where id_jugador="+id+" ");
-                    lista_jugadores.setSelectedIndex(lista_jugadores.getFirstVisibleIndex());
                     modelo.remove(lugar_lista);
                     JOptionPane.showMessageDialog(this, "El jugador fue eliminado correctamente!", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -480,14 +527,12 @@ public class GestionJugadores extends javax.swing.JDialog {
     private void aceptar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar
         
         if(boton_nuevo.isSelected()){
-            String nombre, nom_comp, pais, posicion;
-            double altura, peso;
-            int id_generado, dia, mes, anio;
+            boolean alta_correcta;
+            alta_correcta = altaJugador();
             
-            
-            
-            
-            boton_nuevo.setSelected(false);
+            if(alta_correcta){
+                boton_nuevo.setSelected(false);
+            }
         }
         if(boton_modificar.isSelected()){
             System.out.println("modificar seleccionado");
@@ -505,6 +550,33 @@ public class GestionJugadores extends javax.swing.JDialog {
         limpiarTextFields();
     }//GEN-LAST:event_nuevoJugador
 
+    private void focus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focus
+        if(boton_nuevo.isSelected() || boton_modificar.isSelected()){
+            JTextField campo = (JTextField) evt.getSource();
+            campo.selectAll();
+        }
+    }//GEN-LAST:event_focus
+
+    //no esta terminado
+    public boolean altaJugador(){
+        String nombre, nom_comp, pais, posicion, altura, peso;
+        int id_generado, dia, mes, anio;
+        boolean correcto = false;
+        
+        if(tf_nom_comp.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "El campo nombre compleno no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            nombre = tf_nombre.getText();
+            nom_comp = tf_nom_comp.getText();
+            pais = tf_pais.getText();
+            posicion = tf_pos.getText();
+            altura = tf_altura.getText();
+            peso = tf_peso.getText();
+        }
+        
+        return correcto;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;
     private javax.swing.JButton boton_cancelar;
