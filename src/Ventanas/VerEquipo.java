@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class VerEquipo extends javax.swing.JDialog {
@@ -19,7 +20,7 @@ public class VerEquipo extends javax.swing.JDialog {
     
     ManejadorBD mbd = ManejadorBD.getInstancia();
     List <Integer> ids = new ArrayList<>();
-    
+    String url="";
     private void llenarLista(){
         Statement st = mbd.getStatement();
         ResultSet res;
@@ -54,9 +55,9 @@ public class VerEquipo extends javax.swing.JDialog {
         texto_imagen = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lista_jugadores = new javax.swing.JList();
-        panel_imagen = new javax.swing.JPanel();
         texto_jugadores = new javax.swing.JLabel();
         texto_nombre = new javax.swing.JLabel();
+        label_imagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,19 +87,6 @@ public class VerEquipo extends javax.swing.JDialog {
         lista_jugadores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lista_jugadores);
 
-        panel_imagen.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout panel_imagenLayout = new javax.swing.GroupLayout(panel_imagen);
-        panel_imagen.setLayout(panel_imagenLayout);
-        panel_imagenLayout.setHorizontalGroup(
-            panel_imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        panel_imagenLayout.setVerticalGroup(
-            panel_imagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         texto_jugadores.setText("Jugadores");
 
         texto_nombre.setText("Nombre:");
@@ -121,19 +109,23 @@ public class VerEquipo extends javax.swing.JDialog {
                                 .addComponent(boton_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(label_equipos)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(texto_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(texto_id, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boton_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(texto_imagen)
-                                    .addComponent(panel_imagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(texto_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(texto_id, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton_seleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(texto_imagen)
+                                .addGap(64, 64, 64))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(label_imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,9 +143,9 @@ public class VerEquipo extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(texto_nombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(63, 63, 63)
                                 .addComponent(boton_seleccionar))
-                            .addComponent(panel_imagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(label_imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(texto_jugadores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,22 +174,38 @@ public class VerEquipo extends javax.swing.JDialog {
                 String fila;
                 Integer id = ids.get(lugar_lista);
                 ResultSet resultado = mbd.selectEquipo(id);
-                System.out.println(id);
                 resultado.next();
-                texto_id.setText("ID: "+resultado.getString(1));
-                texto_nombre.setText("Nombre: "+resultado.getString(2));
-                
-                DefaultListModel modelo_jugadores = new DefaultListModel();
-                lista_jugadores.setModel(modelo_jugadores);
-                modelo_jugadores.clear();
-                
-                ResultSet jug = mbd.selectJugadoresEquipo(id);
-                while(jug.next()){
-                    fila = jug.getString(1);
-                    modelo_jugadores.addElement(fila);
+                url = resultado.getString(3);
+                System.out.println(url);
+                if(url!=null){
+                    ImageIcon image = new ImageIcon(resultado.getString(3));
+                    ImageIcon imageResize = new ImageIcon(image.getImage().getScaledInstance(90, 100, 100));
+                    label_imagen.setIcon(imageResize);
+                    texto_id.setText("ID: "+resultado.getString(1));
+                    texto_nombre.setText("Nombre: "+resultado.getString(2));
+                    DefaultListModel modelo_jugadores = new DefaultListModel();
+                    lista_jugadores.setModel(modelo_jugadores);
+                    modelo_jugadores.clear(); 
+                    ResultSet jug = mbd.selectJugadoresEquipo(id);
+                    while(jug.next()){
+                        fila = jug.getString(1);
+                        modelo_jugadores.addElement(fila);
+                        }
                 }
-            }
-        } catch (SQLException ex) {
+                else{
+                    texto_id.setText("ID: "+resultado.getString(1));
+                    texto_nombre.setText("Nombre: "+resultado.getString(2));
+                    DefaultListModel modelo_jugadores = new DefaultListModel();
+                    lista_jugadores.setModel(modelo_jugadores);
+                    modelo_jugadores.clear(); 
+                    ResultSet jug = mbd.selectJugadoresEquipo(id);
+                    while(jug.next()){
+                        fila = jug.getString(1);
+                        modelo_jugadores.addElement(fila);
+                    }
+                }
+                            }
+        } catch (SQLException ex) { 
             System.out.println(ex.toString());
         }
     }//GEN-LAST:event_seleccionar
@@ -208,9 +216,9 @@ public class VerEquipo extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label_equipos;
+    private javax.swing.JLabel label_imagen;
     private javax.swing.JList lista_equipos;
     private javax.swing.JList lista_jugadores;
-    private javax.swing.JPanel panel_imagen;
     private javax.swing.JLabel texto_id;
     private javax.swing.JLabel texto_imagen;
     private javax.swing.JLabel texto_jugadores;
