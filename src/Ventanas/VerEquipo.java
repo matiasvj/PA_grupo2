@@ -172,11 +172,11 @@ public class VerEquipo extends javax.swing.JDialog {
             }
             else{
                 String fila;
+                label_imagen.setIcon(null);
                 Integer id = ids.get(lugar_lista);
                 ResultSet resultado = mbd.selectEquipo(id);
                 resultado.next();
                 url = resultado.getString(3);
-                System.out.println(url);
                 if(url!=null){
                     ImageIcon image = new ImageIcon(resultado.getString(3));
                     ImageIcon imageResize = new ImageIcon(image.getImage().getScaledInstance(90, 100, 100));
