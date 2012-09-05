@@ -1,5 +1,15 @@
 package ventanas;
 
+import Clases.ManejadorBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+
 public class VerDetalleUsuario extends javax.swing.JDialog {
 
     public VerDetalleUsuario(java.awt.Frame parent, boolean modal) {
@@ -9,9 +19,32 @@ public class VerDetalleUsuario extends javax.swing.JDialog {
         llenarLista();
     }
     
-    private void llenarLista(){
+    ManejadorBD mbd = ManejadorBD.getInstancia();
+    List <Integer> ids = new ArrayList<>();
     
+    private void llenarLista(){
+        Statement st = mbd.getStatement();
+        ResultSet res;
+        Object nicks;
+        
+        DefaultListModel modelo_equipos = new DefaultListModel();
+        lista_users.setModel(modelo_equipos);
+        
+        try {
+            res = st.executeQuery("select id_user, nick from usuarios");
+            while(res.next()){
+                nicks = res.getObject("nick");
+                modelo_equipos.addElement(nicks);
+                ids.add(res.getInt("id_user"));
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
     }
+    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -36,6 +69,7 @@ public class VerDetalleUsuario extends javax.swing.JDialog {
         saldo = new javax.swing.JLabel();
         telefono = new javax.swing.JLabel();
         direccion = new javax.swing.JLabel();
+        label_id = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,7 +108,11 @@ public class VerDetalleUsuario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(label_id)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -152,16 +190,19 @@ public class VerDetalleUsuario extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10))
+                                .addComponent(jLabel9))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(saldo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(telefono)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(direccion))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(telefono)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
+                            .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(label_id)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -169,7 +210,26 @@ public class VerDetalleUsuario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void lista_usersValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lista_usersValueChanged
-    
+        if (lista_users.getSelectedIndex()!= -1){
+            Statement st = mbd.getStatement();
+        try {
+            ResultSet res = st.executeQuery("select * from usuarios where id_user= "+ids.get(lista_users.getSelectedIndex()) +"");
+            while(res.next()){
+                nombre.setText(res.getString("nombre"));
+                correo.setText(res.getString("correo"));
+                documento.setText(res.getString("nro_documento"));
+                fecha_nac.setText(res.getString("fecha_nac"));
+                sexo.setText(res.getString("sexo"));
+                pais.setText(res.getString("pais"));
+                saldo.setText(res.getString("saldo"));
+                telefono.setText(res.getString("telefono"));
+                direccion.setText(res.getString("direccion"));
+                label_id.setText("ID: "+res.getString("id_user"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VerDetalleUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
 }//GEN-LAST:event_lista_usersValueChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -188,6 +248,7 @@ private void lista_usersValueChanged(javax.swing.event.ListSelectionEvent evt) {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label_id;
     private javax.swing.JList lista_users;
     private javax.swing.JLabel nombre;
     private javax.swing.JLabel pais;
