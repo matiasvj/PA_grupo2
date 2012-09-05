@@ -33,7 +33,7 @@ public class Date {
         this.anio = anio;
     }
     
-    public boolean esCorrecta(int d, int m, int a){
+    public static boolean esCorrecta(int d, int m, int a){
         int diasDelMes[]={31,29,31,30,31,30,31,31,30,31,30,31};
         
         if(a<=0) {
@@ -54,7 +54,7 @@ public class Date {
         return true;
     }
     
-    boolean esBisiesto(int a){
+    static boolean esBisiesto(int a){
         if ((a%4==0) || (a%400==0) && (a%100!=0)) {
             return true;
         }
