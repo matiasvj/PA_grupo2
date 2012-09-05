@@ -625,13 +625,20 @@ public class GestionJugadores extends javax.swing.JDialog {
     }//GEN-LAST:event_validarNumeros
 
     private void validacioDouble(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validacioDouble
-        
+        char caracter = evt.getKeyChar();
+        if((caracter < '0' || caracter > '9') && caracter != KeyEvent.VK_BACK_SPACE){
+            if(caracter != ',' && caracter != '.'){
+                evt.consume();
+                JOptionPane.showMessageDialog(this, "Solo se permiten enteros y decimales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_validacioDouble
 
     //no esta terminado
     public boolean altaJugador(){
-        String nombre, nom_comp, pais, posicion, altura, peso, dia, mes, anio;
+        String nombre, nom_comp, pais, posicion, dia, mes, anio;
         int id_generado;
+        double altura, peso;
         Date f_nac = null;
         boolean altaCorrecto = false;
         
@@ -643,9 +650,6 @@ public class GestionJugadores extends javax.swing.JDialog {
             nom_comp = tf_nom_comp.getText();
             pais = tf_pais.getText();
             posicion = tf_pos.getText();
-            altura = tf_altura.getText();
-            peso = tf_peso.getText();
-            
             dia = tf_dia.getText();
             mes = tf_mes.getText();
             anio = tf_anio.getText();
@@ -659,6 +663,13 @@ public class GestionJugadores extends javax.swing.JDialog {
                 if(Date.esCorrecta(d, m, a)){
                     f_nac = new Date(d,m,a);
                 }
+            }
+            
+            if(!"".equals(tf_altura.getText())){
+                altura = Double.parseDouble(tf_altura.getText());
+            }
+            if(!"".equals(tf_peso.getText())){
+                peso = Double.parseDouble(tf_peso.getText());
             }
             
             
