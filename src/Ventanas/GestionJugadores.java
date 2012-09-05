@@ -2,6 +2,7 @@
 package Ventanas;
 
 import Clases.Date;
+import Clases.Jugador;
 import Clases.ManejadorBD;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
@@ -628,10 +629,11 @@ public class GestionJugadores extends javax.swing.JDialog {
         
     }//GEN-LAST:event_validacioDouble
 
-    //no esta terminado
+    
     public boolean altaJugador(){
-        String nombre, nom_comp, pais, posicion, altura, peso, dia, mes, anio;
+        String nombre, nom_comp, pais, posicion, dia, mes, anio;
         int id_generado;
+        double altura, peso;
         Date f_nac = null;
         boolean altaCorrecto = false;
         
@@ -639,12 +641,16 @@ public class GestionJugadores extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "El campo nombre compleno no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            nombre = tf_nombre.getText();
             nom_comp = tf_nom_comp.getText();
+            Jugador j = new Jugador(tf_nom_comp.getText());
+            
+            nombre = tf_nombre.getText();
             pais = tf_pais.getText();
             posicion = tf_pos.getText();
-            altura = tf_altura.getText();
-            peso = tf_peso.getText();
+            
+            j.setNombre(nombre);
+            j.setNacionalidad(pais);
+            j.setPosicion(posicion);
             
             dia = tf_dia.getText();
             mes = tf_mes.getText();
@@ -658,12 +664,52 @@ public class GestionJugadores extends javax.swing.JDialog {
                 
                 if(Date.esCorrecta(d, m, a)){
                     f_nac = new Date(d,m,a);
+                    j.setF_nac(f_nac);
                 }
             }
             
+            try{
+                if(!"".equals(tf_altura.getText())) {
+                    altura = Double.parseDouble(tf_altura.getText());
+                }
+                else{
+                    altura = 0;
+                }
+                j.setAltura(altura);
+                
+                if(!"".equals(tf_peso.getText())) {
+                    peso = Double.parseDouble(tf_peso.getText());
+                }
+                else{
+                    peso = 0;
+                }
+                j.setPeso(peso);
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Los campos altura y peso deben ser numeros", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             
+            id_generado = mbd.insertJugador(j);
+            
+            if(id_generado != 0){
+                JOptionPane.showMessageDialog(this, "Se creo el jugador con id: "+id_generado, "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                altaCorrecto = true;
+                boton_aceptar.setVisible(false);
+                boton_cancelar.setVisible(false);
+                boton_imagen.setVisible(false);
+                boton_nuevo.setVisible(true);
+                boton_modificar.setVisible(true);
+                boton_eliminar.setVisible(true);
+                
+                lista_jugadores.setEnabled(true);
+                limpiarTextFields();
+                modelo.addElement(nom_comp);
+                ids.add(id_generado);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "No se pudo crear el jugador, intentelo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        
         return altaCorrecto;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
