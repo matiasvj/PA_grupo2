@@ -3,6 +3,7 @@ package Ventanas;
 
 import Clases.Date;
 import Clases.ManejadorBD;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class GestionJugadores extends javax.swing.JDialog {
 
@@ -86,9 +88,9 @@ public class GestionJugadores extends javax.swing.JDialog {
     public void limpiarTextFields(){
         tf_nombre.setText("");
         tf_nom_comp.setText("");
-        tf_dia.setText("dia");
-        tf_mes.setText("mes");
-        tf_anio.setText("anio");
+        tf_dia.setText("");
+        tf_mes.setText("");
+        tf_anio.setText("");
         tf_pais.setText("");
         tf_pos.setText("");
         tf_altura.setText("");
@@ -126,6 +128,7 @@ public class GestionJugadores extends javax.swing.JDialog {
         boton_salir = new javax.swing.JButton();
         boton_aceptar = new javax.swing.JButton();
         boton_cancelar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestion de Jugadores");
@@ -161,30 +164,120 @@ public class GestionJugadores extends javax.swing.JDialog {
 
         tf_nombre.setEditable(false);
         tf_nombre.setText("jTextField1");
+        tf_nombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validacionLetras(evt);
+            }
+        });
 
         tf_nom_comp.setEditable(false);
         tf_nom_comp.setText("jTextField2");
+        tf_nom_comp.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_nom_comp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validacionLetras(evt);
+            }
+        });
 
         tf_anio.setEditable(false);
         tf_anio.setText("jTextField3");
+        tf_anio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_anio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validarNumeros(evt);
+            }
+        });
 
         tf_mes.setEditable(false);
         tf_mes.setText("jTextField3");
+        tf_mes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_mes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validarNumeros(evt);
+            }
+        });
 
         tf_dia.setEditable(false);
         tf_dia.setText("jTextField3");
+        tf_dia.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_dia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validarNumeros(evt);
+            }
+        });
 
         tf_pais.setEditable(false);
         tf_pais.setText("jTextField6");
+        tf_pais.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_pais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validacionLetras(evt);
+            }
+        });
 
         tf_pos.setEditable(false);
         tf_pos.setText("jTextField7");
+        tf_pos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_pos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validacionLetras(evt);
+            }
+        });
 
         tf_altura.setEditable(false);
         tf_altura.setText("jTextField8");
+        tf_altura.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_altura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validacioDouble(evt);
+            }
+        });
 
         tf_peso.setEditable(false);
         tf_peso.setText("jTextField9");
+        tf_peso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                focus(evt);
+            }
+        });
+        tf_peso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                validacioDouble(evt);
+            }
+        });
 
         panel_imagen.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -243,6 +336,8 @@ public class GestionJugadores extends javax.swing.JDialog {
             }
         });
 
+        jLabel9.setText(" Dia       Mes     Año");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,16 +372,18 @@ public class GestionJugadores extends javax.swing.JDialog {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(tf_nombre)
                                             .addComponent(tf_nom_comp)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(tf_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(tf_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(tf_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(tf_pais)
                                             .addComponent(tf_pos)
                                             .addComponent(tf_altura)
-                                            .addComponent(tf_peso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(tf_peso, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel9)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(tf_dia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(tf_mes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(tf_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(boton_aceptar)
                                         .addGap(18, 18, 18)
@@ -331,13 +428,15 @@ public class GestionJugadores extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(tf_nom_comp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9)
+                                .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4)
                                     .addComponent(tf_anio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tf_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tf_dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
                                     .addComponent(tf_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -371,7 +470,7 @@ public class GestionJugadores extends javax.swing.JDialog {
                         .addComponent(boton_modificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(boton_eliminar)
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         boton_aceptar.getAccessibleContext().setAccessibleDescription("");
@@ -387,27 +486,29 @@ public class GestionJugadores extends javax.swing.JDialog {
 
     private void filaSeleccionada(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_filaSeleccionada
         lugar_lista = lista_jugadores.getSelectedIndex();
-        id = (int) ids.get(lugar_lista);
-        String fecha = "";
-        try{
-            ResultSet res = mbd.selectJugador(id);
-            res.next();
-            
-            tf_nombre.setText(res.getString(2));
-            tf_nom_comp.setText(res.getString(3));
-            
-            fecha = res.getString(4);
-            tf_dia.setText(fecha.substring(8, 10));
-            tf_mes.setText(fecha.substring(5, 7));
-            tf_anio.setText(fecha.substring(0, 4));
-            
-            tf_pais.setText(res.getString(5));
-            tf_pos.setText(res.getString(6));
-            tf_altura.setText(res.getString(7)+" m");
-            tf_peso.setText(res.getString(8)+" Kg");
-        }
-        catch(SQLException ex){
-            System.out.println(ex.toString());
+        if(lugar_lista != -1){
+            id = (int) ids.get(lugar_lista);
+            String fecha = "";
+            try{
+                ResultSet res = mbd.selectJugador(id);
+                res.next();
+                
+                tf_nombre.setText(res.getString(2));
+                tf_nom_comp.setText(res.getString(3));
+                
+                fecha = res.getString(4);
+                tf_dia.setText(fecha.substring(8, 10));
+                tf_mes.setText(fecha.substring(5, 7));
+                tf_anio.setText(fecha.substring(0, 4));
+                
+                tf_pais.setText(res.getString(5));
+                tf_pos.setText(res.getString(6));
+                tf_altura.setText(res.getString(7)+" m");
+                tf_peso.setText(res.getString(8)+" Kg");
+            }
+            catch(SQLException ex){
+                System.out.println(ex.toString());
+            }
         }
     }//GEN-LAST:event_filaSeleccionada
 
@@ -432,7 +533,6 @@ public class GestionJugadores extends javax.swing.JDialog {
                 else{
                     st.executeUpdate("delete from jugadores_equipos where jugador="+id+" ");
                     st.executeUpdate("delete from jugadores where id_jugador="+id+" ");
-                    lista_jugadores.setSelectedIndex(lista_jugadores.getFirstVisibleIndex());
                     modelo.remove(lugar_lista);
                     JOptionPane.showMessageDialog(this, "El jugador fue eliminado correctamente!", "Exito!", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -469,9 +569,7 @@ public class GestionJugadores extends javax.swing.JDialog {
         //activar la lista
         lista_jugadores.setEnabled(true);
         
-        tf_dia.setText("");
-        tf_mes.setText("");
-        tf_anio.setText("");
+        limpiarTextFields();
         
         boton_nuevo.setSelected(false);
         boton_modificar.setSelected(false);
@@ -480,14 +578,12 @@ public class GestionJugadores extends javax.swing.JDialog {
     private void aceptar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar
         
         if(boton_nuevo.isSelected()){
-            String nombre, nom_comp, pais, posicion;
-            double altura, peso;
-            int id_generado, dia, mes, anio;
+            boolean alta_correcta;
+            alta_correcta = altaJugador();
             
-            
-            
-            
-            boton_nuevo.setSelected(false);
+            if(alta_correcta){
+                boton_nuevo.setSelected(false);
+            }
         }
         if(boton_modificar.isSelected()){
             System.out.println("modificar seleccionado");
@@ -505,6 +601,71 @@ public class GestionJugadores extends javax.swing.JDialog {
         limpiarTextFields();
     }//GEN-LAST:event_nuevoJugador
 
+    private void focus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_focus
+        if(boton_nuevo.isSelected() || boton_modificar.isSelected()){
+            JTextField campo = (JTextField) evt.getSource();
+            campo.selectAll();
+        }
+    }//GEN-LAST:event_focus
+
+    private void validacionLetras(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validacionLetras
+        char caracter = evt.getKeyChar();
+        if(caracter >= '0' && caracter <= '9' && caracter != KeyEvent.VK_BACK_SPACE){
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "No se permiten numeros", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_validacionLetras
+
+    private void validarNumeros(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validarNumeros
+        char caracter = evt.getKeyChar();
+        if((caracter < '0' || caracter > '9') && caracter != KeyEvent.VK_BACK_SPACE){
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo se permiten numeros", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_validarNumeros
+
+    private void validacioDouble(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_validacioDouble
+        
+    }//GEN-LAST:event_validacioDouble
+
+    //no esta terminado
+    public boolean altaJugador(){
+        String nombre, nom_comp, pais, posicion, altura, peso, dia, mes, anio;
+        int id_generado;
+        Date f_nac = null;
+        boolean altaCorrecto = false;
+        
+        if(tf_nom_comp.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "El campo nombre compleno no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            nombre = tf_nombre.getText();
+            nom_comp = tf_nom_comp.getText();
+            pais = tf_pais.getText();
+            posicion = tf_pos.getText();
+            altura = tf_altura.getText();
+            peso = tf_peso.getText();
+            
+            dia = tf_dia.getText();
+            mes = tf_mes.getText();
+            anio = tf_anio.getText();
+            
+            if(!"".equals(dia) && !"".equals(mes) && !"".equals(anio)){
+                int d, m, a;
+                d = Integer.parseInt(dia);
+                m = Integer.parseInt(mes);
+                a = Integer.parseInt(anio);
+                
+                if(Date.esCorrecta(d, m, a)){
+                    f_nac = new Date(d,m,a);
+                }
+            }
+            
+            
+        }
+        
+        return altaCorrecto;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;
     private javax.swing.JButton boton_cancelar;
@@ -521,6 +682,7 @@ public class GestionJugadores extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList lista_jugadores;
     private javax.swing.JPanel panel_imagen;
