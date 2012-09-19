@@ -636,7 +636,7 @@ public class GestionJugadores extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_validacioDouble
 
-    //no esta terminado
+    
     public boolean altaJugador(){
         String nom, nom_c, nac, pos;
         double altura, peso;
