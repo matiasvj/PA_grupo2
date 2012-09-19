@@ -24,7 +24,7 @@ public class ManejadorBD {
         }
         return instancia;
     }
-    
+    ////////////////////////////// se establece la conexion ///////////////////////////
     private ManejadorBD() {
         try{
             Class.forName(driver);
@@ -36,7 +36,7 @@ public class ManejadorBD {
             System.out.println(ex.toString());
         }
     }
-    
+    ////////////////////////////////////////////////////////////////////////////////////
     public java.sql.Statement getStatement(){
         return st;
     }
@@ -604,15 +604,12 @@ public class ManejadorBD {
         }
     }
      
-     public void InsertarFechaHora(int dia,int mes,int anio, int hora,int minuto)
-    {  
-        
+     public void InsertarFechaHora(int dia,int mes,int anio, int hora,int minuto){
      try {
             st.executeUpdate("UPDATE Fecha set Dia = "+dia+", Mes = "+mes+", año = "+anio+", Hora= "+hora+", Minuto="+minuto+" where ID = 1");
         } catch (SQLException ex) {
             System.out.println("Error: "+ex.toString());
         }
-        
     }
 
 public List ObtenerFechaHora()

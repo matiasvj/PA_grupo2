@@ -2,6 +2,7 @@
 package Ventanas;
 
 import Clases.Date;
+import Clases.Jugador;
 import Clases.ManejadorBD;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
@@ -586,11 +587,12 @@ public class GestionJugadores extends javax.swing.JDialog {
             }
         }
         if(boton_modificar.isSelected()){
-            System.out.println("modificar seleccionado");
+            boolean modificacion_correcta;
+            modificacion_correcta = modificarJugador();
             
-            
-            
-            boton_modificar.setSelected(false);
+            if(modificacion_correcta){
+                boton_modificar.setSelected(false);
+            }
         }
     }//GEN-LAST:event_aceptar
 
@@ -636,47 +638,145 @@ public class GestionJugadores extends javax.swing.JDialog {
 
     //no esta terminado
     public boolean altaJugador(){
-        String nombre, nom_comp, pais, posicion, dia, mes, anio;
-        int id_generado;
+        String nom, nom_c, nac, pos;
         double altura, peso;
-        Date f_nac = null;
-        boolean altaCorrecto = false;
+        int dia, mes, anio;
+        Date fecha_nac = null;
+        boolean alta_correcto = false;
         
         if(tf_nom_comp.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "El campo nombre compleno no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El campo nombre completo no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
-            nombre = tf_nombre.getText();
-            nom_comp = tf_nom_comp.getText();
-            pais = tf_pais.getText();
-            posicion = tf_pos.getText();
-            dia = tf_dia.getText();
-            mes = tf_mes.getText();
-            anio = tf_anio.getText();
+            nom = tf_nombre.getText();
+            nom_c = tf_nom_comp.getText();
+            Jugador jugador = new Jugador(nom_c);
+            jugador.setNombre(nom);
             
-            if(!"".equals(dia) && !"".equals(mes) && !"".equals(anio)){
-                int d, m, a;
-                d = Integer.parseInt(dia);
-                m = Integer.parseInt(mes);
-                a = Integer.parseInt(anio);
-                
-                if(Date.esCorrecta(d, m, a)){
-                    f_nac = new Date(d,m,a);
+            try{
+                if(!"".equals(tf_dia.getText()) && !"".equals(tf_mes.getText()) && !"".equals(tf_anio.getText())){
+                    dia = Integer.parseInt(tf_dia.getText());
+                    mes = Integer.parseInt(tf_mes.getText());
+                    anio = Integer.parseInt(tf_anio.getText());
+                    fecha_nac = new Date(dia, mes, anio);
+                    if( Date.esCorrecta(dia, mes, dia) ){
+                        jugador.setF_nac(fecha_nac);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "La Fecha Ingresada No es Correcta", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Ninguno de los campos de fecha puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            
-            if(!"".equals(tf_altura.getText())){
-                altura = Double.parseDouble(tf_altura.getText());
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Los campos de la fecha deben ser enteros", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            if(!"".equals(tf_peso.getText())){
-                peso = Double.parseDouble(tf_peso.getText());
+            nac = tf_pais.getText();
+            jugador.setNacionalidad(nac);
+            pos = tf_pos.getText();
+            jugador.setPosicion(pos);
+            try{
+                if(!"".equals(tf_altura.getText())) {
+                    altura = Double.parseDouble(tf_altura.getText());
+                }
+                else{
+                    altura = 0;
+                }
+                jugador.setAltura(altura);
+                
+                if(!"".equals(tf_peso.getText())) {
+                    peso = Double.parseDouble(tf_peso.getText());
+                }
+                else{
+                    peso = 0;
+                }
+                jugador.setPeso(peso);
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Los campos altura y peso deben ser numeros", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
-            
+            int id_generado = mbd.insertJugador(jugador);
+            if(id_generado != 0){
+                JOptionPane.showMessageDialog(this, "Se creo el jugador con id: "+id_generado, "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                alta_correcto = true;
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "No se pudo crear el jugador, intentelo de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
-        
-        return altaCorrecto;
+        return alta_correcto;
     }
+    public boolean modificarJugador(){
+       String nom, nom_c, nac, pos;
+        double altura, peso;
+        int dia, mes, anio;
+        Date fecha_nac = null;
+        boolean modificacion_correcta = false;
+        
+        if(tf_nom_comp.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "El campo nombre completo no puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            nom = tf_nombre.getText();
+            nom_c = tf_nom_comp.getText();
+            Jugador jugador = new Jugador(nom_c);
+            jugador.setNombre(nom);
+            
+            try{
+                if(!"".equals(tf_dia.getText()) && !"".equals(tf_mes.getText()) && !"".equals(tf_anio.getText())){
+                    dia = Integer.parseInt(tf_dia.getText());
+                    mes = Integer.parseInt(tf_mes.getText());
+                    anio = Integer.parseInt(tf_anio.getText());
+                    fecha_nac = new Date(dia, mes, anio);
+                    if( Date.esCorrecta(dia, mes, dia) ){
+                        jugador.setF_nac(fecha_nac);
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "La Fecha Ingresada No es Correcta", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "Ninguno de los campos de fecha puede estar vacio", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Los campos de la fecha deben ser enteros", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            nac = tf_pais.getText();
+            jugador.setNacionalidad(nac);
+            pos = tf_pos.getText();
+            jugador.setPosicion(pos);
+            try{
+                if(!"".equals(tf_altura.getText())) {
+                    altura = Double.parseDouble(tf_altura.getText());
+                }
+                else{
+                    altura = 0;
+                }
+                jugador.setAltura(altura);
+                
+                if(!"".equals(tf_peso.getText())) {
+                    peso = Double.parseDouble(tf_peso.getText());
+                }
+                else{
+                    peso = 0;
+                }
+                jugador.setPeso(peso);
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(this, "Los campos altura y peso deben ser numeros", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            mbd.modificarJugador(jugador);
+            JOptionPane.showMessageDialog(this, "El jugador fue modificado con exito", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            modificacion_correcta = true;
+        }
+       return modificacion_correcta;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton_aceptar;
     private javax.swing.JButton boton_cancelar;
