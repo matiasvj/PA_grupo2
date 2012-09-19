@@ -504,8 +504,8 @@ public class GestionJugadores extends javax.swing.JDialog {
                 
                 tf_pais.setText(res.getString(5));
                 tf_pos.setText(res.getString(6));
-                tf_altura.setText(res.getString(7)+" m");
-                tf_peso.setText(res.getString(8)+" Kg");
+                tf_altura.setText(res.getString(7));
+                tf_peso.setText(res.getString(8));
             }
             catch(SQLException ex){
                 System.out.println(ex.toString());
