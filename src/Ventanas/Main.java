@@ -1,6 +1,7 @@
 package Ventanas;
 import Clases.*;
 import javax.swing.JOptionPane;
+import ventanas.VerDetalleUsuario;
 
 public class Main extends javax.swing.JFrame {
    
@@ -32,6 +33,8 @@ public class Main extends javax.swing.JFrame {
         partido_liga = new javax.swing.JMenuItem();
         finalizar_partido = new javax.swing.JMenuItem();
         dividendos = new javax.swing.JMenuItem();
+        menu_usuarios = new javax.swing.JMenu();
+        menu_verUsuario = new javax.swing.JMenuItem();
         menu_fechaYhora = new javax.swing.JMenu();
         cargar_datos_prueba = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -154,6 +157,18 @@ public class Main extends javax.swing.JFrame {
 
         barra_menu.add(menu_comp);
 
+        menu_usuarios.setText("Usuarios");
+
+        menu_verUsuario.setText("Ver Informacion");
+        menu_verUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verUsuario(evt);
+            }
+        });
+        menu_usuarios.add(menu_verUsuario);
+
+        barra_menu.add(menu_usuarios);
+
         menu_fechaYhora.setText("Opciones");
 
         cargar_datos_prueba.setText("Cargar datos de prueba");
@@ -266,6 +281,12 @@ public class Main extends javax.swing.JFrame {
         gj.setVisible(true);
     }//GEN-LAST:event_administrarJugadores
 
+    private void verUsuario(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verUsuario
+        VerDetalleUsuario vdu = new VerDetalleUsuario(this, true);
+        vdu.setLocation(200, 200);
+        vdu.setVisible(true);
+    }//GEN-LAST:event_verUsuario
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -291,6 +312,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu menu_equipo;
     private javax.swing.JMenu menu_fechaYhora;
     private javax.swing.JMenu menu_jugador;
+    private javax.swing.JMenu menu_usuarios;
+    private javax.swing.JMenuItem menu_verUsuario;
     private javax.swing.JMenu nueva_competicion;
     private javax.swing.JMenu partido;
     private javax.swing.JMenuItem partido_individual;

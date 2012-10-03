@@ -893,7 +893,7 @@ public List ObtenerFechaHora()
      }
      public void ActualizarFotoEquipo(String urls, int id){
          try {
-            st.executeUpdate("UPDATE equipos set url = '"+urls+"' WHERE id_equipos = "+id+"");
+            st.executeUpdate("UPDATE equipos set imagen = '"+urls+"' WHERE id_equipos = "+id+"");
         } catch (SQLException ex) {
             System.out.println("Error: "+ex.toString());
         }
