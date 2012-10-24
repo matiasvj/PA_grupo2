@@ -52,11 +52,20 @@ public class FechaYhora extends javax.swing.JDialog {
         {
             min=min+60;
             hora=hora-1;
-        }
+        } else if (min>59){
+            min=min-60;
+            hora=hora+1;
+            }
+        
         if(hora<0)
         {
             dia=dia-1;
-        }
+            hora=hora+24;
+        } else if (hora>23){
+            hora=hora-24;
+            dia=dia+1;
+            }
+        
         if(dia<1)
         {
             mes=mes-1;
@@ -72,11 +81,30 @@ public class FechaYhora extends javax.swing.JDialog {
             {
                 dia=dia+30;
             }
-        }
+        } else if (dia>28){
+            if (mes==2){
+                if (!((anio % 4 == 0) && ((anio % 100 != 0) || (anio % 400 == 0)))){
+                        dia=dia-28;
+                        mes=mes+1;
+                    } else if (dia>29){
+                        dia=dia-29;
+                        mes=mes+1;
+                        }
+                } else if((dia>30) && (mes==4 || mes==6 || mes==9 || mes==11)){
+                        dia=dia-30;
+                        mes=mes+1;
+                    } else if (dia>31){
+                            dia=dia-31;
+                            mes=mes+1;
+                        }
+            }
         if(mes<1)
         {
             mes=mes+12;
             anio=anio-1;
+        } else if (mes>12){
+            mes=mes-12;
+            anio=anio+1;
         }
         String diaa=dia+"", mess=mes+"", anioo=anio+"";
         if (dia<10){
